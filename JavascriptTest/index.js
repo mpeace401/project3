@@ -6,11 +6,11 @@ const app = express();
 const port = 3001;
 
 const pool = new Pool({ 
-  user: process.env.PSQL_USER,
-  host: process.env.PSQL_HOST,
-  database: process.env.PSQL_DATABASE,
-  password: process.env.PSQL_PASSWORD,
-  port: process.env.PSQL_PORT,
+  user: 'csce315_907_garza',
+  host:'csce-315-db.engr.tamu.edu',
+  database: 'csce315_907_74',
+  password: '630004098',
+  port: 5432,
   ssl: {rejectUnauthorized: false}
   
 });
@@ -36,3 +36,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`App running on port http://localhost:${port}`);
   });
+
+
