@@ -23,16 +23,23 @@ process.on('SIGINT', function() {
    
 app.set("view engine", "ejs");
 
-app.get('/', (req, res) => {
-    pool
-        .query('SELECT * FROM menuitems WHERE itemid = 1;')
-        .then(query_res => {
-            var item = query_res.rows[0];
-            const data = {item: item};
-            console.log(item);
-            res.render('index', data);
-        });
+function createMenuMap(){
+  app.get('/', (req, res) => {
+      let menuMap = new Map();   
+      pool
+          .query('SELECT * FROM menuitems;')
+          .then(query_res => {
+            for (let i = 0; i < query_res.rowCount; i++){            
+              menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);    
+            }
+              const data = {menuMap: menuMap};
+              //console.log(item);
+              res.render('index', data);
+          });
+          return menuMap
   });
+}
+createMenuMap();
 app.listen(port, () => {
     console.log(`App running on port http://localhost:${port}`);
   });
