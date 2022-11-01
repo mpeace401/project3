@@ -17,11 +17,19 @@
 </head>
 <body>
    <h1>GigaChad.com</h1>
-       
+
+   <!-- Creates category buttons -->
+   <% for (var i = 0; i < data.menuArray.length; i++) {%>
+      <button class = "button categorybutton" onclick = "enableMenuButtons(<%= i %>)">
+         Category 
+      </button>
+      <% } %>
+
+      <!--  Creates menu buttons  -->
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  
       <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
          <!-- Assingns buttons into class depending on category -->
-         <button  id = "menubutton" class = "button menubutton <%= i %>" hidden = "hidden">
+         <button class = "button menubutton <%= i %>" hidden = "hidden">
             <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
          </button>
       <% } %>
@@ -31,7 +39,7 @@
 
 <script>
    // Function to enable a certain category of buttons on click
-   let toggle = (category) => {
+   let enableMenuButtons = (category) => {
  
      let disable = document.getElementsByClassName("button menubutton");
      
