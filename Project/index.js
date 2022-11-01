@@ -23,25 +23,53 @@ process.on('SIGINT', function() {
    
 app.set("view engine", "ejs");
 
-function createMenuMap(){
-  app.get('/', (req, res) => {
-      let menuMap = new Map();   
-      pool
-          .query('SELECT * FROM menuitems;')
-          .then(query_res => {
-            for (let i = 0; i < query_res.rowCount; i++){            
-              menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);    
-            }
-              const data = {menuMap: menuMap};
-              //console.log(item);
-              res.render('index', data);
-          });
-          return menuMap
-  });
+function createMenuMap(data){ //creates map between itemid and item objects and adds to data
+  
+    var menuMap = new Map();     
+    pool
+        .query('SELECT * FROM menuitems;')
+        .then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){            
+            menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);             
+              
+          }
+           
+          data['menuMap'] = menuMap     
+        });
+        
 }
-createMenuMap();
+
+function createMenuArray(data){ //creates array of each itemid and adds to data
+  
+    var menuArray = [] 
+    pool
+        .query('SELECT * FROM menuitems order by itemid;')
+        .then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){            
+            menuArray.push(query_res.rows[i].itemid);  
+            
+          }
+          
+        data['menuArray'] = menuArray 
+        });
+        
+}
+
 app.listen(port, () => {
     console.log(`App running on port http://localhost:${port}`);
   });
+
+
+data = {} //stores objects to be rendered
+
+createMenuArray(data);
+createMenuMap(data);
+
+
+app.get('/', (req, res) => {
+ 
+  res.render('index',  {data: data }); //renders data object to server
+});
+
 
 
