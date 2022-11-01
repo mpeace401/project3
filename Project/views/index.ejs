@@ -2,9 +2,26 @@
 
 
 <head>
+   <link href="server.css" rel="stylesheet" type="text/css">
+   <style>
+      .menubutton{
+         width: 300px;
+         height: 100px;
+      }
+   </style>
+
    <title>Home Page</title>
 </head>
 <body>
    <h1>GigaChad.com</h1>
-       <p>Name: <%=data.menuArray[0][0]%><p>
+       
+
+   <% for (var i = 0; i < data.menuArray.length; i++) {%>  
+      <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
+         <button class = "button menubutton">
+            <%= data.menuMap.get(data.menuArray[i][j]).itemname%>
+         </button>
+      <% } %>
+      
+      <% } %>
 </body>
