@@ -39,21 +39,33 @@ function createMenuMap(data){ //creates map between itemid and item objects and 
         
 }
 
-function createMenuArray(data){ //creates array of each itemid and adds to data
+function createMenuArray(data){ //creates 2d array of each itemid sorted by category and adds to data
   
-    var menuArray = [] 
+    var menuArray = []
+    var max = 0
     pool
-        .query('SELECT * FROM menuitems order by itemid;')
+        .query('SELECT max (category) FROM menuitems;')
         .then(query_res => {
-          for (let i = 0; i < query_res.rowCount; i++){            
-            menuArray.push(query_res.rows[i].itemid);  
-            
-          }
-          
-        data['menuArray'] = menuArray 
+        max = query_res.rows[0].max
+             
         });
+
+        for (let i = 1; i <= 6; i++){            
+          menuArray.push([]); 
+          pool   
+            .query('SELECT itemid FROM menuitems where category = '+ i +  'order by itemid;') //queries each category
+            .then(query_res => {           
+            for (let j = 0; j < query_res.rowCount; j++){ 
+              menuArray[i-1].push(query_res.rows[j].itemid) //adds each item to its category subarray 
+          }      
+          });
+             
+        } 
+        data['menuArray'] = menuArray  
         
 }
+
+
 
 app.listen(port, () => {
     console.log(`App running on port http://localhost:${port}`);
@@ -64,6 +76,8 @@ data = {} //stores objects to be rendered
 
 createMenuArray(data);
 createMenuMap(data);
+
+
 
 
 app.get('/', (req, res) => {
