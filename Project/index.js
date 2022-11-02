@@ -78,6 +78,8 @@ createMenuMap(data);
 
 
 
+
+
 app.get('/', (req, res) => {
  
   res.render('index',  {data: data }); //renders data object to server

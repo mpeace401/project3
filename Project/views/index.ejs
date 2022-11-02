@@ -50,13 +50,13 @@
 
 
       <!-- Rectangle to hold order -->
-      <div style="width:300px;height:650px;border:1px solid #000;left: 1000px; position: absolute;"></div>
+      <div style="width:300px;height:650px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
 
       <!--  Creates menu buttons  -->
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  
       <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
          <!-- Assingns buttons into class depending on category -->
-         <button class = "button menubutton <%= i %>" hidden = "hidden">
+         <button class = "button menubutton <%= i %>" hidden = "hidden" onclick = "addToOrder(orderArray,<%= data.menuMap.get(data.menuArray[i][j]).itemid %>)">
             <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
          </button>
       <% } %>
@@ -66,9 +66,10 @@
 </body>
 
 <script>
+   var orderArray = [];
+
    // Function to enable a certain category of buttons on click
-   let enableMenuButtons = (category) => {
-      
+   let enableMenuButtons = (category) => {   
      let disable = document.getElementsByClassName("button menubutton");
      
      for(let i = 0; i < disable.length; i++){
@@ -90,4 +91,10 @@
       categoryButton.style.backgroundColor = "maroon";
       categoryButton.style.color = "white";
    }
+   
+   //adds item ids to order
+   let addToOrder = (orderArray, id) => {  
+      orderArray.push(id);
+   }
+
  </script>
