@@ -1,25 +1,16 @@
-.menubutton{
-    width: 200px;
-    height: 100px;
-    margin: 10px 10px;
-    left: 250px;
-    top: 60px;
-    border-color:maroon ;
-    outline-color: maroon;
-    background-color: white;
-    color: maroon;
-
-    position: relative; 
- }
- .categorybutton{
-    width: 200px;
-    height: 100px;
+.categorybutton {
+    width: 250px;
+    height: 60px;
     margin: 10px 10px;
     left: 20px;
     border-color:maroon ;
     outline-color: maroon;
     background-color: white;
     color: maroon;
-    
-    position: absolute;  
- }
+    position: absolute;
+    transition-duration: 0.4s;
+}
+
+.categorybutton:hover {
+    background-color: lightgray !important;
+}
