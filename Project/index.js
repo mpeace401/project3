@@ -58,7 +58,6 @@ function createMenuArray(data){ //creates 2d array of each itemid sorted by cate
 }
 
 
-
 app.listen(port, () => {
   console.log(`App running on port http://localhost:${port}`);
 });
@@ -68,7 +67,9 @@ app.use('/views', express.static('views'));
 data = {} //stores objects to be rendered
 
 createMenuArray(data);
+var categories = ['Burgers', 'Chicken', 'Sides/Drinks', 'Dessert','Toppings','Condiments'];
 createMenuMap(data);
+data['categories'] = categories;
 
 app.get('/', (req, res) => {
   res.render('index',  {data: data }); //renders data object to server
