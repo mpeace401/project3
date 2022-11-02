@@ -17,7 +17,11 @@
 
    <!-- Rectangle to hold order -->
    <div style="width:300px;height:550px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
-   <button class = "button tender" style = "position: absolute; left: 1000px; top: 650px;">Tender</button>
+   <!-- Tender Button -->
+   <button class = "button tender" style = "position: absolute; left: 1000px; top: 650px;" onclick = "submitOrder()">Tender</button>
+
+   <!-- Cancel Button -->
+   <button class = "button cancel" style = "position: absolute; left: 1200px; top: 650px;" onclick = "submitOrder()">Cancel</button>
 
    <!--  Creates menu buttons  -->
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  

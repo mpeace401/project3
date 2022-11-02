@@ -28,3 +28,15 @@ let enableMenuButtons = (category) => {
 let addToOrder = (orderArray, id) => {  
    orderArray.push(id);
 }
+
+let clearOrder = () => {
+   orderArray = []
+}
+
+let submitOrder = () => {
+   for(let i = 0; i < orderArray.length; i++){
+      console.log(orderArray[i])
+   }
+   
+   clearOrder()
+}
