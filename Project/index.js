@@ -70,6 +70,7 @@ app.listen(port, () => {
     console.log(`App running on port http://localhost:${port}`);
   });
 
+app.use('/views', express.static('views'));
 
 data = {} //stores objects to be rendered
 
