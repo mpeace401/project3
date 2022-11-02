@@ -75,5 +75,6 @@ app.get('/', (req, res) => {
   res.render('index',  {data: data }); //renders data object to server
 });
 
-
-
+app.get('/manager', (req, res) => {
+  res.render('managerGUI',  {data: data }); //renders data object to server
+});
