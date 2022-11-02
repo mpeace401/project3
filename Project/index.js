@@ -75,10 +75,13 @@ app.get('/', (req, res) => {
   res.render('index',  {data: data }); //renders data object to server
 });
 
-app.get('/manager', (req, res) => {
-  res.render('managerGUI',  {data: data }); //renders data object to server
-});
+managerData = {} //stores objects to be rendered
 
-app.get('/customer', (req, res) => { //renders customer GUI
-  res.render('customerGUI', {data: data});
+// createMenuArray(managerData);
+var managerCategories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items'];
+// createMenuMap(managerData);
+managerData['categories'] = managerCategories;
+
+app.get('/manager', (req, res) => {
+  res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });

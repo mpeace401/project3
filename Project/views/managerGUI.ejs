@@ -9,27 +9,18 @@
    <h1>Manager GUI</h1>
 
    <!-- Creates category buttons -->
-   <% for (var i = 0; i < data.menuArray.length; i++) {%>
+   <% for (var i = 0; i < managerData.categories.length; i++) {%>
       <!-- Creates buttons 120px below the last -->
       <button class = "button categorybutton <%= i %>" onclick = "enableMenuButtons(<%= i %>)" style = "top : <%=60 + 120*i%>px;">
-         Category 
+         <%= managerData.categories[i] %>
       </button>
-      <% } %>
+   <% } %>
 
 
-      <!-- Rectangle to hold order -->
-      <div style="width:300px;height:650px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
+   <!-- Rectangle to hold order -->
+   <div style="width:300px;height:650px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
 
-      <!--  Creates menu buttons  -->
-   <% for (var i = 0; i < data.menuArray.length; i++) {%>  
-      <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
-         <!-- Assingns buttons into class depending on category -->
-         <button class = "button menubutton <%= i %>" hidden = "hidden" onclick = "addToOrder(orderArray,<%= data.menuMap.get(data.menuArray[i][j]).itemid %>)">
-            <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-         </button>
-      <% } %>
-      
-      <% } %>
+   
       
 </body>
 <script src="/views/functions.js"> </script>
