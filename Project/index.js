@@ -46,8 +46,7 @@ function createMenuArray(data){ //creates 2d array of each itemid sorted by cate
     pool
         .query('SELECT max (category) FROM menuitems;')
         .then(query_res => {
-        max = query_res.rows[0].max
-             
+        max = query_res.rows[0].max       
         });
 
         for (let i = 1; i <= 6; i++){            
@@ -76,7 +75,6 @@ data = {} //stores objects to be rendered
 
 createMenuArray(data);
 createMenuMap(data);
-
 
 
 
