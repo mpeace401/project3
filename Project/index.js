@@ -78,3 +78,7 @@ app.get('/', (req, res) => {
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {data: data }); //renders data object to server
 });
+
+app.get('/customer', (req, res) => { //renders customer GUI
+  res.render('customerGUI', {data: data});
+});
