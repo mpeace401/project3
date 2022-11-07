@@ -3,7 +3,6 @@
     height: 100px;
     margin: 10px 10px;
     left: 250px;
-    top: 60px;
 
     border-color:maroon ;
     outline-color: maroon;
@@ -32,3 +31,19 @@
  body {
    background-color: lightgray;
  } 
+ .tender {
+   width: 120px;
+   height: 50px;
+   border-color:maroon ;
+   outline-color: maroon;
+   background-color: white;
+   color: maroon;
+ }
+ .cancel {
+   width: 120px;
+   height: 50px;
+   border-color:maroon ;
+   outline-color: maroon;
+   background-color: white;
+   color: maroon;
+ }
