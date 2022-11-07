@@ -15,15 +15,15 @@
    <% } %>
 
    <!-- Rectangle to hold order -->
-   <div class = "orderbox" style="width:300px;height:500px;border:1px solid #000;top: 100px; left: 1000px; background-color: white; position: absolute;" ></div>
+   <div class = "orderbox" style="width:300px;height:525px;border:2px solid maroon;top: 110px; left: 1000px; background-color: white; position: absolute;" ></div>
    <!-- Tender Button -->
-   <button class = "button tender" style = "position: absolute; left: 1000px; top: 650px;" onclick = "submitOrder()">Tender</button>
+   <button class = "button tender" style = "position: absolute; left: 1180px; top: 650px;" onclick = "submitOrder()">Tender</button>
 
    <!-- Cancel Button -->
-   <button class = "button cancel" style = "position: absolute; left: 1180px; top: 650px;" onclick = "submitOrder()">Cancel</button>
+   <button class = "button cancel" style = "position: absolute; left: 1350px; top: 575px;" onclick = "submitOrder()">Cancel</button>
 
    <!--  Creates menu buttons  -->
-   <div class = "flex-container">
+   <div class = "flex-container1">
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  
       <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
          <!-- Assingns buttons into class depending on category -->
@@ -34,5 +34,12 @@
    <% } %>
    </div>   
 
+   <div>
+      <div class = "textbox" style = "left: 1000px;">Time</div>
+      <div class = "textbox" style = "left: 1180px;">Employee</div>
+      <div class = "textbox" style = "left: 1000px;top: 60px;">Order ID</div>
+      <div class = "textbox" style = "left: 1180px;top: 60px;">Customer</div>
+      <div class = "textbox" style = "left:1000px; top:650px; height:50px;">Total</div>
+   </div>
 </body>
 <script src="/views/functions.js"> </script>
