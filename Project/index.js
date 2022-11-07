@@ -76,12 +76,6 @@ app.get('/', (req, res) => {
 });
 
 managerData = {} //stores objects to be rendered
-
-// createMenuArray(managerData);
-var managerCategories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items'];
-// createMenuMap(managerData);
-managerData['categories'] = managerCategories;
-
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });

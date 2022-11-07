@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 
-
 <head>
    <link rel="stylesheet" type="text/css" href="/views/manager.css" id="manager_style"></link>
-   <title>Manager Home Page</title>
+   <title>Manager GUI</title>
 </head>
 <body>
-   <!-- <h1>Manager GUI</h1> -->
+   <!-- Tab links -->
+   <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Home')", id="homePage">Home</button>
+      <button class="tablinks" onclick="openTab(event, 'Inventory')">Inventory</button>
+      <button class="tablinks" onclick="openTab(event, 'Finance')">Finance</button>
+      <button class="tablinks" onclick="openTab(event, 'Transactions')">Transactions</button>
+      <button class="tablinks" onclick="openTab(event, 'Menu Items')">Menu Items</button>
+   </div>
 
-   <!-- Creates category buttons -->
-   <% for (var i = 0; i < managerData.categories.length; i++) {%>
-      <!-- Creates buttons 120px below the last -->
-      <button class = "button categorybutton <%= i %>" onclick = "enableMenuButtons(<%= i %>)" style = "left : <%=20 + 295*i%>px;">
-         <%= managerData.categories[i] %>
-      </button>
-   <% } %>
-
-
-   <!-- Rectangle to hold order -->
-   <div style="width:300px;height:650px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
-
+   <!-- Tab content -->
+   <div id="Home" class="tabcontent">
+      <div style="float:left;">
+         <h4 style="text-align:center;">TO-DO LIST</h4> 
+         <textarea class="toDoList"></textarea>
+      </div>
+   </div>
    
-      
+   <div id="Inventory" class="tabcontent">
+      <div style="float:left;">
+         <h4 style="text-align:center;">TO-DO LIST</h4> 
+         <textarea class="toDoList"></textarea>
+      </div>
+      <button class="subbutton" onclick="addNewItem(event)">ADD NEW ITEM</button>
+      <input readonly value="ID" class="textField">
+      <input readonly value="Name" class="textField">
+      <input readonly value="Amount" class="textField">
+      <input class="textField"><input class="textField"><input class="textField">
+      <button class="subbutton" onclick="addNewItem(event)">REMOVE ITEM</button>
+      <button class="subbutton" onclick="addNewItem(event)">UPDATE ITEM</button>
+   </div>
+   
+   <div id="Finance" class="tabcontent">
+      <div style="float:left;">
+         <h4 style="text-align:center;">TO-DO LIST</h4> 
+         <textarea class="toDoList"></textarea>
+      </div>
+   </div>
+   
+   <div id="Transactions" class="tabcontent">
+      <div style="float:left;">
+         <h4 style="text-align:center;">TO-DO LIST</h4> 
+         <textarea class="toDoList"></textarea>
+      </div>
+   </div>
+   
+   <div id="Menu Items" class="tabcontent">
+      <div style="float:left;">
+         <h4 style="text-align:center;">TO-DO LIST</h4> 
+         <textarea class="toDoList"></textarea>
+      </div>
+   </div>
 </body>
 <script src="/views/functions.js"> </script>
