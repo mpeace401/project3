@@ -4,6 +4,7 @@
     margin: 10px 10px;
     left: 250px;
     top: 60px;
+
     border-color:maroon ;
     outline-color: maroon;
     background-color: white;
@@ -23,3 +24,11 @@
     
     position: absolute;  
  }
+ .flex-container{
+   display:flex;
+   flex-wrap: wrap;
+   width: 800px;
+ }
+ body {
+   background-color: lightgray;
+ } 

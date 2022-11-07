@@ -5,7 +5,6 @@
    <title>Home Page</title>
 </head>
 <body>
-   <h1>GigaChad.com</h1>
 
    <!-- Creates category buttons -->
    <% for (var i = 0; i < data.categories.length; i++) {%>
@@ -16,7 +15,7 @@
    <% } %>
 
    <!-- Rectangle to hold order -->
-   <div style="width:300px;height:550px;border:1px solid #000;left: 1000px; position: absolute;" ></div>
+   <div class = "orderbox" style="width:300px;height:550px;border:1px solid #000;top: 60px; left: 1000px; background-color: white; position: absolute;" ></div>
    <!-- Tender Button -->
    <button class = "button tender" style = "position: absolute; left: 1000px; top: 650px;" onclick = "submitOrder()">Tender</button>
 
@@ -24,6 +23,7 @@
    <button class = "button cancel" style = "position: absolute; left: 1200px; top: 650px;" onclick = "submitOrder()">Cancel</button>
 
    <!--  Creates menu buttons  -->
+   <div class = "flex-container">
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  
       <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
          <!-- Assingns buttons into class depending on category -->
@@ -32,6 +32,6 @@
          </button>
       <% } %>
    <% } %>
-      
+   </div>   
 </body>
 <script src="/views/functions.js"> </script>
