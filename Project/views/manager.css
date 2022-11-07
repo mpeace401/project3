@@ -63,7 +63,15 @@ body {
     resize: none;
     float: left;
 }
+.toDoListDiv {
+    float:left;
+    padding-right:2vw;
+}
 
 .notifications {
 
+}
+
+h4 {
+    text-align: center;
 }
