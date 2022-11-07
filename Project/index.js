@@ -67,7 +67,7 @@ function createManagerMap(managerData){
       for (let i = 0; i < query_res.rowCount; i++){            
         inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);                
       }
-      managerData['inventoryMap'] = inventoryMap     
+      managerData['inventoryMap'] = inventoryMap;
     });    
 
   pool
@@ -76,7 +76,7 @@ function createManagerMap(managerData){
     for (let i = 0; i < query_res.rowCount; i++){            
       inventoryMap.set(query_res.rows[i].transactionid, query_res.rows[i]);                
     }
-    managerData['transactionsMap'] = transactionsMap     
+    managerData['transactionsMap'] = transactionsMap;
   });  
 }
 
@@ -103,7 +103,7 @@ managerData = {} //stores objects to be rendered
 var managerCatagories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items']
 createManagerMap(managerData)
 managerData['managerCatagories'] = managerCatagories;
-console.log(managerData)
+console.log(managerData);
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });

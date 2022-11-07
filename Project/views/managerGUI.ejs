@@ -24,7 +24,11 @@
    </div>
 
    <div id="Home" class="tabcontent">
-      <h1>Home Page</h1>
+      <div>
+      <% for (var i = 0; i < managerData.inventoryMap.length; i++) {%>
+         <input readonly class="textField" value=<%= managerData.inventoryMap.get("Bun") %>>
+      <% } %>
+      </div>
    </div>
    
    <div id="Inventory" class="tabcontent">
@@ -50,7 +54,7 @@
    </div>
    
    <div id="Finance" class="tabcontent">
-      <h1>Finance Page</h1>
+      <button class="subbutton" onclick="">Sales Report</button>
    </div>
    
    <div id="Transactions" class="tabcontent">
