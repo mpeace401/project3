@@ -85,3 +85,10 @@ managerData['categories'] = managerCategories;
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });
+
+customerData = {}
+var custCategories = ['Burgers', 'Chicken', 'Sides/Drinks', 'Dessert','Toppings','Condiments'];
+customerData['categories'] = custCategories;
+app.get('/customer', (req, res) => {
+  res.render('customerGUI', {customerData: customerData});
+});
