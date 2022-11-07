@@ -28,23 +28,25 @@
    </div>
    
    <div id="Inventory" class="tabcontent">
-      <button class="subbutton" onclick="addNewItem(event)">ADD NEW ITEM</button>
-      <div>
-         <input readonly value="ID" class="textField">
-         <input class="textField">
-      </div>
-      
-      <div>
-         <input readonly value="Name" class="textField">
-         <input class="textField">
-      </div>
+      <button class="subbutton" onclick="addNewItem(event)" style="width: 43vw;">ADD NEW ITEM</button>
+      <div class="invAndMenuFieldGroup">
+         <div>
+            <input readonly value="ID" class="textField">
+            <input class="textField">
+         </div>
+         
+         <div>
+            <input readonly value="Name" class="textField">
+            <input class="textField">
+         </div>
 
-      <div>
-         <input readonly value="Amount" class="textField">
-         <input class="textField">
+         <div>
+            <input readonly value="Amount" class="textField">
+            <input class="textField">
+         </div>
+         <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
+         <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
-      <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
-      <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
    </div>
    
    <div id="Finance" class="tabcontent">
@@ -56,7 +58,55 @@
    </div>
    
    <div id="Menu Items" class="tabcontent">
-      <h1>Menu Items Page</h1>
+      <button class="subbutton" onclick="addNewItem(event)" style="width: 43vw;">ADD NEW ITEM</button>
+      <div class="invAndMenuFieldGroup">
+         <div>
+            <input readonly value="ID" class="textField">
+            <input class="textField">
+         </div>
+         
+         <div>
+            <input readonly value="Name" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Price" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 1" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 2" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 3" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 4" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 5" class="textField">
+            <input class="textField">
+         </div>
+
+         <div>
+            <input readonly value="Ingredient 6" class="textField">
+            <input class="textField">
+         </div>
+         <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
+         <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
+      </div>
    </div>
 </body>
 <script src="/views/functions.js"> </script>
