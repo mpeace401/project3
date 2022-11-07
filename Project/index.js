@@ -57,6 +57,29 @@ function createMenuArray(data){ //creates 2d array of each itemid sorted by cate
     data['menuArray'] = menuArray
 }
 
+function createManagerMap(managerData){
+  var inventoryMap = new Map();
+  //var financeMap = new Map();
+  var transactionsMap = new Map();
+  pool
+    .query('SELECT * FROM inventory;')
+    .then(query_res => {
+      for (let i = 0; i < query_res.rowCount; i++){            
+        inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);                
+      }
+      managerData['inventoryMap'] = inventoryMap     
+    });    
+
+  pool
+  .query('SELECT * FROM customertransactions;')
+  .then(query_res => {
+    for (let i = 0; i < query_res.rowCount; i++){            
+      inventoryMap.set(query_res.rows[i].transactionid, query_res.rows[i]);                
+    }
+    managerData['transactionsMap'] = transactionsMap     
+  });  
+}
+
 
 app.listen(port, () => {
   console.log(`App running on port http://localhost:${port}`);
@@ -70,12 +93,17 @@ createMenuArray(data);
 var categories = ['Burgers', 'Chicken', 'Sides/Drinks', 'Dessert','Toppings','Condiments'];
 createMenuMap(data);
 data['categories'] = categories;
+console.log(data)
 
 app.get('/', (req, res) => {
   res.render('index',  {data: data }); //renders data object to server
 });
 
 managerData = {} //stores objects to be rendered
+var managerCatagories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items']
+createManagerMap(managerData)
+managerData['managerCatagories'] = managerCatagories;
+console.log(managerData)
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });
