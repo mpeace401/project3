@@ -114,18 +114,12 @@ app.get('/', (req, res) => {
 
 managerData = {} //stores objects to be rendered for manager
 var managerCatagories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items']
-<<<<<<< HEAD
 
 createMenuMap(managerData)
 createInventoryMap(managerData)
 createInventoryTransactionsMap(managerData)
 createTransactionsMap(managerData)
 
-=======
-createManagerMap(managerData)
-managerData['managerCatagories'] = managerCatagories;
-console.log(managerData);
->>>>>>> 2bb2a76653ad5159a86afdeb50ec397408936c19
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });
