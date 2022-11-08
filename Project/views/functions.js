@@ -81,24 +81,30 @@ tender.addEventListener('click', function(e) {
 
    for(var i = 0; i < orderArray.length; i++){
    //adds each item with hard coded transactionid val
-   let q = 'INSERT INTO customertransactions (transactionid, itemnum, itemid, time) values (5001,'
-   q += i+1 + ',' + orderArray[i] + ',NOW());';
+   let q = ''
+   //gets new id if item is first in order
+   if(i == 0){
+      q = 'DO $$ DECLARE id bigint; BEGIN Id := (SELECT max(transactionid)+1 from customertransactions); INSERT INTO customertransactions (transactionid,itemnum,itemid,time) VALUES (id,'
+   }
+   //else continues on order
+   else{
+      q = q = 'DO $$ DECLARE id bigint; BEGIN Id := (SELECT max(transactionid) from customertransactions); INSERT INTO customertransactions (transactionid,itemnum,itemid,time) VALUES (id,'
+   }
+
+   q += i+1 + ',' + orderArray[i] + ',NOW());END $$;';
 
    allqs += q;
 
-
    }
-   //used for checking query
-   
+   //runs all queries as one string
    runQuery(allqs)
    clearOrder();
-   var q = allqs
 
    });
 
 //given a string for a query runs a query with no return value 
 function runQuery(q){
-   console.log(q);
+
    
    fetch('/query', {
       method: 'POST',
