@@ -84,17 +84,19 @@ tender.addEventListener('click', function(e) {
    let q = ''
    //gets new id if item is first in order
    if(i == 0){
-      q = 'DO $$ DECLARE id bigint; BEGIN Id := (SELECT max(transactionid)+1 from customertransactions); INSERT INTO customertransactions (transactionid,itemnum,itemid,time) VALUES (id,'
+      q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)+1'
    }
    //else continues on order
    else{
-      q = q = 'DO $$ DECLARE id bigint; BEGIN Id := (SELECT max(transactionid) from customertransactions); INSERT INTO customertransactions (transactionid,itemnum,itemid,time) VALUES (id,'
+      q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)'
    }
+   //adds necessary query info
+   q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
+   q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,time,price) VALUES (id,'
+   q += i+1 + ',' + orderArray[i] + ',NOW(),p);END $$;';
 
-   q += i+1 + ',' + orderArray[i] + ',NOW());END $$;';
-
+   //adds all queries to one string
    allqs += q;
-
    }
    //runs all queries as one string
    runQuery(allqs)
