@@ -133,15 +133,15 @@ app.get('/customer', (req, res) => {
   res.render('customerGUI', {customerData: customerData});
 });
 
-//post request handles queries 
-app.post('/tender', jsonParser, function(req, res) {
-  const {id} = req.body;
+//post request handles completed transaction
+app.post('/', jsonParser, function(req, res) {
+  const {q} = req.body;
 
-  console.log(id)
-  res.sendStatus(201);
-  // pool  
-  //   .query(orderArray) //queries each category
-  //   .then(query_res => {           
-  //   });
+  console.log(q)
+  
+  pool  
+    .query(q) //queries each category
+    .then(query_res => {           
+    });
 
 });

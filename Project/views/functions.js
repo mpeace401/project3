@@ -40,21 +40,20 @@ let submitOrder = () => {
    
    clearOrder()
 }
-
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
   console.log('button was clicked');
-  
+  var q = 'INSERT INTO customertransactions (transactionid, itemnum) values (5001,1);' ;
   e.preventDefault();
-      fetch('/tender', {
+      fetch('/', {
          method: 'POST',
          headers: {
             Authorization: '',
             'Content-Type': 'application/json',
          },
          body: JSON.stringify({
-            orderArray,
+            q,
          }),
       })
          .then((res) => {
@@ -62,7 +61,6 @@ tender.addEventListener('click', function(e) {
          })
          .then((data) => console.log(data));
    });
-
 document.getElementById("homePage").click();
 function openTab(evt, cityName) {
    // Declare all variables
