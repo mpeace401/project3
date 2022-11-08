@@ -1,6 +1,7 @@
 var orderArray = [];
 var orderId;
 
+
 // Function to enable a certain category of buttons on click
 let enableMenuButtons = (category) => {   
   let disable = document.getElementsByClassName("button menubutton");
@@ -71,13 +72,23 @@ let getOrderId = () =>{
       });
       
       
-
+   }
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
   console.log('button was clicked');
-  var q = 'INSERT INTO customertransactions (transactionid, itemnum) values (5001,1);' ;
-
+  var allqs = '' ;
+  
+  for(var i = 0; i < orderArray.length; i++){
+   //adds each item with hard coded transactionid val
+   let q = 'INSERT INTO customertransactions (transactionid, itemnum, itemid, time) values (5001,'
+   q += i+1 + ',' + orderArray[i] + ',NOW());';
+   
+   allqs += q;
+  }
+  //used for checking query
+  console.log(allqs);
+  var q = allqs
   e.preventDefault();
       fetch('/query', {
          method: 'POST',
@@ -93,6 +104,7 @@ tender.addEventListener('click', function(e) {
             return res.json();
          })
          .then((data) => console.log(data));
+   clearOrder();
    });
 document.getElementById("homePage").click();
 function openTab(evt, cityName) {

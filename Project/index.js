@@ -136,8 +136,6 @@ app.get('/customer', (req, res) => {
 //post request handles completed transaction
 app.post('/query', jsonParser, function(req, res) {
   const {q} = req.body;
-
-  console.log(q)
   
   pool  
     .query(q) //queries each category
