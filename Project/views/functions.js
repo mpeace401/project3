@@ -7,6 +7,9 @@ var ingredientArray = [];
 //array to store order text
 var orderText = [];
 
+//array to store order text
+var costArray = [];
+
 
 
 
@@ -43,17 +46,26 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    ingredients.push(i1,i2,i3,i4,i5,i6)
 
    ingredientArray.push(ingredients)
-
+   
+   //displays order and total
    let text = name + " $" + price
    orderText.push(text)
+   costArray.push(price)
 
-   totalText = ''
+   let totalText = ''
+   let totalSum = 0
+   
    for(let i = 0; i <orderText.length; i++){
       totalText += orderText[i]
       totalText += '\n'
+      totalSum += costArray[i]
    }
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = totalText;
+
+   costArea =  document.getElementById("costbox")
+   //adds total and rounds to 2 decimals
+   costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
 
 }
 
@@ -61,8 +73,11 @@ let clearOrder = () => {
    orderArray = []
    ingredientArray = []
    orderText = []
+   orderCost = 0;
    orderArea =  document.getElementById("orderbox")
-   orderArea.textContent = '';
+   orderArea.innerText = '';
+   costArea =  document.getElementById("costbox")
+   costArea.textContent = "Total: $0";
 }
 
 
@@ -93,7 +108,6 @@ let getOrderId = () =>{
 
          return orderId
         
-         
       });
       
       
