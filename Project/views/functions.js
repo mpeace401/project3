@@ -29,7 +29,9 @@ let enableMenuButtons = (category) => {
 }
 
 //adds item ids to order
-let addToOrder = (orderArray, id, i1, i2, i3, i4, i5, i6) => {  
+let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
+   button = document.getElementById("menubutton " + category + " " + pos)
+   let name = button.textContent;
    orderArray.push(id);
    ingredientArray.push(i1,i2,i3,i4,i5,i6)
 
@@ -41,13 +43,7 @@ let clearOrder = () => {
 }
 
 
-let submitOrder = () => {
-   for(let i = 0; i < orderArray.length; i++){
-      console.log(orderArray[i])
-   }
-   
-   clearOrder()
-}
+
 //gets next order id and stores value
 let getOrderId = () =>{
    var orderId = 0
