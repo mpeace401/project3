@@ -1,4 +1,5 @@
 var orderArray = [];
+var orderId;
 
 // Function to enable a certain category of buttons on click
 let enableMenuButtons = (category) => {   
@@ -40,13 +41,45 @@ let submitOrder = () => {
    
    clearOrder()
 }
+//gets next order id and stores value
+let getOrderId = () =>{
+   var orderId = 0
+   var q = 'select max(transactionid) from customertransactions;' ;
+   fetch('/getorderid', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.max)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         var id = parseInt(data.max) + 1
+         //console.log(id);
+         orderId =  id
+
+         return orderId
+        
+         
+      });
+      
+      
+
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
   console.log('button was clicked');
   var q = 'INSERT INTO customertransactions (transactionid, itemnum) values (5001,1);' ;
+
   e.preventDefault();
-      fetch('/', {
+      fetch('/query', {
          method: 'POST',
          headers: {
             Authorization: '',

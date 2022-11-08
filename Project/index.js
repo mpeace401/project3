@@ -134,14 +134,28 @@ app.get('/customer', (req, res) => {
 });
 
 //post request handles completed transaction
-app.post('/', jsonParser, function(req, res) {
+app.post('/query', jsonParser, function(req, res) {
   const {q} = req.body;
 
   console.log(q)
   
   pool  
     .query(q) //queries each category
-    .then(query_res => {           
+ 
+
+});
+
+app.post('/getorderid', jsonParser, function(req, res) {
+  const {q} = req.body;
+
+  console.log(q)
+  
+  pool  
+    .query(q) //queries each category
+    .then(query_res => {
+    var max = query_res.rows[0].max
+    res.send({max})
     });
+ 
 
 });
