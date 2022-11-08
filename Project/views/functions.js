@@ -31,6 +31,7 @@ let enableMenuButtons = (category) => {
 //adds item ids to order
 let addToOrder = (orderArray, id, i1, i2, i3, i4, i5, i6) => {  
    orderArray.push(id);
+   ingredientArray.push(i1,i2,i3,i4,i5,i6)
 
 }
 
@@ -84,8 +85,12 @@ tender.addEventListener('click', function(e) {
    console.log('button was clicked');
    var transactionQ = createOrderQuery(orderArray)
    //runs all queries for the transaction as one string
-   getOrderIngredients(orderArray)
+   
+   var inventoryQ = createInventoryQuery(ingredientArray)
+
+
    runQuery(transactionQ)
+   runQuery(inventoryQ)
    clearOrder();
 
    });
@@ -94,23 +99,34 @@ tender.addEventListener('click', function(e) {
 function createOrderQuery(orderArray){
    var allqs = '' ;
    for(var i = 0; i < orderArray.length; i++){
-   //adds each item with hard coded transactionid val
-   let q = ''
-   //gets new id if item is first in order
-   if(i == 0){
-      q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)+1'
-   }
-   //else continues on order
-   else{
-      q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)'
-   }
-   //adds necessary query info
-   q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
-   q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,time,price) VALUES (id,'
-   q += i+1 + ',' + orderArray[i] + ',NOW(),p);END $$;';
+
+      let q = ''
+      //gets new id if item is first in order
+      if(i == 0){
+         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)+1'
+      }
+      //else continues on order
+      else{
+         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)'
+      }
+      //adds necessary query info
+      q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
+      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,time,price) VALUES (id,'
+      q += i+1 + ',' + orderArray[i] + ',NOW(),p);END $$;';
 
    //adds all queries to one string
-   allqs += q;
+      allqs += q;
+   }
+   return allqs
+}
+
+function createInventoryQuery(ingredientArray){
+   var allqs = '' ;
+   for(var i = 0; i < ingredientArray.length; i++){
+      id = ingredientArray[i]
+      if(id != 0){
+         allqs += 'update inventory set itemamount = itemamount - 1 where inventoryid = ' + id + ';'
+      }
    }
    return allqs
 }
