@@ -1,4 +1,6 @@
 const express = require('express');
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json();
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
 
@@ -129,4 +131,17 @@ var custCategories = ['Burgers', 'Chicken', 'Sides/Drinks', 'Dessert','Toppings'
 customerData['categories'] = custCategories;
 app.get('/customer', (req, res) => {
   res.render('customerGUI', {customerData: customerData});
+});
+
+//post request handles queries 
+app.post('/tender', jsonParser, function(req, res) {
+  const {id} = req.body;
+
+  console.log(id)
+  res.sendStatus(201);
+  // pool  
+  //   .query(orderArray) //queries each category
+  //   .then(query_res => {           
+  //   });
+
 });

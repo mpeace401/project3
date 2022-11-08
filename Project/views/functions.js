@@ -41,6 +41,28 @@ let submitOrder = () => {
    clearOrder()
 }
 
+//sends queries on completed transaction 
+const tender = document.getElementById('tender');
+tender.addEventListener('click', function(e) {
+  console.log('button was clicked');
+  
+  e.preventDefault();
+      fetch('/tender', {
+         method: 'POST',
+         headers: {
+            Authorization: '',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            orderArray,
+         }),
+      })
+         .then((res) => {
+            return res.json();
+         })
+         .then((data) => console.log(data));
+   });
+
 document.getElementById("homePage").click();
 function openTab(evt, cityName) {
    // Declare all variables
@@ -62,6 +84,9 @@ function openTab(evt, cityName) {
    document.getElementById(cityName).style.display = "block";
    evt.currentTarget.className += " active";
 }
+
+
+
 
 function addNewItem(evt) {
 
