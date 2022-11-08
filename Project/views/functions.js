@@ -1,4 +1,7 @@
+//array to store item ids
 var orderArray = [];
+
+//2d array to store ingredients by items
 var ingredientArray = [];
 
 
@@ -33,7 +36,10 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    button = document.getElementById("menubutton " + category + " " + pos)
    let name = button.textContent;
    orderArray.push(id);
-   ingredientArray.push(i1,i2,i3,i4,i5,i6)
+   let ingredients = []
+   ingredients.push(i1,i2,i3,i4,i5,i6)
+
+   ingredientArray.push(ingredients)
 
 }
 
@@ -119,11 +125,15 @@ function createOrderQuery(orderArray){
 function createInventoryQuery(ingredientArray){
    var allqs = '' ;
    for(var i = 0; i < ingredientArray.length; i++){
-      id = ingredientArray[i]
-      if(id != 0){
-         allqs += 'update inventory set itemamount = itemamount - 1 where inventoryid = ' + id + ';'
+
+      for(var j = 0; j < ingredientArray[i].length; j++){
+         id = ingredientArray[i][j]
+         if(id != 0){
+            allqs += 'update inventory set itemamount = itemamount - 1 where inventoryid = ' + id + ';'
+         }
       }
    }
+   
    return allqs
 }
 
