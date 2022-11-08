@@ -4,6 +4,9 @@ var orderArray = [];
 //2d array to store ingredients by items
 var ingredientArray = [];
 
+//array to store order text
+var orderText = [];
+
 
 
 
@@ -41,11 +44,25 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
 
    ingredientArray.push(ingredients)
 
+   let text = name + " $" + price
+   orderText.push(text)
+
+   totalText = ''
+   for(let i = 0; i <orderText.length; i++){
+      totalText += orderText[i]
+      totalText += '\n'
+   }
+   orderArea =  document.getElementById("orderbox")
+   orderArea.textContent = totalText;
+
 }
 
 let clearOrder = () => {
    orderArray = []
    ingredientArray = []
+   orderText = []
+   orderArea =  document.getElementById("orderbox")
+   orderArea.textContent = '';
 }
 
 
