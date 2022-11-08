@@ -1,5 +1,7 @@
 var orderArray = [];
-var orderId;
+var ingredientArray = [];
+
+
 
 
 // Function to enable a certain category of buttons on click
@@ -27,13 +29,16 @@ let enableMenuButtons = (category) => {
 }
 
 //adds item ids to order
-let addToOrder = (orderArray, id) => {  
+let addToOrder = (orderArray, id, i1, i2, i3, i4, i5, i6) => {  
    orderArray.push(id);
+
 }
 
 let clearOrder = () => {
    orderArray = []
+   ingredientArray = []
 }
+
 
 let submitOrder = () => {
    for(let i = 0; i < orderArray.length; i++){
@@ -78,7 +83,8 @@ const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
    console.log('button was clicked');
    var transactionQ = createOrderQuery(orderArray)
-   //runs all queries as one string
+   //runs all queries for the transaction as one string
+   getOrderIngredients(orderArray)
    runQuery(transactionQ)
    clearOrder();
 
@@ -108,6 +114,8 @@ function createOrderQuery(orderArray){
    }
    return allqs
 }
+
+
 
 //given a string for a query runs a query with no return value 
 function runQuery(q){
