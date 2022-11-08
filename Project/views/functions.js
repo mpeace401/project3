@@ -76,36 +76,47 @@ let getOrderId = () =>{
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
-  console.log('button was clicked');
-  var allqs = '' ;
-  
-  for(var i = 0; i < orderArray.length; i++){
+   console.log('button was clicked');
+   var allqs = '' ;
+
+   for(var i = 0; i < orderArray.length; i++){
    //adds each item with hard coded transactionid val
    let q = 'INSERT INTO customertransactions (transactionid, itemnum, itemid, time) values (5001,'
    q += i+1 + ',' + orderArray[i] + ',NOW());';
-   
+
    allqs += q;
-  }
-  //used for checking query
-  console.log(allqs);
-  var q = allqs
-  e.preventDefault();
-      fetch('/query', {
-         method: 'POST',
-         headers: {
-            Authorization: '',
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({
-            q,
-         }),
-      })
-         .then((res) => {
-            return res.json();
-         })
-         .then((data) => console.log(data));
+
+
+   }
+   //used for checking query
+   
+   runQuery(allqs)
    clearOrder();
+   var q = allqs
+
    });
+
+//given a string for a query runs a query with no return value 
+function runQuery(q){
+   console.log(q);
+   
+   fetch('/query', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      return res.json();
+   })
+   .then((data) => console.log(data));
+}
+
+
 document.getElementById("homePage").click();
 function openTab(evt, cityName) {
    // Declare all variables
