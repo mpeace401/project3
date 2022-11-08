@@ -77,8 +77,16 @@ let getOrderId = () =>{
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
    console.log('button was clicked');
-   var allqs = '' ;
+   var transactionQ = createOrderQuery(orderArray)
+   //runs all queries as one string
+   runQuery(transactionQ)
+   clearOrder();
 
+   });
+
+//given order ids, creates a query string to create the transaction
+function createOrderQuery(orderArray){
+   var allqs = '' ;
    for(var i = 0; i < orderArray.length; i++){
    //adds each item with hard coded transactionid val
    let q = ''
@@ -98,15 +106,11 @@ tender.addEventListener('click', function(e) {
    //adds all queries to one string
    allqs += q;
    }
-   //runs all queries as one string
-   runQuery(allqs)
-   clearOrder();
-
-   });
+   return allqs
+}
 
 //given a string for a query runs a query with no return value 
 function runQuery(q){
-
    
    fetch('/query', {
       method: 'POST',
