@@ -64,7 +64,7 @@ function createInventoryMap(managerData){
 function createTransactionsMap(managerData){
   var transactionsMap = new Map();
   pool
-    .query('SELECT * FROM customertransactions;')
+    .query('SELECT * FROM customertransactions order by transactionid desc, itemnum asc;')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){
         transactionsMap.set(query_res.rows[i].transactionid, query_res.rows[i]);

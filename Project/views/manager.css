@@ -147,7 +147,7 @@ body {
 }
 
 .itemButton {
-    font-size: 2vh;
+    font-size: 1.5vh;
     width: 100%;
     height: 5vh;
 }
@@ -155,6 +155,18 @@ body {
 .transactionsBox {
     border: 1px solid maroon;
     width: 41.5vw;
-    height: 82vh;
+    height: 74vh;
     overflow: scroll;
+}
+
+.transactionsName {
+    font-size: 2vh;
+    width: 40vw;
+    padding-left: 1vw;
+    height: 6vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border-color: maroon;
+    text-align: center;
+    background-color: rgb(238, 238, 238);
 }
