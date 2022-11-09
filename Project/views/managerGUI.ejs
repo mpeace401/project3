@@ -82,21 +82,26 @@
    </div>
    
    <div id="Transactions" class="tabcontent">
-      <div class="transactionsBox" style="float:left">         
-         <% for (const value of managerData.transactionsMap.values()) {%>
-            <button class="itemButton" style="pointer-events: none;">
-               <%= value %>
-            </button>
-         <% } %>
+      <div style="float:right">
+         <input readonly value="Customer Transactions" class="transactionsName">
+         <div class="transactionsBox">         
+            <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
+               <button class="itemButton" style="pointer-events: none;">
+                  <%= value.orderid %>, <%= value.stockid %>, <%= value.dateordered %>, <%= value.pricetotal %>, <%= value.numitems %>
+               </button>
+            <% } %>
+         </div>
       </div>
 
+      <input readonly value="Inventory Transactions" class="transactionsName">
+
       <div class="transactionsBox">         
-         <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
+         <% for (const value of managerData.transactionsMap.values()) {%>
             <button class="itemButton" style="pointer-events: none;">
-               <%= value %>
+               <%= value.transactionid %>, <%= value.itemnum %>, <%= value.itemid %>, <%= value.custname %>, <%= value.staffid %>, <%= value.time %>, <%= value.price %>
             </button>
          <% } %>
-      </div>
+      </div>      
    </div>
    
    <div id="Menu Items" class="tabcontent">
