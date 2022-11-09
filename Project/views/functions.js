@@ -42,6 +42,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    button = document.getElementById("menubutton " + category + " " + pos)
    let name = button.innerText;
    orderArray.push(id);
+   
    let ingredients = []
    ingredients.push(i1,i2,i3,i4,i5,i6)
 
