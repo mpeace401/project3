@@ -4,7 +4,7 @@
    <link rel="stylesheet" type="text/css" href="/views/server.css" id="server_style"></link>
    <title>Home Page</title>
 </head>
-<body>
+<body onload="javascript:getOrderId()">
 
    <!-- Creates category buttons -->
    <% for (var i = 0; i < data.categories.length; i++) {%>
@@ -62,7 +62,7 @@
    <div>
       <div class = "textbox time" style = "left: 1000px; top: 10px; position: absolute;">Loading...</div>
       <div class = "textbox" style = "left: 1180px; top: 10px;position: absolute;"">Employee</div>
-      <div class = "textbox" style = "left: 1000px;top: 60px;">Order ID</div>
+      <div class = "textbox" id="orderId" style = "left: 1000px;top: 60px;">Order ID</div>
       <div class = "textbox" style = "left: 1180px;top: 60px;">Customer</div>
       <div class = "textbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
    </div>
