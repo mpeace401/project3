@@ -71,6 +71,8 @@ body {
     height: 55vh;
     resize: none;
     float: left;
+    border-color: maroon;
+    border-width: 2px;
 }
 .toDoListDiv {
     text-align: center;
@@ -84,6 +86,8 @@ body {
     resize: none;
     text-align: center;
     font-size: 2vh;
+    border-color: maroon;
+    border-width: 2px;
 }
 
 .invAndMenuFieldGroup {
