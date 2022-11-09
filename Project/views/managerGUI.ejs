@@ -157,9 +157,27 @@
       </div>
 
       <div class="scrollArea">         
-         <% for (const value of managerData.menuMap.values()) {%>
-            <button class="itemButton" onclick="displayMenuItems(event, <%=value.itemid%>, <%=value.price%>, <%=value.ingredient1%>, <%=value.ingredient2%>, <%=value.ingredient3%>, <%=value.ingredient4%>, <%=value.ingredient5%>, <%=value.ingredient6%>)">
-               <%= value.itemname %>
+         <% for (const menuItem of managerData.menuMap.values()) {%>
+            <% var i1 = menuItem.ingredient1 %>
+            <% if(i1 == null){ %>
+               <%i1 = 0 }%>
+            <% var i2 = menuItem.ingredient2 %>
+            <% if(i2 == null){ %>
+               <%i2 = 0 }%>
+            <% var i3 = menuItem.ingredient3 %>
+            <% if(i3 == null){ %>
+               <%i3 = 0 }%>
+            <% var i4 = menuItem.ingredient4 %>
+            <% if(i4 == null){ %>
+               <%i4 = 0 }%>
+            <% var i5 = menuItem.ingredient5 %>
+            <% if(i5 == null){ %>
+               <%i5 = 0 }%>
+            <% var i6 = menuItem.ingredient6 %>
+            <% if(i6 == null){ %>
+               <%i6 = 0 }%>
+            <button class="itemButton" id= "m<%=menuItem.itemid%>" onclick="displayMenuItems(event, <%=menuItem.itemid%>, <%=menuItem.price%>, <%= i1 %>, <%= i2 %>, <%= i3 %>, <%= i4 %>, <%= i5 %>, <%= i6 %> )">
+               <%= menuItem.itemname %>
             </button>
          <% } %>
       </div>

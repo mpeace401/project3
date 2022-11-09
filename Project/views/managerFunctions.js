@@ -70,8 +70,8 @@ function addMenuItems(evt, inventoryID, amount) {
    
 }
 
-function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) { 
-   const menuElement = document.getElementById(itemid)
+function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
+   const menuElement = document.getElementById('m' + itemid)
    document.getElementById('menuID').value = itemid
    document.getElementById('menuName').value = menuElement.innerText
    document.getElementById('menuPrice').value = price
