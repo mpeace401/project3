@@ -79,7 +79,11 @@ body {
 }
 
 .notifications {
-
+    width: 83vw;
+    height: 81.5vh;
+    resize: none;
+    text-align: center;
+    font-size: 2vh;
 }
 
 .invAndMenuFieldGroup {
