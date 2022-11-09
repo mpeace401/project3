@@ -163,6 +163,8 @@ let getOrderId = () =>{
          //console.log(id);
          orderId =  id
 
+         orderTextId = document.getElementById("orderId")
+         orderTextId.textContent = "Transaction #" + orderId
          return orderId
         
       });
