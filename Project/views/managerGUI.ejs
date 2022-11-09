@@ -153,7 +153,7 @@
 
       <div class="scrollArea">         
          <% for (const value of managerData.menuMap.values()) {%>
-            <button class="itemButton">
+            <button class="itemButton" onclick="displayMenuItems(event, <%=value.itemid%>, <%=value.price%>, <%=value.ingredient1%>, <%=value.ingredient2%>, <%=value.ingredient3%>, <%=value.ingredient4%>, <%=value.ingredient5%>, <%=value.ingredient6%>)">
                <%= value.itemname %>
             </button>
          <% } %>

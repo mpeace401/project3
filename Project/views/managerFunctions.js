@@ -61,12 +61,26 @@ function runQuery(q){
 
 function displayinventoryItem(evt, inventoryID, amount) {
    const inventoryElement = document.getElementById(inventoryID);
-   const name = inventoryElement.innerText
+   document.getElementById('invID').value = inventoryID
+   document.getElementById('invName').value = inventoryElement.innerText
+   document.getElementById('invAmount').value = amount
+}
+
+function addMenuItems(evt, inventoryID, amount) {
    
 }
 
-function addNewItem(evt) {
-
+function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) { 
+   const menuElement = document.getElementById(itemid)
+   document.getElementById('menuID').value = itemid
+   document.getElementById('menuName').value = menuElement.innerText
+   document.getElementById('menuPrice').value = price
+   document.getElementById('menuIng1').value = ingredient1
+   document.getElementById('menuIng2').value = ingredient2
+   document.getElementById('menuIng3').value = ingredient3
+   document.getElementById('menuIng4').value = ingredient4
+   document.getElementById('menuIng5').value = ingredient5
+   document.getElementById('menuIng6').value = ingredient6
 }
 
 function removeItem(evt) {
