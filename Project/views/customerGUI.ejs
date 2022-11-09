@@ -16,6 +16,7 @@
 
    <!-- Go to Cart Button -->
    <button class = "menu button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
+   <button class = 'cart button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 1180px; top: 650px;" >Checkout</button>
    <button class = "cart button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Go to Menu</button>
 
    <!-- Accessibility Button -->
@@ -25,7 +26,8 @@
    <button class = "menu button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
 
    <!-- Total Box-->
-   <div class = "menu textbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
+   <div class = "menu textbox costbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
+   <div class = "cart textbox costbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
    <!-- Order ID Box -->
    <div class = "menu textbox" style="left:170px; top: 25px; position: absolute;" >Order ID</div>
    <!-- Displays order -->

@@ -1,4 +1,4 @@
-document.getElementById("homePage").click();
+
 
 //array to store item ids
 var orderArray = [];
@@ -67,9 +67,16 @@ let goToMenu = () => {
       let element = enable[i]
       element.removeAttribute("hidden")
    }
+   let categories = document.getElementsByClassName("button categorybutton");
+   for(let i = 0; i < categories.length; i++){
+      let element = categories[i]
+      element.style.backgroundColor = "white";
+      element.style.color = "maroon";
+   }
 }
 
 //adds item ids to order
+
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
    let name = button.innerText;
@@ -96,9 +103,12 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = totalText;
 
-   costArea =  document.getElementById("costbox")
+   costAreas =  document.getElementsByClassName("costbox")
    //adds total and rounds to 2 decimals
-   costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   for(let i = 0; i < costAreas.length; i++){
+      costArea = costAreas[i]
+      costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   }
 
 }
 
@@ -109,8 +119,12 @@ let clearOrder = () => {
    orderCost = 0;
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = '';
-   costArea =  document.getElementById("costbox")
-   costArea.textContent = "Total: $0";
+   costAreas =  document.getElementsByClassName("costbox")
+   
+   for(let i = 0; i < costAreas.length; i++){
+      costArea = costAreas[i]
+      costArea.innerText = "Total: $0"
+   }
 }
 
 
@@ -220,6 +234,7 @@ function runQuery(q){
    })
    .then((data) => console.log(data));
 }
+document.getElementById("homePage").click();
 
 function openTab(evt, cityName) {
    // Declare all variables

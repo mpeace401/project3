@@ -37,6 +37,15 @@
    background-color: white;
    color: maroon;
 }
+.tender {
+   width: 120px;
+   height: 50px;
+   border-color:maroon ;
+   outline-color: maroon;
+   background-color: white;
+   color: maroon;
+   font-size: 13px;
+ }
  .accessibility{
    width: 150px;
    height: 50px;
