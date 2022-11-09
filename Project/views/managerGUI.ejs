@@ -61,10 +61,25 @@
    </div>
    
    <div id="Finance" class="tabcontent">
-      <button class="subbutton" onclick="">Sales Report</button>
-      <button class="subbutton" onclick="">Excess Report</button>
-      <button class="subbutton" onclick="">Restock Report</button>
-      <button class="subbutton" onclick="">What Sells Together Report</button>
+      <div class="reports">
+         <button class="reportTab" onclick="openReport(event, 'Sales')">Sales Report</button>
+         <button class="reportTab" onclick="openReport(event, 'Excess')">Excess Report</button>
+         <button class="reportTab" onclick="openReport(event, 'Restock')">Restock Report</button>
+         <button class="reportTab" onclick="openReport(event, 'WST')">What Sells Together Report</button>
+      </div>
+
+      <div id="Sales" class="reportContent">
+         SALES
+      </div>
+      <div id="Excess" class="reportContent">
+         EXCESS
+      </div>
+      <div id="Restock" class="reportContent">
+         RESTOCK
+      </div>
+      <div id="WST" class="reportContent">
+         WHAT SELLS TOGETHER
+      </div>
    </div>
    
    <div id="Transactions" class="tabcontent">
