@@ -25,14 +25,15 @@
 
    <div id="Home" class="tabcontent">
       <div>
-      <% for (var i = 0; i < managerData.inventoryMap.length; i++) {%>
-         <input readonly class="textField" value=<%= managerData.inventoryMap.get("Bun") %>>
-      <% } %>
+         <% for (var i = 0; i < managerData.menuMap.length; i++) {%> 
+            <input readonly class="textField" value="<%= managerData.menuMap.get(1).itemname %>">
+         <% } %>
       </div>
    </div>
    
    <div id="Inventory" class="tabcontent">
       <button class="subbutton" onclick="addNewItem(event)" style="width: 43vw;">ADD NEW ITEM</button>
+
       <div class="invAndMenuFieldGroup">
          <div>
             <input readonly value="ID" class="textField">
@@ -51,6 +52,16 @@
          <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
+
+      <div class="scrollArea">
+         <button class="itemButton"> <!-- placeholder buttons -->
+            button1
+         </button>
+         <button class="itemButton">
+            button2
+         </button>
+      </div>
+
    </div>
    
    <div id="Finance" class="tabcontent">
@@ -63,6 +74,7 @@
    
    <div id="Menu Items" class="tabcontent">
       <button class="subbutton" onclick="addNewItem(event)" style="width: 43vw;">ADD NEW ITEM</button>
+
       <div class="invAndMenuFieldGroup">
          <div>
             <input readonly value="ID" class="textField">
@@ -111,6 +123,16 @@
          <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
+
+      <div class="scrollArea">
+         <button class="itemButton"> <!-- placeholder buttons -->
+            button1
+         </button>
+         <button class="itemButton">
+            button2
+         </button>
+      </div>
+
    </div>
 </body>
 <script src="/views/functions.js"> </script>

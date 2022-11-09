@@ -1,3 +1,5 @@
+document.getElementById("homePage").click();
+
 //array to store item ids
 var orderArray = [];
 
@@ -219,8 +221,6 @@ function runQuery(q){
    .then((data) => console.log(data));
 }
 
-
-document.getElementById("homePage").click();
 function openTab(evt, cityName) {
    // Declare all variables
    var i, tabcontent, tablinks;

@@ -49,6 +49,13 @@ body {
     background-color: rgb(75, 0, 0);
 }
 
+.scrollArea {
+    border: 1px solid black;
+    width: 43vw;
+    height: 74vh;
+    overflow: scroll;
+}
+
 .textField {
     font-size: 2vh;
     width: 19vw;
@@ -97,4 +104,10 @@ body {
 .subtab.active {
     color: white;
     background-color: maroon;
+}
+
+.itemButton {
+    font-size: 2vh;
+    width: 100%;
+    height: 5vh;
 }
