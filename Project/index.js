@@ -28,25 +28,37 @@ app.set("view engine", "ejs");
 function createMenuMap(data){ //creates map between itemid and item objects and adds to data
   var menuMap = new Map();     
   pool
-    .query('SELECT * FROM menuitems;')
+    .query('SELECT * FROM menuitems ORDER BY itemid;')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){            
-        menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);                
+        menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);
       }
-      data['menuMap'] = menuMap     
+      data['menuMap'] = menuMap
+    });
+}
+
+function createInvMenuMap(data){ //creates map between itemid and item objects and adds to data
+  var menuMap = new Map();     
+  pool
+    .query('SELECT * FROM menuitems WHERE itemid < 90 ORDER BY itemid;')
+    .then(query_res => {
+      for (let i = 0; i < query_res.rowCount; i++){            
+        menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);
+      }
+      data['menuMap'] = menuMap
     });
 }
 
 function createInventoryMap(managerData){
   var inventoryMap = new Map();
   pool
-    .query('SELECT * FROM inventory;')
+    .query('SELECT * FROM inventory ORDER BY inventoryid;')
     .then(query_res => {
-      for (let i = 0; i < query_res.rowCount; i++){            
-        inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);                
+      for (let i = 0; i < query_res.rowCount; i++){
+        inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);
       }
-      managerData['inventoryMap'] = inventoryMap     
-    });    
+      managerData['inventoryMap'] = inventoryMap
+    });
 }
 
 function createTransactionsMap(managerData){
@@ -54,11 +66,11 @@ function createTransactionsMap(managerData){
   pool
     .query('SELECT * FROM customertransactions;')
     .then(query_res => {
-      for (let i = 0; i < query_res.rowCount; i++){            
-        transactionsMap.set(query_res.rows[i].transactionid, query_res.rows[i]);                
+      for (let i = 0; i < query_res.rowCount; i++){
+        transactionsMap.set(query_res.rows[i].transactionid, query_res.rows[i]);
       }
       managerData['transactionsMap'] = transactionsMap
-    });    
+    });
 }
 
 function createInventoryTransactionsMap(managerData){
@@ -117,7 +129,7 @@ app.get('/', (req, res) => {
 managerData = {} //stores objects to be rendered for manager
 var managerCatagories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items']
 
-createMenuMap(managerData)
+createInvMenuMap(managerData)
 createInventoryMap(managerData)
 createInventoryTransactionsMap(managerData)
 createTransactionsMap(managerData)

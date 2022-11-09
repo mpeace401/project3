@@ -1,6 +1,6 @@
 document.getElementById("homePage").click();
 
-function openTab(evt, cityName) {
+function openTab(evt, tabName) {
    // Declare all variables
    var i, tabcontent, tablinks;
 
@@ -17,9 +17,30 @@ function openTab(evt, cityName) {
    }
 
    // Show the current tab, and add an "active" class to the button that opened the tab
-   document.getElementById(cityName).style.display = "block";
+   document.getElementById(tabName).style.display = "block";
    evt.currentTarget.className += " active";
 }
+
+function openReport(evt, tabName) {
+    // Declare all variables
+    var i, reportContent, reportTab;
+ 
+    // Get all elements with class="reportContent" and hide them
+    reportContent = document.getElementsByClassName("reportContent");
+    for (i = 0; i < reportContent.length; i++) {
+        reportContent[i].style.display = "none";
+    }
+ 
+    // Get all elements with class="reportTab" and remove the class "active"
+    reportTab = document.getElementsByClassName("reportTab");
+    for (i = 0; i < reportTab.length; i++) {
+        reportTab[i].className = reportTab[i].className.replace(" active", "");
+    }
+ 
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+ }
 
 function addNewItem(evt) {
 

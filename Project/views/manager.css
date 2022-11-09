@@ -34,6 +34,37 @@ body {
     border-top: none;
 }
 
+.reports {
+    overflow: hidden;
+}
+
+.reports button {
+    color: maroon;
+    font-size: 2vh;
+    background-color: white;
+    width: 19vw;
+    height: 8vh;
+    border-color: maroon;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reports button:hover {
+    background-color: rgba(128, 0, 0, 0.25);
+}
+
+.reports button.active {
+    color: white;
+    background-color: maroon;
+}
+
+.reportContent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
 .subbutton {
     color: white;
     font-size: 2vh;
@@ -113,26 +144,6 @@ body {
 
 .invAndMenuFieldGroup {
     float: right;
-}
-
-.subtab {
-    color: maroon;
-    font-size: 2vh;
-    background-color: white;
-    width: 19vw;
-    height: 8vh;
-    border-color: maroon;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.subtab:hover {
-    background-color: rgba(128, 0, 0, 0.25);
-}
-
-.subtab.active {
-    color: white;
-    background-color: maroon;
 }
 
 .itemButton {
