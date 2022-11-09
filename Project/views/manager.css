@@ -56,6 +56,16 @@ body {
     overflow: scroll;
 }
 
+.attributeName {
+    font-size: 2vh;
+    width: 19vw;
+    height: 6vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border-color: maroon;
+    text-align: center;
+    background-color: rgb(238, 238, 238);
+}
 .textField {
     font-size: 2vh;
     width: 19vw;
