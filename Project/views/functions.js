@@ -186,7 +186,6 @@ tender.addEventListener('click', function(e) {
    //runs all queries for the transaction as one string
    
    var inventoryQ = createInventoryQuery(ingredientArray)
-
    console.log(transactionQ)
    runQuery(transactionQ)
    runQuery(inventoryQ)
@@ -197,6 +196,7 @@ tender.addEventListener('click', function(e) {
 //given order ids, creates a query string to create the transaction
 function createOrderQuery(orderArray){
    var allqs = '' ;
+   var custName = document.getElementById('custname').value
    for(var i = 0; i < orderArray.length; i++){
 
       let q = ''
@@ -210,8 +210,8 @@ function createOrderQuery(orderArray){
       }
       //adds necessary query info
       q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
-      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,time,price) VALUES (id,'
-      q += i+1 + ',' + orderArray[i] + ',NOW(),p);END $$;';
+      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,custname,time,price) VALUES (id,'
+      q += i+1 + ',' + orderArray[i] + ',\''+ custName+ '\',NOW(),p);END $$;';
 
    //adds all queries to one string
       allqs += q;
