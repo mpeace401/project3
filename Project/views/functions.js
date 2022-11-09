@@ -94,7 +94,6 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    for(let i = 0; i < txt.length; i++){
       
       if(txt[i].charAt(0) != "$" ){
-         console.log(txt[i])
          name += txt[i]
          name += " "
       }
@@ -172,21 +171,24 @@ let getOrderId = () =>{
          var id = parseInt(data.max) + 1
          
          orderId =  id
-         return orderId
+         document.getElementById("orderId").innerText = "Order ID: "+ orderId
          
       });
       
+      
+      
    }
+getOrderId();
 
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
-   console.log('button was clicked');
+
    var transactionQ = createOrderQuery(orderArray)
    //runs all queries for the transaction as one string
    
    var inventoryQ = createInventoryQuery(ingredientArray)
-   console.log(transactionQ)
+
    runQuery(transactionQ)
    runQuery(inventoryQ)
    clearOrder();
