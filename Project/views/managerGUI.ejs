@@ -83,7 +83,7 @@
    
    <div id="Transactions" class="tabcontent">
       <div style="float:right">
-         <input readonly value="Customer Transactions" class="transactionsName">
+         <input readonly value="Inventory Transactions" class="transactionsName">
          <div class="transactionsBox">         
             <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
@@ -93,7 +93,7 @@
          </div>
       </div>
 
-      <input readonly value="Inventory Transactions" class="transactionsName">
+      <input readonly value="Customer Transactions" class="transactionsName">
 
       <div class="transactionsBox">         
          <% for (const value of managerData.transactionsMap.values()) {%>
