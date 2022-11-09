@@ -51,7 +51,7 @@
 
       <div class="scrollArea">         
          <% for (const value of managerData.inventoryMap.values()) {%>
-            <button class="itemButton">
+            <button class="itemButton " id= "<%=value.inventoryid%>" onclick="displayinventoryItem(event, <%=value.inventoryid%>, <%=value.itemamount%>)">
                <%= value.stockname %>
             </button>
          <% } %>

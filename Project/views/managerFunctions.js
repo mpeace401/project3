@@ -59,6 +59,12 @@ function runQuery(q){
    .then((data) => console.log(data));
 }
 
+function displayinventoryItem(evt, inventoryID, amount) {
+   const inventoryElement = document.getElementById(inventoryID);
+   const name = inventoryElement.innerText
+   
+}
+
 function addNewItem(evt) {
 
 }
