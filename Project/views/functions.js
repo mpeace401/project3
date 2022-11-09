@@ -12,8 +12,18 @@ var orderText = [];
 //array to store order text
 var costArray = [];
 
-
-
+//used to display real time
+function refreshTime() {
+   const timeAreas = document.getElementsByClassName("time");
+   const dateString = new Date().toLocaleString();
+   const formattedString = dateString.replace(", ", " - ");
+   for(let i = 0; i < timeAreas.length; i++){
+      timeArea = timeAreas[i]
+      timeArea.textContent = formattedString;
+   }
+ }
+refreshTime()
+setInterval(refreshTime, 1000);
 
 // Function to enable a certain category of buttons on click
 let enableMenuButtons = (category) => {   
@@ -168,7 +178,7 @@ tender.addEventListener('click', function(e) {
    
    var inventoryQ = createInventoryQuery(ingredientArray)
 
-
+   console.log(transactionQ)
    runQuery(transactionQ)
    runQuery(inventoryQ)
    clearOrder();
