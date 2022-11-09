@@ -24,7 +24,7 @@
    </div>
 
    <div id="Home" class="tabcontent">
-      <textarea readonly class="notifications">hello</textarea>
+      <textarea readonly class="notifications"></textarea>
    </div>
    
    <div id="Inventory" class="tabcontent">
@@ -49,13 +49,12 @@
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
 
-      <div class="scrollArea">
-         <button class="itemButton"> <!-- placeholder buttons -->
-            button1
-         </button>
-         <button class="itemButton">
-            button2
-         </button>
+      <div class="scrollArea">         
+         <% for (const value of managerData.inventoryMap.values()) {%>
+            <button class="itemButton">
+               <%= value.stockname %>
+            </button>
+         <% } %>
       </div>
 
    </div>
@@ -138,13 +137,12 @@
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
 
-      <div class="scrollArea">
-         <button class="itemButton"> <!-- placeholder buttons -->
-            button1
-         </button>
-         <button class="itemButton">
-            button2
-         </button>
+      <div class="scrollArea">         
+         <% for (const value of managerData.menuMap.values()) {%>
+            <button class="itemButton">
+               <%= value.itemname %>
+            </button>
+         <% } %>
       </div>
 
    </div>
