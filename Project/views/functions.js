@@ -89,7 +89,15 @@ let goToMenu = () => {
 
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
-   let name = button.innerText.split(' ')[0];
+   let txt = button.innerText.split(' ');
+   let name = '';
+   for(let i = 0; i < txt.length; i++){
+      if(txt[i].charAt(0) != "$" ){
+         name += txt[i]
+         name += " "
+      }
+      
+   }
    orderArray.push(id);
    
    let ingredients = []
@@ -98,7 +106,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    ingredientArray.push(ingredients)
    
    //displays order and total
-   let text = name + " $" + price
+   let text = name + "$" + price
    orderText.push(text)
    costArray.push(price)
 
@@ -160,15 +168,14 @@ let getOrderId = () =>{
       
       .then(function(data) {
          var id = parseInt(data.max) + 1
-         //console.log(id);
+         
          orderId =  id
-
          return orderId
-        
+         
       });
       
-      
    }
+
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
