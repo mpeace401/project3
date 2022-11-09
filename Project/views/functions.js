@@ -89,10 +89,12 @@ let goToMenu = () => {
 
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
-   let txt = button.innerText.split(' ');
+   let txt = button.innerText.split('\n');
    let name = '';
    for(let i = 0; i < txt.length; i++){
+      
       if(txt[i].charAt(0) != "$" ){
+         console.log(txt[i])
          name += txt[i]
          name += " "
       }
