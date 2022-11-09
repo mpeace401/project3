@@ -89,7 +89,7 @@ let goToMenu = () => {
 
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
-   let name = button.innerText;
+   let name = button.innerText.split(' ')[0];
    orderArray.push(id);
    
    let ingredients = []
@@ -163,10 +163,8 @@ let getOrderId = () =>{
          //console.log(id);
          orderId =  id
 
-         orderTextId = document.getElementById("orderId")
-         orderTextId.textContent = "Transaction #" + orderId
-         
          return orderId
+        
       });
       
       
