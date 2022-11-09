@@ -42,12 +42,36 @@ function openReport(evt, tabName) {
     evt.currentTarget.className += " active";
  }
 
+function runQuery(q){  
+   fetch('/query', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      return res.json();
+   })
+   .then((data) => console.log(data));
+}
+
+function displayinventoryItem(evt, inventoryID, amount) {
+   const inventoryElement = document.getElementById(inventoryID);
+   const name = inventoryElement.innerText
+   
+}
+
 function addNewItem(evt) {
 
 }
 
 function removeItem(evt) {
-   
+   removeQ = 'DELETE FROM inventory WHERE inventoryid =' + document.getElementById('inventoryID').value + ';'
+   runQuery(removeQ)
 }
 
 function updateItem(evt) {
