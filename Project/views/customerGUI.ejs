@@ -9,26 +9,27 @@
    <!-- Creates category buttons -->
    <% for (var i = 0; i < data.categories.length; i++) {%>
       <!-- Creates buttons 120px below the last -->
-      <button class = "button categorybutton <%= i %>" onclick = "enableMenuButtons(<%= i %>)" style = "top : <%=100+ 101*i%>px;">
+      <button class = "menu button categorybutton <%= i %>" onclick = "enableMenuButtons(<%= i %>)" style = "top : <%=100+ 101*i%>px;">
          <%= data.categories[i] %>
       </button>
    <% } %>
 
    <!-- Go to Cart Button -->
-   <button class = "button cart" style = "position: absolute; left: 340px; top: 25px;">Go to Cart</button>
+   <button class = "menu button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
+   <button class = "cart button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Go to Menu</button>
 
    <!-- Accessibility Button -->
-   <button class = "button accessibility" style = "position: absolute; left: 510px; top: 25px;">Accessibility</button>
+   <button class = "menu button accessibility" style = "position: absolute; left: 510px; top: 25px;">Accessibility</button>
 
    <!-- Cancel Button -->
-   <button class = "button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
+   <button class = "menu button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
 
    <!-- Total Box-->
-   <div class = "textbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
+   <div class = "menu textbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
    <!-- Order ID Box -->
-   <div class = "textbox" style="left:170px; top: 25px; position: absolute;" >Order ID</div>
+   <div class = "menu textbox" style="left:170px; top: 25px; position: absolute;" >Order ID</div>
    <!-- Displays order -->
-   <div class = "orderbox" id = "orderbox" hidden = "hidden" style="width:300px;height:525px;border:2px solid maroon;top: 110px; left: 1000px;  background-color: white; position: absolute;" ></div>
+   <div class = "cart orderbox" id = "orderbox" hidden = "hidden" style="width:300px;height:525px;border:2px solid maroon;top: 110px; left: 1000px;  background-color: white; position: absolute;" ></div>
    <!--  Creates menu buttons  -->
    
    <% for (var i = 0; i < data.menuArray.length; i++) {%>  

@@ -37,6 +37,36 @@ let enableMenuButtons = (category) => {
    categoryButton.style.color = "white";
 }
 
+let goToCart = () => {   
+   let disable = document.getElementsByClassName("menu");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   disable = document.getElementsByClassName("menubutton");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   let enable = document.getElementsByClassName("cart");
+   for(let i = 0; i < enable.length; i++){
+      let element = enable[i]
+      element.removeAttribute("hidden")
+   }
+}
+let goToMenu = () => {   
+   let disable = document.getElementsByClassName("cart");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   let enable = document.getElementsByClassName("menu");
+   for(let i = 0; i < enable.length; i++){
+      let element = enable[i]
+      element.removeAttribute("hidden")
+   }
+}
+
 //adds item ids to order
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
@@ -172,8 +202,7 @@ function createInventoryQuery(ingredientArray){
 
 
 //given a string for a query runs a query with no return value 
-function runQuery(q){
-   
+function runQuery(q){  
    fetch('/query', {
       method: 'POST',
       headers: {

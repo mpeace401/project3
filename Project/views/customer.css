@@ -21,7 +21,7 @@
     
     position: absolute;  
  }
- .cart{
+ .gotocart{
     width: 150px;
     height: 50px;
     border-color: maroon ;
@@ -29,6 +29,14 @@
     background-color: white;
     color: maroon;
  }
+ .gotomenu{
+   width: 150px;
+   height: 50px;
+   border-color: maroon ;
+   outline-color: maroon;
+   background-color: white;
+   color: maroon;
+}
  .accessibility{
    width: 150px;
    height: 50px;
