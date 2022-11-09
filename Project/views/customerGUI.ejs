@@ -33,39 +33,39 @@
    <!-- Displays order -->
    <div class = "cart orderbox" id = "orderbox" hidden = "hidden" style="width:300px;height:525px;border:2px solid maroon;top: 110px; left: 1000px;  background-color: white; position: absolute;" ></div>
    <!--  Creates menu buttons  -->
-   
-   <% for (var i = 0; i < data.menuArray.length; i++) {%>  
-      <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
-         <!-- Assingns buttons into class depending on category -->
-         <!-- Gets ingredients -->
-         
-         <% var i1 = data.menuMap.get(data.menuArray[i][j]).ingredient1 %>
-         <% if(i1 == null){ %>
-            <%i1 = 0 }%>
-         <% var i2 = data.menuMap.get(data.menuArray[i][j]).ingredient2 %>
-         <% if(i2 == null){ %>
-            <%i2 = 0 }%>
-         <% var i3 = data.menuMap.get(data.menuArray[i][j]).ingredient3 %>
-         <% if(i3 == null){ %>
-            <%i3 = 0 }%>
-         <% var i4 = data.menuMap.get(data.menuArray[i][j]).ingredient4 %>
-         <% if(i4 == null){ %>
-            <%i4 = 0 }%>
-         <% var i5 = data.menuMap.get(data.menuArray[i][j]).ingredient5 %>
-         <% if(i5 == null){ %>
-            <%i5 = 0 }%>
-         <% var i6 = data.menuMap.get(data.menuArray[i][j]).ingredient6 %>
-         <% if(i6 == null){ %>
-            <%i6 = 0 }%>
+   <div class="flex-container1">
+      <% for (var i = 0; i < data.menuArray.length; i++) {%>  
+         <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
+            <!-- Assingns buttons into class depending on category -->
+            <!-- Gets ingredients -->
+            
+            <% var i1 = data.menuMap.get(data.menuArray[i][j]).ingredient1 %>
+            <% if(i1 == null){ %>
+               <%i1 = 0 }%>
+            <% var i2 = data.menuMap.get(data.menuArray[i][j]).ingredient2 %>
+            <% if(i2 == null){ %>
+               <%i2 = 0 }%>
+            <% var i3 = data.menuMap.get(data.menuArray[i][j]).ingredient3 %>
+            <% if(i3 == null){ %>
+               <%i3 = 0 }%>
+            <% var i4 = data.menuMap.get(data.menuArray[i][j]).ingredient4 %>
+            <% if(i4 == null){ %>
+               <%i4 = 0 }%>
+            <% var i5 = data.menuMap.get(data.menuArray[i][j]).ingredient5 %>
+            <% if(i5 == null){ %>
+               <%i5 = 0 }%>
+            <% var i6 = data.menuMap.get(data.menuArray[i][j]).ingredient6 %>
+            <% if(i6 == null){ %>
+               <%i6 = 0 }%>
 
-         <!-- gets price -->
-
-         <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
-         <button class = "button menubutton <%= i %>" id = "menubutton <%= i %> <%= j %>" hidden = "hidden" onclick = "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=i %>, <%=j %>)">
-            <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-         </button>
+            <!-- gets price -->
+            
+            <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
+            <button class = "button menubutton <%= i %>" id = "menubutton <%= i %> <%= j %>" hidden = "hidden" onclick = "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=i %>, <%=j %>)">
+               <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
+            </button>
+         <% } %>
       <% } %>
-   <% } %>
-      
+         </div>   
 </body>
 <script src="/views/functions.js"> </script>
