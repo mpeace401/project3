@@ -54,6 +54,7 @@
          <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
          <button class = "button menubutton <%= i %>" id = "menubutton <%= i %> <%= j %>" hidden = "hidden" onclick = "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=i %>, <%=j %>)">
             <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
+            <div class="textbox price" id = "price <%= i %> <%= j %>"hidden = "hidden">$<%=price%></div>
          </button>
       <% } %>
    <% } %>
@@ -61,10 +62,14 @@
 
    <div>
       <div class = "textbox time" style = "left: 1000px; top: 10px; position: absolute;">Loading...</div>
-      <div class = "textbox" style = "left: 1180px; top: 10px;position: absolute;"">Employee</div>
+      <!-- <div class = "textbox" style = "left: 1180px; top: 10px;position: absolute;">Employee</div> -->
+      <select class = textbox id="staffselect" style = "left: 1180px; top: 10px;position: absolute;">
+         <option selected="">Please Select</option>
+       </select>
       <div class = "textbox" id="orderId" style = "left: 1000px;top: 60px;">Order ID</div>
       <div class = "textbox" style = "left: 1180px;top: 60px;">Customer</div>
       <div class = "textbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
    </div>
+
 </body>
 <script src="/views/functions.js"> </script>
