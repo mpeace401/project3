@@ -84,10 +84,17 @@ function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredie
 }
 
 function removeItem(evt) {
-   removeQ = 'DELETE FROM inventory WHERE inventoryid =' + document.getElementById('inventoryID').value + ';'
+   removeQ = 'DELETE FROM inventory WHERE inventoryid =' + document.getElementById('invID').value + ';'
    runQuery(removeQ)
 }
 
 function updateItem(evt) {
+   invId = document.getElementById('invID').value
+   stockName = document.getElementById('invName').value
+   invAmount = document.getElementById('invAmount').value
+  
    
+   updateQ = 'UPDATE inventory SET inventoryid=' + invId + ', stockname=' + "'" + stockName +
+   "'" + ', itemamount=' + invAmount + ' WHERE inventoryid=' + invId + ';'
+   runQuery(updateQ)
 }
