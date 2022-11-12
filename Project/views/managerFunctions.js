@@ -70,6 +70,17 @@ function addMenuItems(evt, inventoryID, amount) {
    
 }
 
+function addInventoryItems() {
+   invId = document.getElementById('invID').value
+   stockName = document.getElementById('invName').value
+   invAmount = document.getElementById('invAmount').value
+
+   insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) VALUES' + '(' + invId + ',' 
+   + "'"+ stockName + "'" + ',' + invAmount + ')' + ';'
+   runQuery(insertQ)
+
+}
+
 function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
    const menuElement = document.getElementById('m' + itemid)
    document.getElementById('menuID').value = itemid
