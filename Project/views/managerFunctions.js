@@ -1,4 +1,5 @@
 document.getElementById("homePage").click();
+maxInvId = -1
 
 function openTab(evt, tabName) {
    // Declare all variables
@@ -71,12 +72,7 @@ function addMenuItems(evt, inventoryID, amount) {
 }
 
 function addInventoryItems() {
-   invId = document.getElementById('invID').value
-   stockName = document.getElementById('invName').value
-   invAmount = document.getElementById('invAmount').value
-
-   insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) VALUES' + '(' + invId + ',' 
-   + "'"+ stockName + "'" + ',' + invAmount + ')' + ';'
+   insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
    runQuery(insertQ)
 
 }
