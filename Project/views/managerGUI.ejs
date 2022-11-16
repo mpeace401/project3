@@ -87,7 +87,8 @@
          <div class="transactionsBox">         
             <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
-                  <%= value.orderid %>, <%= value.stockid %>, <%= value.dateordered %>, <%= value.pricetotal %>, <%= value.numitems %>
+                  #<%= value.orderid %>, ID: <%= value.stockid %>, Amount: <%= value.numitems %>, Total: $<%= value.pricetotal %>
+                  <br><div style="font-size: 1vh;height:0;"><%= value.dateordered %></div>
                </button>
             <% } %>
          </div>
@@ -98,7 +99,8 @@
       <div class="transactionsBox">         
          <% for (const value of managerData.transactionsMap.values()) {%>
             <button class="itemButton" style="pointer-events: none;">
-               <%= value.transactionid %>, <%= value.itemnum %>, <%= value.itemid %>, <%= value.custname %>, <%= value.staffid %>, <%= value.time %>, <%= value.price %>
+               #<%= value.transactionid %>, Items: <%= value.itemnum %>, Name: <%= value.custname %>, Employee: <%= value.staffid %>, Total: $<%= value.price %>
+               <br><div style="font-size: 1vh;height:0;"><%= value.time %></div>
             </button>
          <% } %>
       </div>      
