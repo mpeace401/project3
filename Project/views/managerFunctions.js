@@ -67,9 +67,6 @@ function displayinventoryItem(evt, inventoryID, amount) {
    document.getElementById('invAmount').value = amount
 }
 
-function addMenuItems(evt, inventoryID, amount) {
-   
-}
 
 function addInventoryItems() {
    insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
@@ -105,3 +102,32 @@ function updateItem(evt) {
    "'" + ', itemamount=' + invAmount + ' WHERE inventoryid=' + invId + ';'
    runQuery(updateQ)
 }
+
+function removeMenuItem(evt) {
+   menuID = document.getElementById('menuID').value
+   removeQ = 'UPDATE menuitems SET active = false WHERE itemid=' + menuID + ';' 
+   runQuery(removeQ)
+}
+
+function updateMenuItem(evt) {
+   menuID = document.getElementById('menuID').value
+   menuName = document.getElementById('menuName').value
+   price = document.getElementById('menuPrice').value
+   ing1 = document.getElementById('menuIng1').value
+   ing2 = document.getElementById('menuIng2').value
+   ing3 = document.getElementById('menuIng3').value
+   ing4 = document.getElementById('menuIng4').value
+   ing5 = document.getElementById('menuIng5').value
+   ing6 = document.getElementById('menuIng6').value
+
+   updateQ = 'UPDATE menuitems SET itemid=' + menuID + ', itemname=' + "'" + menuName +
+   "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ' WHERE itemid=' + menuID + ';'
+   runQuery(updateQ)
+}
+
+function addMenuItems(evt, inventoryID, amount) {
+   insertQ = 'INSERT INTO menuitems(itemid, itemname, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, category, hastoppings, active) SELECT MAX(itemid) + 1' + ", 'new item', 0, 0, 0, 0, 0, 0, 0, 0, 0, true FROM menuitems;"
+   console.log(insertQ)
+   runQuery(insertQ)
+}
+
