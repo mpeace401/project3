@@ -80,6 +80,10 @@ body {
     background-color: rgb(75, 0, 0);
 }
 
+.subbutton:active {
+    background-color: black;
+}
+
 .scrollArea {
     border: 1px solid maroon;
     width: 43vw;
