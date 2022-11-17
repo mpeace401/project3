@@ -73,7 +73,7 @@ body {
     height: 8vh;
     border-color: maroon;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .subbutton:hover {

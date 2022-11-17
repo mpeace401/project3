@@ -51,6 +51,10 @@
 
       <div class="scrollArea">         
          <% for (const value of managerData.inventoryMap.values()) {%>
+            <% var itemID = value.inventoryid %>
+            <% if(itemID == 0){ %>
+               <% continue %>
+            <% } %>
             <button class="itemButton " id= "<%=value.inventoryid%>" onclick="displayinventoryItem(event, <%=value.inventoryid%>, <%=value.itemamount%>)">
                <%= value.stockname %>
             </button>
@@ -107,7 +111,7 @@
    </div>
    
    <div id="Menu Items" class="tabcontent">
-      <button class="subbutton" onclick="addNewItem(event)" style="width: 43vw;">ADD NEW ITEM</button>
+      <button class="subbutton" onclick="addMenuItems(event)" style="width: 43vw;">ADD NEW ITEM</button>
 
       <div class="invAndMenuFieldGroup">
          <div>
@@ -154,12 +158,16 @@
             <input readonly value="Ingredient 6" class="attributeName">
             <input class="menuTextField" id="menuIng6">
          </div>
-         <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
-         <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
+         <button class="subbutton" onclick="removeMenuItem(event)">REMOVE ITEM</button>
+         <button class="subbutton" onclick="updateMenuItem(event)">UPDATE ITEM</button>
       </div>
 
       <div class="scrollArea">         
          <% for (const menuItem of managerData.menuMap.values()) {%>
+            <% var active = menuItem.active %>
+            <% if(active == false){ %>
+               <% continue %>
+            <% } %>
             <% var i1 = menuItem.ingredient1 %>
             <% if(i1 == null){ %>
                <%i1 = 0 }%>
