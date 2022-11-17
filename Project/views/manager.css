@@ -175,3 +175,24 @@ body {
     text-align: center;
     background-color: rgb(238, 238, 238);
 }
+
+.dateTimeBox {
+    font-size: 2vh;
+    width: 13vw;
+    height: 6vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border-color: maroon;
+    text-align: center;
+    background-color: rgb(238, 238, 238);
+}
+
+.dateTimeEntryBox {
+    font-size: 2vh;
+    width: 13vw;
+    height: 6vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border-color: maroon;
+    text-align: center;
+}
