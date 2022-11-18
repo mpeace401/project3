@@ -31,7 +31,7 @@ app.set("view engine", "ejs");
 function createMenuMap(data){ //creates map between itemid and item objects and adds to data
   var menuMap = new Map();     
   pool
-    .query('SELECT * FROM menuitems ORDER BY itemid;')
+    .query('SELECT * FROM menuitems where active = true ORDER BY itemid;')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){            
         menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);
@@ -55,7 +55,7 @@ function createInvMenuMap(data){ //creates map between itemid and item objects a
 function createInventoryMap(managerData){
   var inventoryMap = new Map();
   pool
-    .query('SELECT * FROM inventory ORDER BY inventoryid;')
+    .query('SELECT * FROM menuitems where active = true ORDER BY itemid;')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){
         inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);
