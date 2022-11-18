@@ -174,8 +174,6 @@ let getEmployeeIds = () =>{
          var option = document.createElement('option');
          option.text = option.value = "Please Select ID"
          select.add(option);
-
-         console.log(data.staffIds)
          for(let i = 0; i < data.staffIds.length; i++){
             var option = document.createElement('option');
             option.text = option.value = data.staffIds[i]
@@ -239,6 +237,15 @@ tender.addEventListener('click', function(e) {
 function createOrderQuery(orderArray){
    var allqs = '' ;
    var custName = document.getElementById('custname').value
+   var staffId = ""
+   if (document.getElementsByClassName("textbox staffselect").length > 0){
+      let id = document.getElementById('staffselect').value
+      if (!isNaN(id)){
+         staffId = id
+      }
+      
+   }
+
    for(var i = 0; i < orderArray.length; i++){
 
       let q = ''
@@ -252,8 +259,8 @@ function createOrderQuery(orderArray){
       }
       //adds necessary query info
       q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
-      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,custname,time,price) VALUES (id,'
-      q += i+1 + ',' + orderArray[i] + ',\''+ custName+ '\',NOW(),p);END $$;';
+      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,custname,staffid,time,price) VALUES (id,'
+      q += i+1 + ',' + orderArray[i] + ',\''+ custName+ '\',' + staffId + ',NOW(),p);END $$;';
 
    //adds all queries to one string
       allqs += q;
