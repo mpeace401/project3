@@ -112,6 +112,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    orderText.push(text)
    costArray.push(price)
 
+
    let totalText = ''
    let totalSum = 0
    
@@ -136,6 +137,7 @@ let clearOrder = () => {
    orderArray = []
    ingredientArray = []
    orderText = []
+   costArray= [];
    orderCost = 0;
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = '';
