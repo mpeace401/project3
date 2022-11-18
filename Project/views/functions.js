@@ -12,6 +12,8 @@ var orderText = [];
 //array to store order text
 var costArray = [];
 
+//array to store remove buttons
+var removeArray = [];
 //used to display real time
 function refreshTime() {
    const timeAreas = document.getElementsByClassName("time");
@@ -139,6 +141,16 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    orderText.push(text)
    costArray.push(price)
 
+   var x = document.createElement("button")
+   x.className += "remove";
+   x.innerHTML = "Remove";
+   var intTop = 115 + 18 * removeArray.length
+   var top = intTop.toString()
+   x.style.top = top+ "px"
+   document.body.appendChild(x);
+
+   removeArray.push(x)
+
 
    resetLabels()
 
@@ -148,7 +160,13 @@ let clearOrder = () => {
    orderArray = []
    ingredientArray = []
    orderText = []
-   costArray= [];
+   costArray = [];
+
+   for(let i = 0; i < removeArray.length; i++){
+      var x = removeArray[i]
+      x.remove();
+   }
+   removeArray = [];
    orderCost = 0;
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = '';
@@ -169,6 +187,7 @@ let undo = () => {
    costArray.pop()
    orderText.pop()
    ingredientArray.pop()
+   removeArray.pop()
    resetLabels()
 
 }
@@ -181,16 +200,6 @@ let resetLabels = () =>{
       totalText += orderText[i]
       totalText += '\n'
       totalSum += costArray[i]
-
-      //creates cancel buttons
-      var x = document.createElement("button")
-      x.className += "remove";
-      x.innerHTML = "Remove";
-      var intTop = 115 + 18 * i
-      var top = intTop.toString()
-
-      x.style.top = top+ "px"
-      document.body.appendChild(x);
       
    }
    orderArea =  document.getElementById("orderbox")
