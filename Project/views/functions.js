@@ -181,6 +181,17 @@ let resetLabels = () =>{
       totalText += orderText[i]
       totalText += '\n'
       totalSum += costArray[i]
+
+      //creates cancel buttons
+      var x = document.createElement("button")
+      x.className += "remove";
+      x.innerHTML = "Remove";
+      var intTop = 115 + 18 * i
+      var top = intTop.toString()
+
+      x.style.top = top+ "px"
+      document.body.appendChild(x);
+      
    }
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = totalText;
@@ -188,6 +199,7 @@ let resetLabels = () =>{
    costAreas =  document.getElementsByClassName("costbox")
    //adds total and rounds to 2 decimals
    for(let i = 0; i < costAreas.length; i++){
+      
       costArea = costAreas[i]
       costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
    }

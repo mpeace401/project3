@@ -66,6 +66,15 @@
    color: maroon;
    font-size: 13px;
  }
+ .remove{
+  height: 15px;
+  position: absolute;
+  left: 1230px;
+  font-size: 10px;
+  /* top: 115px; */
+
+
+ }
 
 .orderbox{
   color: maroon;

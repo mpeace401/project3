@@ -90,3 +90,6 @@
  body {
    background-color: lightgray;
  } 
+ .remove{
+   display: none;
+ }
