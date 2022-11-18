@@ -140,26 +140,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    costArray.push(price)
 
 
-   let totalText = ''
-   let totalSum = 0
-   
-   for(let i = 0; i <orderText.length; i++){
-      totalText += orderText[i]
-      totalText += '\n'
-      totalSum += costArray[i]
-   }
-   orderArea =  document.getElementById("orderbox")
-   orderArea.innerText = totalText;
-
-   costAreas =  document.getElementsByClassName("costbox")
-   //adds total and rounds to 2 decimals
-   for(let i = 0; i < costAreas.length; i++){
-      costArea = costAreas[i]
-      costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
-   }
-   if(toppings == 1){
-      enableToppingButtons();
-   }
+   resetLabels()
 
 }
 
@@ -180,7 +161,37 @@ let clearOrder = () => {
    nameArea = document.getElementById("custname")
    nameArea.value = 'Insert Name';
 }
+let undo = () => {
+   if (orderArray.length == 0){
+      return
+   }
+   orderArray.pop()
+   costArray.pop()
+   orderText.pop()
+   ingredientArray.pop()
+   resetLabels()
 
+}
+//sets labels to match items in order arrays
+let resetLabels = () =>{
+   let totalText = ''
+   let totalSum = 0
+   
+   for(let i = 0; i <orderText.length; i++){
+      totalText += orderText[i]
+      totalText += '\n'
+      totalSum += costArray[i]
+   }
+   orderArea =  document.getElementById("orderbox")
+   orderArea.innerText = totalText;
+
+   costAreas =  document.getElementsByClassName("costbox")
+   //adds total and rounds to 2 decimals
+   for(let i = 0; i < costAreas.length; i++){
+      costArea = costAreas[i]
+      costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   }
+}
 
 
 //gets next order id and stores value
