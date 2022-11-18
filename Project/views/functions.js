@@ -145,6 +145,8 @@ let clearOrder = () => {
       costArea = costAreas[i]
       costArea.innerText = "Total: $0"
    }
+   nameArea = document.getElementById("custname")
+   nameArea.value = 'Insert Name';
 }
 
 
@@ -237,6 +239,10 @@ tender.addEventListener('click', function(e) {
 function createOrderQuery(orderArray){
    var allqs = '' ;
    var custName = document.getElementById('custname').value
+   if(custName == "Insert Name"){
+      custName = ""
+   }
+
    var staffId = ""
    if (document.getElementsByClassName("textbox staffselect").length > 0){
       let id = document.getElementById('staffselect').value
