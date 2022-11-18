@@ -195,11 +195,15 @@ let undo = () => {
 let resetLabels = () =>{
    let totalText = ''
    let totalSum = 0
-   
+   console.log(orderText.length)
+
    for(let i = 0; i <orderText.length; i++){
       totalText += orderText[i]
       totalText += '\n'
       totalSum += costArray[i]
+
+      var x = removeArray[i]
+      x.onclick = function(){removeItem(i)}
       
    }
    orderArea =  document.getElementById("orderbox")
@@ -212,6 +216,21 @@ let resetLabels = () =>{
       costArea = costAreas[i]
       costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
    }
+}
+
+let removeItem = (i) =>{
+   //removes item from parallel arrays
+   orderArray.splice(i,1);
+   costArray.splice(i,1);
+   orderText.splice(i,1);
+   ingredientArray.splice(i,1);
+   
+   //removes and pops last remove button
+   removeArray[removeArray.length -1].remove()
+   removeArray.pop()
+
+   //resets labels to match arrays
+   resetLabels();
 }
 
 
