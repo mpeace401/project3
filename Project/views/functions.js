@@ -115,7 +115,7 @@ let goToMenu = () => {
 
 //adds item ids to order
 
-let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
+let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
    let txt = button.innerText.split('\n');
    let name = '';
@@ -156,6 +156,9 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    for(let i = 0; i < costAreas.length; i++){
       costArea = costAreas[i]
       costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   }
+   if(toppings == 1){
+      enableToppingButtons();
    }
 
 }
