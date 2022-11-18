@@ -79,6 +79,7 @@ let enableToppingButtons = () => {
  }
 
 let goToCart = () => {   
+   
    let disable = document.getElementsByClassName("menu");
    for(let i = 0; i < disable.length; i++){
       let element = disable[i]
@@ -94,6 +95,7 @@ let goToCart = () => {
       let element = enable[i]
       element.removeAttribute("hidden")
    }
+   console.log(enable.length)
 }
 let goToMenu = () => {   
    let disable = document.getElementsByClassName("cart");
@@ -142,15 +144,29 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    costArray.push(price)
 
    var x = document.createElement("button")
+   
+
+   if(document.getElementById("side").innerText == "Server"){
+      var intTop = 115 + 18 * removeArray.length
+      var top = intTop.toString()
+      x.style.top = top+ "px"
+      
+   }
+   else if(document.getElementById("side").innerText == "Customer"){
+
+      var intTop = 106 + 18 * removeArray.length
+      var top = intTop.toString()
+      x.style.top = top + "px"
+      x.className += "cart ";
+      x.setAttribute("hidden", "hidden")
+   }
+      
+   
+
    x.className += "remove";
    x.innerHTML = "Remove";
-   var intTop = 115 + 18 * removeArray.length
-   var top = intTop.toString()
-   x.style.top = top+ "px"
    document.body.appendChild(x);
-
    removeArray.push(x)
-
 
    resetLabels()
 
@@ -187,6 +203,7 @@ let undo = () => {
    costArray.pop()
    orderText.pop()
    ingredientArray.pop()
+   removeArray[removeArray.length -1].remove()
    removeArray.pop()
    resetLabels()
 
@@ -195,7 +212,6 @@ let undo = () => {
 let resetLabels = () =>{
    let totalText = ''
    let totalSum = 0
-   console.log(orderText.length)
 
    for(let i = 0; i <orderText.length; i++){
       totalText += orderText[i]

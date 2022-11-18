@@ -91,5 +91,8 @@
    background-color: lightgray;
  } 
  .remove{
-   display: none;
+   height: 15px;
+   position: absolute;
+   left: 1230px;
+   font-size: 10px;
  }
