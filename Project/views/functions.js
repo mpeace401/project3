@@ -49,6 +49,33 @@ let enableMenuButtons = (category) => {
    categoryButton.style.color = "white";
 }
 
+let enableToppingButtons = () => {   
+   let disable = document.getElementsByClassName("button menubutton");
+   
+   for(let i = 0; i < disable.length; i++){
+       let element = disable[i]
+       element.setAttribute("hidden", "hidden")
+    }
+    let enable = document.getElementsByClassName("button menubutton " + 4);
+    for(let i = 0; i < enable.length; i++){
+       let element = enable[i]
+       element.removeAttribute("hidden")
+    }
+      enable = document.getElementsByClassName("button menubutton " + 5);
+    for(let i = 0; i < enable.length; i++){
+       let element = enable[i]
+       element.removeAttribute("hidden")
+    }
+
+    categoryButtons = document.getElementsByClassName("button categorybutton");
+    for(let i = 0; i < categoryButtons.length; i++){
+       let element = categoryButtons[i]
+       element.style.backgroundColor = "white";
+       element.style.color = "maroon";
+    }
+
+ }
+
 let goToCart = () => {   
    let disable = document.getElementsByClassName("menu");
    for(let i = 0; i < disable.length; i++){
@@ -156,7 +183,6 @@ let clearOrder = () => {
 //gets next order id and stores value
 let getEmployeeIds = () =>{
    if (document.getElementsByClassName("textbox staffselect").length > 0){
-      
       
       var orderId = 0
       var q = 'select * from staff where managementlevel = \'Server\' order by staffid;' ;
