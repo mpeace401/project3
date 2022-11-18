@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser')
+
 var jsonParser = bodyParser.json();
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
@@ -22,7 +23,9 @@ process.on('SIGINT', function() {
   console.log('Application successfully shutdown');
   process.exit(0);
 });
-   
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.set("view engine", "ejs");
 
 function createMenuMap(data){ //creates map between itemid and item objects and adds to data
@@ -158,13 +161,32 @@ app.post('/query', jsonParser, function(req, res) {
 app.post('/getorderid', jsonParser, function(req, res) {
   const {q} = req.body;
 
-  console.log(q)
   
   pool  
     .query(q) //queries each category
     .then(query_res => {
     var max = query_res.rows[0].max
     res.send({max})
+    });
+ 
+
+});
+
+app.post('/getemployeeids', jsonParser, function(req, res) {
+  
+  const {q} = req.body;
+
+  pool  
+    .query(q) //queries each category
+    .then(query_res => {
+    var staffIds = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      let staffid = query_res.rows[i].staffid
+      staffIds.push(staffid)
+    }
+
+    res.send({staffIds})
     });
  
 

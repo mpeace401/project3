@@ -85,6 +85,7 @@ let goToMenu = () => {
    }
 }
 
+
 //adds item ids to order
 
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
@@ -149,7 +150,47 @@ let clearOrder = () => {
 
 
 //gets next order id and stores value
-let getOrderId = () =>{
+let getEmployeeIds = () =>{
+   var orderId = 0
+   var q = 'select * from staff where managementlevel = \'Server\' order by staffid;' ;
+   fetch('/getemployeeids', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.staffIds)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         var select = document.getElementById("staffselect");
+         select.innerHTML=""
+         var option = document.createElement('option');
+         option.text = option.value = "Please Select ID"
+         select.add(option);
+
+         console.log(data.staffIds)
+         for(let i = 0; i < data.staffIds.length; i++){
+            var option = document.createElement('option');
+            option.text = option.value = data.staffIds[i]
+            select.add(option);
+         }
+         
+         
+      });
+      
+      
+      
+   }
+
+
+let getOrderId = () => { 
    var orderId = 0
    var q = 'select max(transactionid) from customertransactions;' ;
    fetch('/getorderid', {
@@ -175,9 +216,8 @@ let getOrderId = () =>{
          
       });
       
-      
-      
-   }
+}
+getEmployeeIds();
 getOrderId();
 
 //sends queries on completed transaction 
