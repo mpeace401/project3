@@ -19,18 +19,21 @@
    <button class = 'cart button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 990px; top: 650px;" >Checkout</button>
    <button class = "cart button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>
 
-   <!-- Accessibility Button -->
-   <button class = "menu button accessibility" style = "position: absolute; left: 510px; top: 25px;">Accessibility</button>
+   <!-- Name Input -->
+   <input class="cart textbox" id="custname" hidden = "hidden" style = "position: absolute; left: 510px; top: 25px;" value="Insert Name">
 
    <!-- Cancel Button -->
    <button class = "menu button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
    <button class = "cart button cancel" id = 'cancel' hidden = "hidden" style = "position: absolute; left: 1150px; top: 650px;"onclick = "clearOrder()">Cancel</button>
+   
+   <!-- Accessibility Button -->
+   <button class = "menu button accessibility" style = "position: absolute; left: 510px; top: 25px;">Accessibility</button>
 
    <!-- Total Box-->
    <div class = "menu textbox costbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
    <div class = "cart textbox costbox" hidden = "hidden" id = "costbox" style = "left:800px; top:650px; height:50px; position: absolute;">Total: $0</div>
    <!-- Order ID Box -->
-   <div class = "menu textbox" id = "orderId" style="left:170px; top: 25px; position: absolute;" ></div>
+   <div class = "menu textbox" id = "orderId" style="left:170px; top: 25px; position: absolute;" >Loading...</div>
    <!-- Displays order -->
    <div class = "cart orderbox" id = "orderbox" hidden = "hidden" style="width:500px;height:525px;border:2px solid maroon;top: 100px; left: 800px;  background-color: white; position: absolute;" ></div>
    <div class = "cart currentorder" hidden="hidden" style="width:500px; height:50px; left: 800px; position: absolute; border:2px solid maroon;top: 20px; background-color: white; text-align: center;">Current Order</div>
