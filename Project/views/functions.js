@@ -172,6 +172,9 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
       var intTop = 0 + 18.2 * removeArray.length
       var top = intTop.toString()
       x.style.top = top+ "px"
+      x.className += "remove";
+      x.innerHTML = "Remove";
+      document.getElementById("removebox").appendChild(x);
       
    }
    else if(document.getElementById("side").innerText == "Customer"){
@@ -181,16 +184,22 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
       x.style.top = top + "px"
       x.className += "cart ";
       x.setAttribute("hidden", "hidden")
+      x.className += "remove";
+      x.innerHTML = "Remove";
+      document.body.appendChild(x);
    }
       
    
 
-   x.className += "remove";
-   x.innerHTML = "Remove";
-   document.getElementById("removebox").appendChild(x);
+   
+
+  
    removeArray.push(x)
 
    resetLabels()
+   if(toppings == 1){
+      enableToppingButtons();
+   }
 
 }
 
@@ -433,24 +442,27 @@ function runQuery(q){
 }
 
 
-var isSyncingLeftScroll = false;
-var isSyncingRightScroll = false;
+//syncs scrolling with orderbox and cancelbox
+if(document.getElementById("side").innerText == "Server"){
+   var isSyncingLeftScroll = false;
+   var isSyncingRightScroll = false;
 
-var orderbox = document.getElementById('orderbox');
-var removebox = document.getElementById('removebox');
+   var orderbox = document.getElementById('orderbox');
+   var removebox = document.getElementById('removebox');
 
-orderbox.onscroll = function() {
-  if (!isSyncingLeftScroll) {
-    isSyncingRightScroll = true;
-    removebox.scrollTop = this.scrollTop;
-  }
-  isSyncingLeftScroll = false;
-}
+   orderbox.onscroll = function() {
+   if (!isSyncingLeftScroll) {
+      isSyncingRightScroll = true;
+      removebox.scrollTop = this.scrollTop;
+   }
+   isSyncingLeftScroll = false;
+   }
 
-removebox.onscroll = function() {
-  if (!isSyncingRightScroll) {
-    isSyncingLeftScroll = true;
-    orderbox.scrollTop = this.scrollTop;
-  }
-  isSyncingRightScroll = false;
+   removebox.onscroll = function() {
+   if (!isSyncingRightScroll) {
+      isSyncingLeftScroll = true;
+      orderbox.scrollTop = this.scrollTop;
+   }
+   isSyncingRightScroll = false;
+   }
 }
