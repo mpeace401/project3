@@ -125,8 +125,8 @@ createMenuMap(data);
 data['categories'] = categories;
 //console.log(data)
 
-app.get('/', (req, res) => {
-  res.render('index',  {data: data }); //renders data object to server
+app.get('/server', (req, res) => {
+  res.render('serverGUI',  {data: data }); //renders data object to server
 });
 
 managerData = {} //stores objects to be rendered for manager
