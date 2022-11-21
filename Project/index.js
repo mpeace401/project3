@@ -55,7 +55,7 @@ function createInvMenuMap(data){ //creates map between itemid and item objects a
 function createInventoryMap(managerData){
   var inventoryMap = new Map();
   pool
-    .query('SELECT * FROM inventory')
+    .query('SELECT * FROM inventory ORDER BY inventoryid')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){
         inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);
