@@ -129,6 +129,10 @@ app.get('/server', (req, res) => {
   res.render('serverGUI',  {data: data }); //renders data object to server
 });
 
+app.get('/', (req, res) => {
+  res.render('',  {data: data }); //renders data object to index
+});
+
 managerData = {} //stores objects to be rendered for manager
 var managerCatagories = ['Home', 'Inventory', 'Finance', 'Transactions', 'Menu Items']
 
