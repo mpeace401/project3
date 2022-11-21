@@ -103,6 +103,11 @@ let goToMenu = () => {
       let element = disable[i]
       element.setAttribute("hidden", "hidden")
    }
+   let disable1 = document.getElementsByClassName("access");
+   for(let i = 0; i < disable1.length; i++){
+      let element = disable1[i]
+      element.setAttribute("hidden", "hidden")
+   }
    let enable = document.getElementsByClassName("menu");
    for(let i = 0; i < enable.length; i++){
       let element = enable[i]
@@ -115,7 +120,24 @@ let goToMenu = () => {
       element.style.color = "maroon";
    }
 }
-
+let Accessibility = () => {
+   let disable = document.getElementsByClassName("menu");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   disable = document.getElementsByClassName("menubutton");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   let enable = document.getElementsByClassName("access");
+   for(let i = 0; i < enable.length; i++){
+      let element = enable[i]
+      element.removeAttribute("hidden")
+   }
+   console.log(enable.length)
+}
 
 //adds item ids to order
 
