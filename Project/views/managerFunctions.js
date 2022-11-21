@@ -126,7 +126,7 @@ function updateMenuItem(evt) {
 }
 
 function addMenuItems(evt, inventoryID, amount) {
-   insertQ = 'INSERT INTO menuitems(itemid, itemname, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, category, hastoppings, active) SELECT MAX(itemid) + 1' + ", 'new item', 0, 0, 0, 0, 0, 0, 0, 0, 0, true FROM menuitems;"
+   insertQ = 'INSERT INTO menuitems(itemid, itemname, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, category, hastoppings, active) SELECT (MAX(itemid) WHERE itemid < 90 + 1' + ", 'new item', 0, 0, 0, 0, 0, 0, 0, 0, 0, true FROM menuitems;"
    console.log(insertQ)
    runQuery(insertQ)
 }
