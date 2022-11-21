@@ -1,76 +1,11 @@
 <!DOCTYPE html>
-
+<html lang="en-US">
 <head>
-   <link rel="stylesheet" type="text/css" href="/views/server.css" id="server_style"></link>
-   <title>Home Page</title>
+   <!-- <link rel="stylesheet" type="text/css" href="/views/manager.css" id="manager_style"></link> -->
+   <title>Login</title>
 </head>
-<body onload="javascript:getOrderId()">
-
-   <!-- Creates category buttons -->
-   <% for (var i = 0; i < data.categories.length; i++) {%>
-      <!-- Creates buttons 120px below the last -->
-      <button class = "button categorybutton <%= i %>" onclick = "enableMenuButtons(<%= i %>)" style = "top : <%=120*i%>px;">
-         <%= data.categories[i] %>
-      </button>
-   <% } %>
-
-   <!-- Rectangle to hold order -->
-   <div class = "orderbox" id = "orderbox" style="width:300px;height:525px;border:2px solid maroon;top: 110px; left: 1000px;  background-color: white; position: absolute;" ></div>
-   <!-- Tender Button -->
-   <button class = 'button tender' id = 'tender' style = "position: absolute; left: 1180px; top: 650px;" >Tender</button>
-
-   <!-- Cancel Button -->
-   <button class = "button cancel" id = 'cancel' style = "position: absolute; left: 850px; top: 575px;" onclick = "clearOrder()"> Cancel</button>
-
-   <!--  Creates menu buttons  -->
-   <div class = "flex-container1">
-   <% for (var i = 0; i < data.menuArray.length; i++) {%>  
-      <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
-         <!-- Assigns buttons into class depending on category -->
-
-         <!-- Gets ingredients -->
-         
-         <% var i1 = data.menuMap.get(data.menuArray[i][j]).ingredient1 %>
-         <% if(i1 == null){ %>
-            <%i1 = 0 }%>
-         <% var i2 = data.menuMap.get(data.menuArray[i][j]).ingredient2 %>
-         <% if(i2 == null){ %>
-            <%i2 = 0 }%>
-         <% var i3 = data.menuMap.get(data.menuArray[i][j]).ingredient3 %>
-         <% if(i3 == null){ %>
-            <%i3 = 0 }%>
-         <% var i4 = data.menuMap.get(data.menuArray[i][j]).ingredient4 %>
-         <% if(i4 == null){ %>
-            <%i4 = 0 }%>
-         <% var i5 = data.menuMap.get(data.menuArray[i][j]).ingredient5 %>
-         <% if(i5 == null){ %>
-            <%i5 = 0 }%>
-         <% var i6 = data.menuMap.get(data.menuArray[i][j]).ingredient6 %>
-         <% if(i6 == null){ %>
-            <%i6 = 0 }%>
-
-         <!-- gets price -->
-
-         <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
-         <button class = "button menubutton <%= i %>" id = "menubutton <%= i %> <%= j %>" hidden = "hidden" onclick = "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=i %>, <%=j %>)">
-            <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-            <div class="textbox price" id = "price <%= i %> <%= j %>"hidden = "hidden">$<%=price%></div>
-         </button>
-      <% } %>
-   <% } %>
-   </div>   
-
-   <div>
-      <div class = "textbox time" style = "left: 1000px; top: 10px; position: absolute;">Loading...</div>
-      <!-- <div class = "textbox" style = "left: 1180px; top: 10px;position: absolute;">Employee</div> -->
-      <select class = textbox id="staffselect" style = "left: 1180px; top: 10px;position: absolute;">
-         <option selected="">Please Select</option>
-       </select>
-      <div class = "textbox" id="orderId" style = "left: 1000px;top: 60px;">Order ID</div>
-      <input class="textbox" id="custname"style = "left: 1180px;top: 60px;" value="Insert Name">
-      
-      <div class = "textbox costbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
-   </div>
-
+<body>
+   <p>test</p>
 </body>
-<script src="/views/functions.js"> </script>
+<!-- <script src="/views/managerFunctions.js"> </script> -->
+</html>

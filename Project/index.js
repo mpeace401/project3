@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser')
+
 var jsonParser = bodyParser.json();
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
@@ -22,13 +23,15 @@ process.on('SIGINT', function() {
   console.log('Application successfully shutdown');
   process.exit(0);
 });
-   
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.set("view engine", "ejs");
 
 function createMenuMap(data){ //creates map between itemid and item objects and adds to data
   var menuMap = new Map();     
   pool
-    .query('SELECT * FROM menuitems ORDER BY itemid;')
+    .query('SELECT * FROM menuitems where active = true ORDER BY itemid;')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){            
         menuMap.set(query_res.rows[i].itemid, query_res.rows[i]);
@@ -52,7 +55,7 @@ function createInvMenuMap(data){ //creates map between itemid and item objects a
 function createInventoryMap(managerData){
   var inventoryMap = new Map();
   pool
-    .query('SELECT * FROM inventory ORDER BY inventoryid;')
+    .query('SELECT * FROM inventory')
     .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){
         inventoryMap.set(query_res.rows[i].inventoryid, query_res.rows[i]);
@@ -122,8 +125,12 @@ createMenuMap(data);
 data['categories'] = categories;
 //console.log(data)
 
+app.get('/server', (req, res) => {
+  res.render('serverGUI',  {data: data }); //renders data object to server
+});
+
 app.get('/', (req, res) => {
-  res.render('index',  {data: data }); //renders data object to server
+  res.render('',  {data: data }); //renders data object to index
 });
 
 managerData = {} //stores objects to be rendered for manager
@@ -158,13 +165,32 @@ app.post('/query', jsonParser, function(req, res) {
 app.post('/getorderid', jsonParser, function(req, res) {
   const {q} = req.body;
 
-  console.log(q)
   
   pool  
     .query(q) //queries each category
     .then(query_res => {
     var max = query_res.rows[0].max
     res.send({max})
+    });
+ 
+
+});
+
+app.post('/getemployeeids', jsonParser, function(req, res) {
+  
+  const {q} = req.body;
+
+  pool  
+    .query(q) //queries each category
+    .then(query_res => {
+    var staffIds = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      let staffid = query_res.rows[i].staffid
+      staffIds.push(staffid)
+    }
+
+    res.send({staffIds})
     });
  
 

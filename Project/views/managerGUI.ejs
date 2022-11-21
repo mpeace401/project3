@@ -51,6 +51,10 @@
 
       <div class="scrollArea">         
          <% for (const value of managerData.inventoryMap.values()) {%>
+            <% var itemID = value.inventoryid %>
+            <% if(itemID == 0){ %>
+               <% continue %>
+            <% } %>
             <button class="itemButton " id= "<%=value.inventoryid%>" onclick="displayinventoryItem(event, <%=value.inventoryid%>, <%=value.itemamount%>)">
                <%= value.stockname %>
             </button>
@@ -68,16 +72,61 @@
       </div>
 
       <div id="Sales" class="reportContent">
-         SALES
+         <div>
+            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startDate">
+            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startTime">
+         </div>
+         <div>
+            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endDate">
+            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endTime">
+         </div>
       </div>
       <div id="Excess" class="reportContent">
-         EXCESS
+         <div>
+            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startDate">
+            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startTime">
+         </div>
+         <div>
+            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endDate">
+            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endTime">
+         </div>
       </div>
       <div id="Restock" class="reportContent">
-         RESTOCK
+         <div>
+            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startDate">
+            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startTime">
+         </div>
+         <div>
+            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endDate">
+            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endTime">
+         </div>
       </div>
       <div id="WST" class="reportContent">
-         WHAT SELLS TOGETHER
+         <div>
+            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startDate">
+            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="startTime">
+            <button class="subbutton" style="height:15vh;float:right;margin-right:8vw;margin-top:1vh">ENTER</button>
+         </div>
+         <div>
+            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endDate">
+            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
+            <input class="dateTimeEntryBox" id="endTime">
+         </div>
       </div>
    </div>
    
@@ -87,7 +136,8 @@
          <div class="transactionsBox">         
             <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
-                  <%= value.orderid %>, <%= value.stockid %>, <%= value.dateordered %>, <%= value.pricetotal %>, <%= value.numitems %>
+                  #<%= value.orderid %>, ID: <%= value.stockid %>, Amount: <%= value.numitems %>, Total: $<%= value.pricetotal %>
+                  <br><div style="font-size: 1vh;height:0;"><%= value.dateordered %></div>
                </button>
             <% } %>
          </div>
@@ -98,7 +148,8 @@
       <div class="transactionsBox">         
          <% for (const value of managerData.transactionsMap.values()) {%>
             <button class="itemButton" style="pointer-events: none;">
-               <%= value.transactionid %>, <%= value.itemnum %>, <%= value.itemid %>, <%= value.custname %>, <%= value.staffid %>, <%= value.time %>, <%= value.price %>
+               #<%= value.transactionid %>, Items: <%= value.itemnum %>, Name: <%= value.custname %>, Employee: <%= value.staffid %>, Total: $<%= value.price %>
+               <br><div style="font-size: 1vh;height:0;"><%= value.time %></div>
             </button>
          <% } %>
       </div>      
@@ -158,6 +209,10 @@
 
       <div class="scrollArea">         
          <% for (const menuItem of managerData.menuMap.values()) {%>
+            <% var active = menuItem.active %>
+            <% if(active == false){ %>
+               <% continue %>
+            <% } %>
             <% var i1 = menuItem.ingredient1 %>
             <% if(i1 == null){ %>
                <%i1 = 0 }%>

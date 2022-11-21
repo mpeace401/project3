@@ -12,6 +12,8 @@ var orderText = [];
 //array to store order text
 var costArray = [];
 
+//array to store remove buttons
+var removeArray = [];
 //used to display real time
 function refreshTime() {
    const timeAreas = document.getElementsByClassName("time");
@@ -49,7 +51,35 @@ let enableMenuButtons = (category) => {
    categoryButton.style.color = "white";
 }
 
+let enableToppingButtons = () => {   
+   let disable = document.getElementsByClassName("button menubutton");
+   
+   for(let i = 0; i < disable.length; i++){
+       let element = disable[i]
+       element.setAttribute("hidden", "hidden")
+    }
+    let enable = document.getElementsByClassName("button menubutton " + 4);
+    for(let i = 0; i < enable.length; i++){
+       let element = enable[i]
+       element.removeAttribute("hidden")
+    }
+      enable = document.getElementsByClassName("button menubutton " + 5);
+    for(let i = 0; i < enable.length; i++){
+       let element = enable[i]
+       element.removeAttribute("hidden")
+    }
+
+    categoryButtons = document.getElementsByClassName("button categorybutton");
+    for(let i = 0; i < categoryButtons.length; i++){
+       let element = categoryButtons[i]
+       element.style.backgroundColor = "white";
+       element.style.color = "maroon";
+    }
+
+ }
+
 let goToCart = () => {   
+   
    let disable = document.getElementsByClassName("menu");
    for(let i = 0; i < disable.length; i++){
       let element = disable[i]
@@ -65,11 +95,17 @@ let goToCart = () => {
       let element = enable[i]
       element.removeAttribute("hidden")
    }
+   console.log(enable.length)
 }
 let goToMenu = () => {   
    let disable = document.getElementsByClassName("cart");
    for(let i = 0; i < disable.length; i++){
       let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   let disable1 = document.getElementsByClassName("access");
+   for(let i = 0; i < disable1.length; i++){
+      let element = disable1[i]
       element.setAttribute("hidden", "hidden")
    }
    let enable = document.getElementsByClassName("menu");
@@ -84,10 +120,28 @@ let goToMenu = () => {
       element.style.color = "maroon";
    }
 }
+let Accessibility = () => {
+   let disable = document.getElementsByClassName("menu");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   disable = document.getElementsByClassName("menubutton");
+   for(let i = 0; i < disable.length; i++){
+      let element = disable[i]
+      element.setAttribute("hidden", "hidden")
+   }
+   let enable = document.getElementsByClassName("access");
+   for(let i = 0; i < enable.length; i++){
+      let element = enable[i]
+      element.removeAttribute("hidden")
+   }
+   console.log(enable.length)
+}
 
 //adds item ids to order
 
-let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) => {  
+let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
    button = document.getElementById("menubutton " + category + " " + pos)
    let txt = button.innerText.split('\n');
    let name = '';
@@ -111,22 +165,38 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos) 
    orderText.push(text)
    costArray.push(price)
 
-   let totalText = ''
-   let totalSum = 0
+   var x = document.createElement("button")
    
-   for(let i = 0; i <orderText.length; i++){
-      totalText += orderText[i]
-      totalText += '\n'
-      totalSum += costArray[i]
-   }
-   orderArea =  document.getElementById("orderbox")
-   orderArea.innerText = totalText;
 
-   costAreas =  document.getElementsByClassName("costbox")
-   //adds total and rounds to 2 decimals
-   for(let i = 0; i < costAreas.length; i++){
-      costArea = costAreas[i]
-      costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   if(document.getElementById("side").innerText == "Server"){
+      var intTop = 0 + 18.2 * removeArray.length
+      var top = intTop.toString()
+      x.style.top = top+ "px"
+      
+      
+   }
+   else if(document.getElementById("side").innerText == "Customer"){
+
+      var intTop = 0 + 18.2 * removeArray.length
+      var top = intTop.toString()
+      x.style.top = top + "px"
+      x.className += "cart ";
+      x.setAttribute("hidden", "hidden")
+     
+   }
+   x.className += "remove";
+   x.innerHTML = "Remove";
+   document.getElementById("removebox").appendChild(x);
+   
+
+   
+
+  
+   removeArray.push(x)
+
+   resetLabels()
+   if(toppings == 1){
+      enableToppingButtons();
    }
 
 }
@@ -135,6 +205,13 @@ let clearOrder = () => {
    orderArray = []
    ingredientArray = []
    orderText = []
+   costArray = [];
+
+   for(let i = 0; i < removeArray.length; i++){
+      var x = removeArray[i]
+      x.remove();
+   }
+   removeArray = [];
    orderCost = 0;
    orderArea =  document.getElementById("orderbox")
    orderArea.innerText = '';
@@ -144,12 +221,106 @@ let clearOrder = () => {
       costArea = costAreas[i]
       costArea.innerText = "Total: $0"
    }
+   nameArea = document.getElementById("custname")
+   nameArea.value = 'Insert Name';
+}
+let undo = () => {
+   if (orderArray.length == 0){
+      return
+   }
+   orderArray.pop()
+   costArray.pop()
+   orderText.pop()
+   ingredientArray.pop()
+   removeArray[removeArray.length -1].remove()
+   removeArray.pop()
+   resetLabels()
+
+}
+//sets labels to match items in order arrays
+let resetLabels = () =>{
+   let totalText = ''
+   let totalSum = 0
+   orderArea =  document.getElementById("orderbox")
+   for(let i = 0; i <orderText.length; i++){
+      totalText += orderText[i]
+      totalText += '\n'
+      totalSum += costArray[i]
+
+      var x = removeArray[i]
+      x.onclick = function(){removeItem(i)}
+   }
+   
+   orderArea.innerText = totalText;
+
+
+   costAreas =  document.getElementsByClassName("costbox")
+   //adds total and rounds to 2 decimals
+   for(let i = 0; i < costAreas.length; i++){
+      
+      costArea = costAreas[i]
+      costArea.innerText = "Total: $" + Math.round(totalSum * 100) / 100
+   }
+}
+
+let removeItem = (i) =>{
+   //removes item from parallel arrays
+   orderArray.splice(i,1);
+   costArray.splice(i,1);
+   orderText.splice(i,1);
+   ingredientArray.splice(i,1);
+   
+   //removes and pops last remove button
+   removeArray[removeArray.length -1].remove()
+   removeArray.pop()
+
+   //resets labels to match arrays
+   resetLabels();
 }
 
 
-
 //gets next order id and stores value
-let getOrderId = () =>{
+let getEmployeeIds = () =>{
+   if (document.getElementsByClassName("textbox staffselect").length > 0){
+      
+      var orderId = 0
+      var q = 'select * from staff where managementlevel = \'Server\' order by staffid;' ;
+      fetch('/getemployeeids', {
+         method: 'POST',
+         headers: {
+            Authorization: '',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            q,
+         }),
+      })
+         .then((res) => {
+            console.log(res.staffIds)
+            return res.json();
+         })
+         
+         .then(function(data) {
+            var select = document.getElementById("staffselect");
+            select.innerHTML=""
+            var option = document.createElement('option');
+            option.text = option.value = "Please Select ID"
+            select.add(option);
+            for(let i = 0; i < data.staffIds.length; i++){
+               var option = document.createElement('option');
+               option.text = option.value = data.staffIds[i]
+               select.add(option);
+            }
+            
+            
+         });
+         
+      
+   }
+   }
+
+
+let getOrderId = () => { 
    var orderId = 0
    var q = 'select max(transactionid) from customertransactions;' ;
    fetch('/getorderid', {
@@ -175,9 +346,8 @@ let getOrderId = () =>{
          
       });
       
-      
-      
-   }
+}
+getEmployeeIds();
 getOrderId();
 
 //sends queries on completed transaction 
@@ -199,6 +369,19 @@ tender.addEventListener('click', function(e) {
 function createOrderQuery(orderArray){
    var allqs = '' ;
    var custName = document.getElementById('custname').value
+   if(custName == "Insert Name"){
+      custName = ""
+   }
+
+   var staffId = ""
+   if (document.getElementsByClassName("textbox staffselect").length > 0){
+      let id = document.getElementById('staffselect').value
+      if (!isNaN(id)){
+         staffId = id
+      }
+      
+   }
+
    for(var i = 0; i < orderArray.length; i++){
 
       let q = ''
@@ -212,8 +395,8 @@ function createOrderQuery(orderArray){
       }
       //adds necessary query info
       q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
-      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,custname,time,price) VALUES (id,'
-      q += i+1 + ',' + orderArray[i] + ',\''+ custName+ '\',NOW(),p);END $$;';
+      q += 'INSERT INTO customertransactions (transactionid,itemnum,itemid,custname,staffid,time,price) VALUES (id,'
+      q += i+1 + ',' + orderArray[i] + ',\''+ custName+ '\',' + staffId + ',NOW(),p);END $$;';
 
    //adds all queries to one string
       allqs += q;
@@ -254,4 +437,29 @@ function runQuery(q){
       return res.json();
    })
    .then((data) => console.log(data));
+}
+
+
+//syncs scrolling with orderbox and cancelbox
+
+var isSyncingLeftScroll = false;
+var isSyncingRightScroll = false;
+
+var orderbox = document.getElementById('orderbox');
+var removebox = document.getElementById('removebox');
+
+orderbox.onscroll = function() {
+if (!isSyncingLeftScroll) {
+   isSyncingRightScroll = true;
+   removebox.scrollTop = this.scrollTop;
+}
+isSyncingLeftScroll = false;
+}
+
+removebox.onscroll = function() {
+if (!isSyncingRightScroll) {
+   isSyncingLeftScroll = true;
+   orderbox.scrollTop = this.scrollTop;
+}
+isSyncingRightScroll = false;
 }

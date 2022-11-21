@@ -62,6 +62,14 @@
    background-color: white;
    color: maroon;
 }
+.undo{
+   width: 150px;
+   height: 50px;
+   border-color: maroon ;
+   outline-color: maroon;
+   background-color: white;
+   color: maroon;
+}
 .textbox{
    text-align: center;
    width: 145px;
@@ -82,3 +90,16 @@
  body {
    background-color: lightgray;
  } 
+ .remove{
+   height: 15px;
+   position: absolute;
+   left: 30px;
+   font-size: 10px;
+ }
+
+
+.scrollarea {
+  
+   position: absolute;
+   overflow: scroll;
+ }
