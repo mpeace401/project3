@@ -69,13 +69,24 @@
  .remove{
   height: 15px;
   position: absolute;
-  left: 1230px;
+  left: 15px;
   font-size: 10px;
   /* top: 115px; */
-
 
  }
 
 .orderbox{
+  font-size: 12;
+  width:300px;
+  height:525px;
+  border:2px solid maroon;
+  top: 110px; left: 1000px;  
+  background-color: white; 
   color: maroon;
+}
+
+.scrollarea {
+  
+  position: absolute;
+  overflow: scroll;
 }

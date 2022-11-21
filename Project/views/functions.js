@@ -169,7 +169,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    
 
    if(document.getElementById("side").innerText == "Server"){
-      var intTop = 115 + 18 * removeArray.length
+      var intTop = 0 + 18.2 * removeArray.length
       var top = intTop.toString()
       x.style.top = top+ "px"
       
@@ -187,7 +187,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
 
    x.className += "remove";
    x.innerHTML = "Remove";
-   document.body.appendChild(x);
+   document.getElementById("removebox").appendChild(x);
    removeArray.push(x)
 
    resetLabels()
@@ -234,7 +234,7 @@ let undo = () => {
 let resetLabels = () =>{
    let totalText = ''
    let totalSum = 0
-
+   orderArea =  document.getElementById("orderbox")
    for(let i = 0; i <orderText.length; i++){
       totalText += orderText[i]
       totalText += '\n'
@@ -242,10 +242,10 @@ let resetLabels = () =>{
 
       var x = removeArray[i]
       x.onclick = function(){removeItem(i)}
-      
    }
-   orderArea =  document.getElementById("orderbox")
+   
    orderArea.innerText = totalText;
+
 
    costAreas =  document.getElementsByClassName("costbox")
    //adds total and rounds to 2 decimals
@@ -430,4 +430,27 @@ function runQuery(q){
       return res.json();
    })
    .then((data) => console.log(data));
+}
+
+
+var isSyncingLeftScroll = false;
+var isSyncingRightScroll = false;
+
+var orderbox = document.getElementById('orderbox');
+var removebox = document.getElementById('removebox');
+
+orderbox.onscroll = function() {
+  if (!isSyncingLeftScroll) {
+    isSyncingRightScroll = true;
+    removebox.scrollTop = this.scrollTop;
+  }
+  isSyncingLeftScroll = false;
+}
+
+removebox.onscroll = function() {
+  if (!isSyncingRightScroll) {
+    isSyncingLeftScroll = true;
+    orderbox.scrollTop = this.scrollTop;
+  }
+  isSyncingRightScroll = false;
 }
