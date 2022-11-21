@@ -93,6 +93,13 @@
  .remove{
    height: 15px;
    position: absolute;
-   left: 1230px;
+   left: 30px;
    font-size: 10px;
+ }
+
+
+.scrollarea {
+  
+   position: absolute;
+   overflow: scroll;
  }

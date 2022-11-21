@@ -172,23 +172,21 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
       var intTop = 0 + 18.2 * removeArray.length
       var top = intTop.toString()
       x.style.top = top+ "px"
-      x.className += "remove";
-      x.innerHTML = "Remove";
-      document.getElementById("removebox").appendChild(x);
+      
       
    }
    else if(document.getElementById("side").innerText == "Customer"){
 
-      var intTop = 106 + 18 * removeArray.length
+      var intTop = 0 + 18.2 * removeArray.length
       var top = intTop.toString()
       x.style.top = top + "px"
       x.className += "cart ";
       x.setAttribute("hidden", "hidden")
-      x.className += "remove";
-      x.innerHTML = "Remove";
-      document.body.appendChild(x);
+     
    }
-      
+   x.className += "remove";
+   x.innerHTML = "Remove";
+   document.getElementById("removebox").appendChild(x);
    
 
    
@@ -443,26 +441,25 @@ function runQuery(q){
 
 
 //syncs scrolling with orderbox and cancelbox
-if(document.getElementById("side").innerText == "Server"){
-   var isSyncingLeftScroll = false;
-   var isSyncingRightScroll = false;
 
-   var orderbox = document.getElementById('orderbox');
-   var removebox = document.getElementById('removebox');
+var isSyncingLeftScroll = false;
+var isSyncingRightScroll = false;
 
-   orderbox.onscroll = function() {
-   if (!isSyncingLeftScroll) {
-      isSyncingRightScroll = true;
-      removebox.scrollTop = this.scrollTop;
-   }
-   isSyncingLeftScroll = false;
-   }
+var orderbox = document.getElementById('orderbox');
+var removebox = document.getElementById('removebox');
 
-   removebox.onscroll = function() {
-   if (!isSyncingRightScroll) {
-      isSyncingLeftScroll = true;
-      orderbox.scrollTop = this.scrollTop;
-   }
-   isSyncingRightScroll = false;
-   }
+orderbox.onscroll = function() {
+if (!isSyncingLeftScroll) {
+   isSyncingRightScroll = true;
+   removebox.scrollTop = this.scrollTop;
+}
+isSyncingLeftScroll = false;
+}
+
+removebox.onscroll = function() {
+if (!isSyncingRightScroll) {
+   isSyncingLeftScroll = true;
+   orderbox.scrollTop = this.scrollTop;
+}
+isSyncingRightScroll = false;
 }
