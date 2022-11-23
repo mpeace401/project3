@@ -1,5 +1,5 @@
 document.getElementById("homePage").click();
-maxInvId = -1
+
 
 function openTab(evt, tabName) {
    // Declare all variables
@@ -131,4 +131,42 @@ function addMenuItems(evt) {
    runQuery(insertQ)
    
 }
+
+function getSalesReport(evt) { 
+   startDate = document.getElementById('startDate').value
+   startTime = document.getElementById('startTime').value
+   endDate = document.getElementById('endDate').value
+   endTime = document.getElementById('endTime').value
+
+   q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + " " + startTime + "'" + ' AND DATE(time) <= ' +
+   "'" + endDate + " " + endTime + "'" + 'AND itemid < 90 GROUP by itemid;'
+
+   // q = "SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:01:08' AND DATE(time) <= '2022-09-09 10:09:34' AND itemid < 90 GROUP by itemid;"
+
+   fetch('/getSalesReport', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.itemIds)
+         return res.json();
+      })
+      
+      .then(function(data) {
+
+         for (let i = 0; i < data.itemIds.length; i++) {
+            var x = document.createElement("button")
+            x.innerHTML = data.itemIds[i].itemid + " " + data.itemIds[i].count + " " + data.itemIds[i].sum
+            document.getElementById("Sales").appendChild(x);
+         }
+
+      });
+}
+
 

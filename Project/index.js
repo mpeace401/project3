@@ -145,6 +145,7 @@ app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
 });
 
+
 customerData = {}
 var custCategories = ['Burgers', 'Chicken', 'Sides/Drinks', 'Dessert','Toppings','Condiments'];
 customerData['categories'] = custCategories;
@@ -176,6 +177,7 @@ app.post('/getorderid', jsonParser, function(req, res) {
 
 });
 
+
 app.post('/getemployeeids', jsonParser, function(req, res) {
   
   const {q} = req.body;
@@ -195,4 +197,24 @@ app.post('/getemployeeids', jsonParser, function(req, res) {
  
 
 });
+
+app.post('/getSalesReport', jsonParser, function(req, res) {
+  const {q} = req.body;
+  console.log(q)
+  pool
+  .query(q) //queries each category
+    .then(query_res => {
+    var itemIds = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      let itemid = query_res.rows[i].itemid
+      let sum = query_res.rows[i].sum
+      let count = query_res.rows[i].count
+      let sales = {itemid: itemid, count: count, sum: sum} 
+      itemIds.push(sales)
+    }
+
+    res.send({itemIds})
+    });
+})
 
