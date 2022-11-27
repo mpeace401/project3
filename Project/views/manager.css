@@ -177,14 +177,19 @@ body {
 }
 
 .dateTimeBox {
-    font-size: 2vh;
+    font-size: 0.9vw;
     width: 13vw;
-    height: 6vh;
-    margin-top: 1vh;
+    height: 4vh;
+    margin-top: 0.5vh;
     margin-bottom: 1vh;
     border-color: maroon;
     text-align: center;
     background-color: rgb(238, 238, 238);
+    inline-size: 13vw;
+    resize: none;
+    vertical-align: middle;
+    display:inline-block;
+    padding-top: 2vh;
 }
 
 .dateTimeEntryBox {
@@ -195,4 +200,14 @@ body {
     margin-bottom: 1vh;
     border-color: maroon;
     text-align: center;
+}
+
+.reportBox {
+    font-size: 2vh;
+    width: 76vw;
+    height: 56vh;
+    border-width: 1px;
+    border-color: maroon;
+    text-align: center;
+    resize: none;
 }

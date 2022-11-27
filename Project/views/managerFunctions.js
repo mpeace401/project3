@@ -132,11 +132,11 @@ function addMenuItems(evt) {
    
 }
 
-function getSalesReport(evt) { 
-   startDate = document.getElementById('startDate').value
-   startTime = document.getElementById('startTime').value
-   endDate = document.getElementById('endDate').value
-   endTime = document.getElementById('endTime').value
+function getSalesReport(evt) { //TODO: get rid of start and end time bc sales only needs a date
+   startDate = document.getElementById('salesStartDate').value
+   startTime = document.getElementById('salesStartTime').value
+   endDate = document.getElementById('salesEndDate').value
+   endTime = document.getElementById('salesEndTime').value
 
    q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + " " + startTime + "'" + ' AND DATE(time) <= ' +
    "'" + endDate + " " + endTime + "'" + 'AND itemid < 90 GROUP by itemid;'

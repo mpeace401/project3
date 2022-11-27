@@ -73,60 +73,54 @@
 
       <div id="Sales" class="reportContent">
          <div>
-            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startDate">
-            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startTime">
+            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <input class="dateTimeEntryBox" id="salesStartDate">
+            <button class="subbutton" style="height:15vh;float:right;margin-right:35vw;margin-top:1vh" onclick="getSalesReport(event)">ENTER</button>
          </div>
          <div>
-            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endDate">
-            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endTime">
-            <button onclick="getSalesReport(event)">Enter</button>
+            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <input class="dateTimeEntryBox" id="salesEndDate">
+         </div>
+         <div>
+            <textarea readonly class="reportBox" id="salesReportBox">BOX FOR REPORT</textarea>
          </div>
       </div>
       <div id="Excess" class="reportContent">
          <div>
-            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startDate">
-            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startTime">
+            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <input class="dateTimeEntryBox" id="excessStartDate">
+            <button class="subbutton" style="height:15vh;float:right;margin-right:35vw;margin-top:1vh" onclick="getSalesReport(event)">ENTER</button>
          </div>
          <div>
-            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endDate">
-            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endTime">
+            <textarea readonly class="dateTimeBox" style="height: 5vh;padding-top: 1vh;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <input class="dateTimeEntryBox" id="excessStartTime">
+         </div>
+         <div>
+            <textarea readonly class="reportBox" id="excessReportBox">BOX FOR REPORT</textarea>
          </div>
       </div>
       <div id="Restock" class="reportContent">
+         <button class="subbutton" style="height:15vh;margin-top:1vh;width:76vw;margin-bottom: 1vh;" onclick="getSalesReport(event)">ENTER</button>
          <div>
-            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startDate">
-            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startTime">
-         </div>
-         <div>
-            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endDate">
-            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endTime">
+            <textarea readonly class="reportBox" id="restockReportBox">BOX FOR REPORT</textarea>
          </div>
       </div>
       <div id="WST" class="reportContent">
          <div>
-            <input readonly value="Start Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startDate">
-            <input readonly value="Start Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="startTime">
+            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <input class="dateTimeEntryBox" id="WSTStartDate">
+            <textarea readonly class="dateTimeBox" style="height: 5vh;padding-top: 1vh;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <input class="dateTimeEntryBox" id="WSTStartTime">
             <button class="subbutton" style="height:15vh;float:right;margin-right:8vw;margin-top:1vh">ENTER</button>
          </div>
          <div>
-            <input readonly value="End Date (YYYY-MM-DD)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endDate">
-            <input readonly value="End Time (HH:MM:SS)" class="dateTimeBox">
-            <input class="dateTimeEntryBox" id="endTime">
+            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <input class="dateTimeEntryBox" id="WSTEndDate">
+            <textarea readonly class="dateTimeBox" style="height: 5vh;padding-top: 1vh;">End Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <input class="dateTimeEntryBox" id="WSTEndTime">
+         </div>
+         <div>
+            <textarea readonly class="reportBox" id="WSTReportBox">BOX FOR REPORT</textarea>
          </div>
       </div>
    </div>
