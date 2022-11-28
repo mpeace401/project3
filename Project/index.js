@@ -195,7 +195,31 @@ app.post('/getemployeeids', jsonParser, function(req, res) {
     res.send({staffIds})
     });
  
+});
 
+//gets each inventory items current stock
+app.post('/getinventorystatus', jsonParser, function(req, res) {
+  
+  const {q} = req.body;
+
+  pool  
+    .query(q) //queries each category
+    .then(query_res => {
+    var inventoryIds = []
+    var itemAmounts = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      //inventory.set(query_res.rows[i].inventoryid, query_res.rows[i].itemamount) //stores amount with each id in a map
+      
+      //var status = {inventoryid: query_res.rows[i].inventoryid, itemamount: query_res.rows[i].itemamount}
+      inventoryIds.push(query_res.rows[i].inventoryid)
+      itemAmounts.push(query_res.rows[i].itemamount)
+
+    }
+    inventory = {inventoryIds: inventoryIds, itemAmounts: itemAmounts}
+    res.send({inventory})
+    });
+ 
 });
 
 app.post('/getSalesReport', jsonParser, function(req, res) {

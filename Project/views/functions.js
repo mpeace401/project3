@@ -187,9 +187,6 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    x.className += "remove";
    x.innerHTML = "Remove";
    document.getElementById("removebox").appendChild(x);
-   
-
-   
 
   
    removeArray.push(x)
@@ -198,6 +195,35 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
    if(toppings == 1){
       enableToppingButtons();
    }
+
+   //checks item availability 
+   var q = 'select * from inventory order by inventoryid;' ;
+      fetch('/getinventorystatus', {
+         method: 'POST',
+         headers: {
+            Authorization: '',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            q,
+         }),
+      })
+      .then((res) => {
+         console.log(res.inventory)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         var inventoryIds = data.inventory.inventoryIds
+         var itemAmounts = data.inventory.itemAmounts
+         for(let i = 0; i < ingredients.length; i++){
+            let index = inventoryIds.indexOf(ingredients[i])
+            if(index != 0 && itemAmounts[index] <= 1){
+               console.log(ingredients[i])
+            } 
+         }
+      });
+         
 
 }
 
@@ -276,7 +302,14 @@ let removeItem = (i) =>{
 
    //resets labels to match arrays
    resetLabels();
+
 }
+
+//gets map 
+// let getInventoryStatus = () =>{
+//    get
+// }
+
 
 
 //gets next order id and stores value
@@ -347,7 +380,7 @@ let getOrderId = () => {
       });
       
 }
-getEmployeeIds();
+
 getOrderId();
 
 //sends queries on completed transaction 
