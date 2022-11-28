@@ -14,6 +14,11 @@ var costArray = [];
 
 //array to store remove buttons
 var removeArray = [];
+
+//array to store ingredients that are out
+var zeroIngrs = [];
+
+
 //used to display real time
 /**
  * Refreshes the time displayed.
@@ -260,7 +265,10 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
                   }
                }
                if(itemAmounts[index] <= count){
+                  //disabled buttons with the ingredients
                   disableButtonsIngr(ingredients[i])
+                  //stores disabled ingredient id in an array
+                  zeroIngrs.push(ingredients[i])
                }
                
             } 
@@ -295,6 +303,9 @@ let clearOrder = () => {
    }
    nameArea = document.getElementById("custname")
    nameArea.value = 'Insert Name';
+
+   //checks to see if buttons need to be enabled
+   checkIngredients()
 }
 /**
  * Undoes previous action
@@ -372,12 +383,64 @@ let disableButtonsIngr = (inventoryid)=>{
 
 }
 
+//enables menu buttons that have a specfic ingredient
+let enableButtonsIngr = (inventoryid)=>{
+   var buttons = document.getElementsByClassName("ingr" + inventoryid)
+   for(let i = 0; i < buttons.length; i++){
+      enableMenuButton(buttons[i])
+   }
+
+}
+
 //disables menu button and changes formatting
 let disableMenuButton = (button)=>{
    button.disabled = true
    button.style.backgroundColor = "lightgrey"
    button.style.color = "grey"
    button.style.cursor = "not-allowed"
+
+}
+
+//enables menu button and changes formatting
+let enableMenuButton = (button)=>{
+   button.disabled = false
+   button.style.backgroundColor = "white"
+   button.style.color = "maroon"
+   button.style.cursor = "auto"
+
+}
+
+//checks ingredients that are out to see if they are available
+let checkIngredients = ()=> {
+   
+   //checks inventory status
+   var q = 'select * from inventory order by inventoryid;' ;
+   fetch('/getinventorystatus', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      console.log(res.inventory)
+      return res.json();
+   })
+   
+   .then(function(data) {
+      var inventoryIds = data.inventory.inventoryIds
+      var itemAmounts = data.inventory.itemAmounts
+      for(let i = 0; i < zeroIngrs.length; i++){
+         var index = inventoryIds.indexOf(zeroIngrs[i])
+         var amount = itemAmounts[index]
+         if(amount > 0){
+            enableButtonsIngr(zeroIngrs[i])
+         }
+      }
+   });
 
 }
 
@@ -407,6 +470,7 @@ let getEmployeeIds = () =>{
          })
          
          .then(function(data) {
+            console.log(data)
             var select = document.getElementById("staffselect");
             select.innerHTML=""
             var option = document.createElement('option');
@@ -418,9 +482,7 @@ let getEmployeeIds = () =>{
                select.add(option);
             }
             
-            
-         });
-         
+         });  
       
    }
    }
@@ -456,6 +518,7 @@ let getOrderId = () => {
       
 }
 
+getEmployeeIds();
 getOrderId();
 
 //sends queries on completed transaction 
