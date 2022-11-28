@@ -218,8 +218,16 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
          var itemAmounts = data.inventory.itemAmounts
          for(let i = 0; i < ingredients.length; i++){
             let index = inventoryIds.indexOf(ingredients[i])
-            if(index != 0 && itemAmounts[index] <= 1){
-               console.log(ingredients[i])
+            if(index != 0){
+               var count = 0;
+               for(let j = 0; j <  ingredientArray.length; j++){
+                  if(ingredientArray[j].includes(ingredients[i])){
+                     count ++;
+                  }
+               }
+               if(itemAmounts[index] <= count){
+               }
+               
             } 
          }
       });
