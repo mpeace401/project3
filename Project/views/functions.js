@@ -362,11 +362,24 @@ let removeItem = (i) =>{
 
 }
 
+//disables menu buttons that have a specfic ingredient
 let disableButtonsIngr = (inventoryid)=>{
+   var buttons = document.getElementsByClassName("ingr" + inventoryid)
+   for(let i = 0; i < buttons.length; i++){
+      disableMenuButton(buttons[i])
+   }
 
 
 }
 
+//disables menu button and changes formatting
+let disableMenuButton = (button)=>{
+   button.disabled = true
+   button.style.backgroundColor = "lightgrey"
+   button.style.color = "grey"
+   button.style.cursor = "not-allowed"
+
+}
 
 
 //gets next order id and stores value

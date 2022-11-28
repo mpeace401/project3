@@ -75,7 +75,8 @@
             <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
             <button class = "button menubutton <%= i %> ingr<%= i1 %> ingr<%= i2 %> ingr<%= i3 %> ingr<%= i4 %> ingr<%= i5 %> ingr<%= i6 %>"  
                id = "menubutton <%=data.menuMap.get(data.menuArray[i][j]).itemid%>" hidden = "hidden" onclick = 
-               "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=toppings %>)">
+               "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=toppings %>)"
+               >
                <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
                <div class="textbox price" id = "price <%= i %> <%= j %>" style="left: 180px; top: 70px; width:100px; height: 20px; position:relative; border: solid maroon 2px;">$<%=price%></div>
             </button>
