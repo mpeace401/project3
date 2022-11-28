@@ -314,7 +314,9 @@ let removeItem = (i) =>{
 
 }
 
-let disableButtonsIngr = ()=>{
+let disableButtonsIngr = (inventoryid)=>{
+
+
 }
 
 
