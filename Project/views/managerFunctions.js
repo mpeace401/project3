@@ -1,6 +1,10 @@
 document.getElementById("homePage").click();
 
-
+/**
+ * Opens designated tab
+ * @param {*} evt Event associated with opening a tab
+ * @param {*} tabName Name of tab to open
+ */
 function openTab(evt, tabName) {
    // Declare all variables
    var i, tabcontent, tablinks;
@@ -22,6 +26,11 @@ function openTab(evt, tabName) {
    evt.currentTarget.className += " active";
 }
 
+/**
+ * Opens a designated report
+ * @param {*} evt Event associated with opening a tab
+ * @param {*} tabName Name of report to open
+ */
 function openReport(evt, tabName) {
     // Declare all variables
     var i, reportContent, reportTab;
@@ -43,6 +52,10 @@ function openReport(evt, tabName) {
     evt.currentTarget.className += " active";
  }
 
+ /**
+  * Runs a query
+  * @param {*} q Query to run
+  */
 function runQuery(q){  
    fetch('/query', {
       method: 'POST',
@@ -60,6 +73,12 @@ function runQuery(q){
    .then((data) => console.log(data));
 }
 
+/**
+ * Displays inventory items
+ * @param {*} evt Event associated with displaying inventory items
+ * @param {*} inventoryID Item in inventory to display
+ * @param {*} amount Amount of item in inventory
+ */
 function displayinventoryItem(evt, inventoryID, amount) {
    const inventoryElement = document.getElementById(inventoryID);
    document.getElementById('invID').value = inventoryID
@@ -67,13 +86,27 @@ function displayinventoryItem(evt, inventoryID, amount) {
    document.getElementById('invAmount').value = amount
 }
 
-
+/**
+ * Adds new item to inventory
+ */
 function addInventoryItems() {
    insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
    runQuery(insertQ)
 
 }
 
+/**
+ * Displays menu items
+ * @param {*} evt Event associated with displaying menu items
+ * @param {*} itemid Item in menu to display
+ * @param {*} price Price of item to display
+ * @param {*} ingredient1 Ingredient 1
+ * @param {*} ingredient2 Ingredient 2
+ * @param {*} ingredient3 Ingredient 3
+ * @param {*} ingredient4 Ingredient 4
+ * @param {*} ingredient5 Ingredient 5
+ * @param {*} ingredient6 Ingredient 6
+ */
 function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
    const menuElement = document.getElementById('m' + itemid)
    document.getElementById('menuID').value = itemid
@@ -87,11 +120,19 @@ function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredie
    document.getElementById('menuIng6').value = ingredient6
 }
 
+/**
+ * Removes an item from inventory
+ * @param {*} evt Event associated with removing an inventory item
+ */
 function removeItem(evt) {
    removeQ = 'DELETE FROM inventory WHERE inventoryid =' + document.getElementById('invID').value + ';'
    runQuery(removeQ)
 }
 
+/**
+ * Updates item in inventory with given values
+ * @param {*} evt Event associated with updating an item
+ */
 function updateItem(evt) {
    invId = document.getElementById('invID').value
    stockName = document.getElementById('invName').value
@@ -103,12 +144,20 @@ function updateItem(evt) {
    runQuery(updateQ)
 }
 
+/**
+ * Removes an item from the menu
+ * @param {*} evt Event associated with removing an item from the menu
+ */
 function removeMenuItem(evt) {
    menuID = document.getElementById('menuID').value
    removeQ = 'UPDATE menuitems SET active = false WHERE itemid=' + menuID + ';' 
    runQuery(removeQ)
 }
 
+/**
+ * Updates item in menu with given values
+ * @param {*} evt Event associated with updating a menu item
+ */
 function updateMenuItem(evt) {
    menuID = document.getElementById('menuID').value
    menuName = document.getElementById('menuName').value
@@ -125,6 +174,10 @@ function updateMenuItem(evt) {
    runQuery(updateQ)
 }
 
+/**
+ * Adds an item to the menu
+ * @param {*} evt Event associated with adding a new menu item
+ */
 function addMenuItems(evt) {
    insertQ = 'INSERT INTO menuitems(itemid, itemname, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, category, hastoppings, active) VALUES((select max(itemid) from menuitems where itemid < 90) + 1' + ", 'new item', 0, 0, 0, 0, 0, 0, 0, 0, 0, true);"
    console.log(insertQ)
@@ -132,6 +185,10 @@ function addMenuItems(evt) {
    
 }
 
+/**
+ * Gets the sales report
+ * @param {*} evt Event associated with getting the sales report
+ */
 function getSalesReport(evt) { //TODO: get rid of start and end time bc sales only needs a date
    startDate = document.getElementById('salesStartDate').value
    startTime = document.getElementById('salesStartTime').value
