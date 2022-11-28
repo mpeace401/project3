@@ -323,6 +323,8 @@ let undo = () => {
    removeArray.pop()
    resetLabels()
 
+   checkIngredients()
+
 }
 //sets labels to match items in order arrays
 /**
@@ -370,6 +372,9 @@ let removeItem = (i) =>{
 
    //resets labels to match arrays
    resetLabels();
+
+   //checks if buttons need to be enabled
+   checkIngredients();
 
 }
 
@@ -437,7 +442,9 @@ let checkIngredients = ()=> {
          var index = inventoryIds.indexOf(zeroIngrs[i])
          var amount = itemAmounts[index]
          if(amount > 0){
+            //enables buttons and removes from array
             enableButtonsIngr(zeroIngrs[i])
+            zeroIngrs.splice(i,1);
          }
       }
    });
