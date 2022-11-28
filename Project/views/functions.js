@@ -142,7 +142,7 @@ let Accessibility = () => {
 //adds item ids to order
 
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
-   button = document.getElementById("menubutton " + category + " " + pos)
+   button = document.getElementById("menubutton " + id)
    let txt = button.innerText.split('\n');
    let name = '';
    for(let i = 0; i < txt.length; i++){
@@ -226,6 +226,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
                   }
                }
                if(itemAmounts[index] <= count){
+                  disableButtonsIngr(ingredients[i])
                }
                
             } 
@@ -313,10 +314,8 @@ let removeItem = (i) =>{
 
 }
 
-//gets map 
-// let getInventoryStatus = () =>{
-//    get
-// }
+let disableButtonsIngr = ()=>{
+}
 
 
 
