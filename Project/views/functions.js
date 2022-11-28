@@ -566,12 +566,52 @@ const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
 
    var transactionQ = createOrderQuery(orderArray)
-   //runs all queries for the transaction as one string
+   //creates all queries for the transaction as one string
    
    var inventoryQ = createInventoryQuery(ingredientArray)
+   //creates all queries for the inventory as one string
 
    runQuery(transactionQ)
    runQuery(inventoryQ)
+   
+   var q = 'select * from inventory order by inventoryid;' ;
+   fetch('/getinventorystatus', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      console.log(res.inventory)
+      return res.json();
+   })
+   
+   .then(function(data) {
+      var inventoryIds = data.inventory.inventoryIds
+      var itemAmounts = data.inventory.itemAmounts
+      
+      for(let i = 0; i < ingredients.length; i++){
+         let index = inventoryIds.indexOf(ingredients[i])
+         let threshold = 50;
+         if(index != 0){
+            var count = 0;
+            for(let j = 0; j <  ingredientArray.length; j++){
+               if(ingredientArray[j].includes(ingredients[i])){
+                  count ++;
+               }
+            }
+            if(itemAmounts[index] > threshold && (itemAmounts[index] - count <= threshold)){
+               console.log(ingredients[i])
+            }
+            
+         } 
+      }
+   });
+
    clearOrder();
 
    });
@@ -594,6 +634,9 @@ function createOrderQuery(orderArray){
       let id = document.getElementById('staffselect').value
       if (!isNaN(id)){
          staffId = id
+      }
+      else{
+         staffId = "NULL"
       }
       
    }
