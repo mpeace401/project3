@@ -175,7 +175,7 @@ let Accessibility = () => {
  * @param {*} pos pos
  * @param {*} toppings Determines if toppings are to be displayed
  */
-let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
+let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {  
    button = document.getElementById("menubutton " + id)
    let txt = button.innerText.split('\n');
    let name = '';
