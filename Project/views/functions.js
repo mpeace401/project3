@@ -15,6 +15,9 @@ var costArray = [];
 //array to store remove buttons
 var removeArray = [];
 //used to display real time
+/**
+ * Refreshes the time displayed.
+ */
 function refreshTime() {
    const timeAreas = document.getElementsByClassName("time");
    const dateString = new Date().toLocaleString();
@@ -28,6 +31,10 @@ refreshTime()
 setInterval(refreshTime, 1000);
 
 // Function to enable a certain category of buttons on click
+/**
+ * Enables menu buttons
+ * @param {*} category - The category of menu buttons to enable.
+ */
 let enableMenuButtons = (category) => {   
   let disable = document.getElementsByClassName("button menubutton");
   
@@ -51,6 +58,9 @@ let enableMenuButtons = (category) => {
    categoryButton.style.color = "white";
 }
 
+/**
+ * Enables topping buttons
+ */
 let enableToppingButtons = () => {   
    let disable = document.getElementsByClassName("button menubutton");
    
@@ -78,6 +88,9 @@ let enableToppingButtons = () => {
 
  }
 
+ /**
+  * Hides menu contents and displays cart contents
+  */
 let goToCart = () => {   
    
    let disable = document.getElementsByClassName("menu");
@@ -97,6 +110,9 @@ let goToCart = () => {
    }
    console.log(enable.length)
 }
+/**
+ * Hides cart contents and displays menu contents
+ */
 let goToMenu = () => {   
    let disable = document.getElementsByClassName("cart");
    for(let i = 0; i < disable.length; i++){
@@ -120,6 +136,9 @@ let goToMenu = () => {
       element.style.color = "maroon";
    }
 }
+/**
+ * Hides menu contents and displays accessibility contents
+ */
 let Accessibility = () => {
    let disable = document.getElementsByClassName("menu");
    for(let i = 0; i < disable.length; i++){
@@ -141,6 +160,21 @@ let Accessibility = () => {
 
 //adds item ids to order
 
+/**
+ * Adds selected item to order
+ * @param {*} orderArray Array of current order
+ * @param {*} id Item id to add
+ * @param {*} price Item price to add
+ * @param {*} i1 Ingredient 1
+ * @param {*} i2 Ingredient 2
+ * @param {*} i3 Ingredient 3
+ * @param {*} i4 Ingredient 4
+ * @param {*} i5 Ingredient 5
+ * @param {*} i6 Ingredient 6
+ * @param {*} category Category of item to add
+ * @param {*} pos pos
+ * @param {*} toppings Determines if toppings are to be displayed
+ */
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
    button = document.getElementById("menubutton " + id)
    let txt = button.innerText.split('\n');
@@ -236,6 +270,9 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
 
 }
 
+/**
+ * Clears current order
+ */
 let clearOrder = () => {
    orderArray = []
    ingredientArray = []
@@ -259,6 +296,10 @@ let clearOrder = () => {
    nameArea = document.getElementById("custname")
    nameArea.value = 'Insert Name';
 }
+/**
+ * Undoes previous action
+ * @returns Returns void if current order is empty
+ */
 let undo = () => {
    if (orderArray.length == 0){
       return
@@ -273,6 +314,9 @@ let undo = () => {
 
 }
 //sets labels to match items in order arrays
+/**
+ * Resets and updates current order display
+ */
 let resetLabels = () =>{
    let totalText = ''
    let totalSum = 0
@@ -298,6 +342,10 @@ let resetLabels = () =>{
    }
 }
 
+/**
+ * Removes selected item from current order
+ * @param {*} i Item to be removed
+ */
 let removeItem = (i) =>{
    //removes item from parallel arrays
    orderArray.splice(i,1);
@@ -322,6 +370,9 @@ let disableButtonsIngr = (inventoryid)=>{
 
 
 //gets next order id and stores value
+/**
+ * Gets all employee IDs
+ */
 let getEmployeeIds = () =>{
    if (document.getElementsByClassName("textbox staffselect").length > 0){
       
@@ -361,7 +412,9 @@ let getEmployeeIds = () =>{
    }
    }
 
-
+/**
+ * Gets current order ID
+ */
 let getOrderId = () => { 
    var orderId = 0
    var q = 'select max(transactionid) from customertransactions;' ;
@@ -408,6 +461,11 @@ tender.addEventListener('click', function(e) {
    });
 
 //given order ids, creates a query string to create the transaction
+/**
+ * Creates a list of queries to update the table of customer transactions
+ * @param {*} orderArray Order to add to database
+ * @returns All queries needed to update customertransactions
+ */
 function createOrderQuery(orderArray){
    var allqs = '' ;
    var custName = document.getElementById('custname').value
@@ -446,6 +504,11 @@ function createOrderQuery(orderArray){
    return allqs
 }
 
+/**
+ * Creates a list of queries to update the table of inventory items
+ * @param {*} ingredientArray Array of inventory items to update
+ * @returns All queries needed to update inventory
+ */
 function createInventoryQuery(ingredientArray){
    var allqs = '' ;
    for(var i = 0; i < ingredientArray.length; i++){
@@ -464,6 +527,10 @@ function createInventoryQuery(ingredientArray){
 
 
 //given a string for a query runs a query with no return value 
+/**
+ * Runs a given query
+ * @param {*} q A query to run
+ */
 function runQuery(q){  
    fetch('/query', {
       method: 'POST',
