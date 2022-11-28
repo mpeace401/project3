@@ -415,9 +415,43 @@ let enableMenuButton = (button)=>{
 
 }
 
+//initally checks ingredients to see if any are out
+let checkAllIngredients = ()=> {
+   //checks inventory status
+   var q = 'select * from inventory order by inventoryid;' ;
+   fetch('/getinventorystatus', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      console.log(res.inventory)
+      return res.json();
+   })
+   
+   .then(function(data) {
+      var inventoryIds = data.inventory.inventoryIds
+      var itemAmounts = data.inventory.itemAmounts
+      for(let i = 0; i < inventoryIds.length; i++){
+         var amount = itemAmounts[i]
+         if(amount <= 0){
+            //enables buttons and removes from array
+            disableButtonsIngr(inventoryIds[i])
+            zeroIngrs.push(inventoryIds[i])
+         }
+      }
+   });
+
+}
+
+
 //checks ingredients that are out to see if they are available
 let checkIngredients = ()=> {
-   
    //checks inventory status
    var q = 'select * from inventory order by inventoryid;' ;
    fetch('/getinventorystatus', {
@@ -525,8 +559,7 @@ let getOrderId = () => {
       
 }
 
-getEmployeeIds();
-getOrderId();
+
 
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
@@ -655,3 +688,9 @@ if (!isSyncingRightScroll) {
 }
 isSyncingRightScroll = false;
 }
+
+
+//function calls on start
+getEmployeeIds();
+getOrderId();
+checkAllIngredients();
