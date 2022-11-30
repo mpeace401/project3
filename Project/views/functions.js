@@ -13,6 +13,14 @@ var costArray = [];
 
 //array to store remove buttons
 var removeArray = [];
+
+//array to store ingredients that are out
+var zeroIngrs = [];
+
+//array to store ingredients go create a notifcation for
+var notiIngrs = [];
+
+
 //used to display real time
 /**
  * Refreshes the time displayed.
@@ -174,7 +182,7 @@ let Accessibility = () => {
  * @param {*} pos pos
  * @param {*} toppings Determines if toppings are to be displayed
  */
-let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,toppings) => {  
+let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {  
    button = document.getElementById("menubutton " + id)
    let txt = button.innerText.split('\n');
    let name = '';
@@ -251,6 +259,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
          var itemAmounts = data.inventory.itemAmounts
          for(let i = 0; i < ingredients.length; i++){
             let index = inventoryIds.indexOf(ingredients[i])
+            let threshold = 50
             if(index != 0){
                var count = 0;
                for(let j = 0; j <  ingredientArray.length; j++){
@@ -259,7 +268,13 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, category, pos,t
                   }
                }
                if(itemAmounts[index] <= count){
+                  //disabled buttons with the ingredients
                   disableButtonsIngr(ingredients[i])
+                  //stores disabled ingredient id in an array
+                  zeroIngrs.push(ingredients[i])
+               }
+               if(itemAmounts[index] - count == threshold){
+                  notiIngrs.push(ingredients[i])
                }
                
             } 
@@ -276,7 +291,8 @@ let clearOrder = () => {
    orderArray = []
    ingredientArray = []
    orderText = []
-   costArray = [];
+   costArray = []
+   notiIngrs = []
 
    for(let i = 0; i < removeArray.length; i++){
       var x = removeArray[i]
@@ -294,6 +310,8 @@ let clearOrder = () => {
    }
    nameArea = document.getElementById("custname")
    nameArea.value =  "";
+   //checks to see if buttons need to be enabled
+   checkIngredients()
 }
 /**
  * Undoes previous action
@@ -310,6 +328,8 @@ let undo = () => {
    removeArray[removeArray.length -1].remove()
    removeArray.pop()
    resetLabels()
+
+   checkIngredients()
 
 }
 //sets labels to match items in order arrays
@@ -359,13 +379,117 @@ let removeItem = (i) =>{
    //resets labels to match arrays
    resetLabels();
 
+   //checks if buttons need to be enabled
+   checkIngredients();
+
 }
 
+//disables menu buttons that have a specfic ingredient
 let disableButtonsIngr = (inventoryid)=>{
+   var buttons = document.getElementsByClassName("ingr" + inventoryid)
+   for(let i = 0; i < buttons.length; i++){
+      disableMenuButton(buttons[i])
+   }
 
 
 }
 
+//enables menu buttons that have a specfic ingredient
+let enableButtonsIngr = (inventoryid)=>{
+   var buttons = document.getElementsByClassName("ingr" + inventoryid)
+   for(let i = 0; i < buttons.length; i++){
+      enableMenuButton(buttons[i])
+   }
+
+}
+
+//disables menu button and changes formatting
+let disableMenuButton = (button)=>{
+   button.disabled = true
+   button.style.backgroundColor = "lightgrey"
+   button.style.color = "grey"
+   button.style.cursor = "not-allowed"
+
+}
+
+//enables menu button and changes formatting
+let enableMenuButton = (button)=>{
+   button.disabled = false
+   button.style.backgroundColor = "white"
+   button.style.color = "maroon"
+   button.style.cursor = "auto"
+
+}
+
+//initally checks ingredients to see if any are out
+let checkAllIngredients = ()=> {
+   //checks inventory status
+   var q = 'select * from inventory order by inventoryid;' ;
+   fetch('/getinventorystatus', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      console.log(res.inventory)
+      return res.json();
+   })
+   
+   .then(function(data) {
+      var inventoryIds = data.inventory.inventoryIds
+      var itemAmounts = data.inventory.itemAmounts
+      for(let i = 0; i < inventoryIds.length; i++){
+         var amount = itemAmounts[i]
+         if(amount <= 0){
+            //enables buttons and removes from array
+            disableButtonsIngr(inventoryIds[i])
+            zeroIngrs.push(inventoryIds[i])
+         }
+      }
+   });
+
+}
+
+
+//checks ingredients that are out to see if they are available
+let checkIngredients = ()=> {
+   //checks inventory status
+   var q = 'select * from inventory order by inventoryid;' ;
+   fetch('/getinventorystatus', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+   .then((res) => {
+      console.log(res.inventory)
+      return res.json();
+   })
+   
+   .then(function(data) {
+      var inventoryIds = data.inventory.inventoryIds
+      var itemAmounts = data.inventory.itemAmounts
+      for(let i = 0; i < zeroIngrs.length; i++){
+         var index = inventoryIds.indexOf(zeroIngrs[i])
+         var amount = itemAmounts[index]
+         if(amount > 0){
+            //enables buttons and removes from array
+            enableButtonsIngr(zeroIngrs[i])
+            zeroIngrs.splice(i,1);
+         }
+      }
+   });
+
+}
 
 
 //gets next order id and stores value
@@ -393,6 +517,7 @@ let getEmployeeIds = () =>{
          })
          
          .then(function(data) {
+            console.log(data)
             var select = document.getElementById("staffselect");
             select.innerHTML=""
             var option = document.createElement('option');
@@ -404,9 +529,7 @@ let getEmployeeIds = () =>{
                select.add(option);
             }
             
-            
-         });
-         
+         });  
       
    }
    }
@@ -442,19 +565,26 @@ let getOrderId = () => {
       
 }
 
-getOrderId();
+
 
 //sends queries on completed transaction 
 const tender = document.getElementById('tender');
 tender.addEventListener('click', function(e) {
 
-   var transactionQ = createOrderQuery(orderArray)
-   //runs all queries for the transaction as one string
-   
-   var inventoryQ = createInventoryQuery(ingredientArray)
 
+   var transactionQ = createOrderQuery(orderArray)
+   //creates all queries for the transaction as one string
+
+   var inventoryQ = createInventoryQuery(ingredientArray)
+   //creates all queries for the inventory as one string
+
+   var notificationQ = createNotificiationQuery(notiIngrs)
    runQuery(transactionQ)
    runQuery(inventoryQ)
+   runQuery(notificationQ)
+   
+  
+
    clearOrder();
 
    });
@@ -472,11 +602,14 @@ function createOrderQuery(orderArray){
       custName = ""
    }
 
-   var staffId = ""
+   var staffId = "NULL"
    if (document.getElementsByClassName("textbox staffselect").length > 0){
       let id = document.getElementById('staffselect').value
       if (!isNaN(id)){
          staffId = id
+      }
+      else{
+         staffId = "NULL"
       }
       
    }
@@ -486,11 +619,11 @@ function createOrderQuery(orderArray){
       let q = ''
       //gets new id if item is first in order
       if(i == 0){
-         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)+1'
+         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN id := (SELECT max(transactionid)+1'
       }
       //else continues on order
       else{
-         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN Id := (SELECT max(transactionid)'
+         q = 'DO $$ DECLARE id bigint; DECLARE p float; BEGIN id := (SELECT max(transactionid)'
       }
       //adds necessary query info
       q += 'from customertransactions); p := (SELECT price from menuitems where itemid =' + orderArray[i] + ');'
@@ -523,6 +656,20 @@ function createInventoryQuery(ingredientArray){
    return allqs
 }
 
+function createNotificiationQuery(notiIngrs){
+   let allQs = ''
+   for(let i = 0; i < notiIngrs.length; i++){
+      let q = 'DO $$ DECLARE id bigint; DECLARE name text; BEGIN id := (SELECT max(notificationid)+1 from notifications);' 
+      q+= 'name := (SELECT stockname from inventory where inventoryid =' + notiIngrs[i] + ');'
+      q += 'insert into notifications (notificationid, inventoryid, date, time, message) VALUES' 
+      q += '(id,' + notiIngrs[i] +',DATE(CURRENT_TIMESTAMP), CURRENT_TIME,\'50 Units of \' || name || \' Remaining\''
+      q += ');END $$;';
+      allQs += q
+
+   }
+   
+   return allQs
+}
 
 
 //given a string for a query runs a query with no return value 
@@ -571,3 +718,9 @@ if (!isSyncingRightScroll) {
 }
 isSyncingRightScroll = false;
 }
+
+
+//function calls on start
+getEmployeeIds();
+getOrderId();
+checkAllIngredients();
