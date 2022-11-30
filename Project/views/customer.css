@@ -13,8 +13,8 @@
     outline-color: maroon;
     background-color: white;
     color: maroon;
-
     position: relative; 
+    background-size: 300px;
  }
  .categorybutton{
     width: 200px;
