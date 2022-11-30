@@ -108,6 +108,18 @@ function createInventoryTransactionsMap(managerData){
     });    
 }
 
+function createNotificationsMap(managerData){
+  var notificationsMap = new Map();
+  pool
+      .query('SELECT * FROM notifications;')
+      .then(query_res => {
+      for (let i = 0; i < query_res.rowCount; i++){            
+        notificationsMap.set(query_res.rows[i].notificationid, query_res.rows[i]);                
+      }
+      managerData['notificationsMap'] = notificationsMap
+    });    
+}
+
 /**
  * Creates an array containing current menu
  * @param {*} data Member where completed array is to be added
@@ -164,6 +176,7 @@ createInvMenuMap(managerData)
 createInventoryMap(managerData)
 createInventoryTransactionsMap(managerData)
 createTransactionsMap(managerData)
+createNotificationsMap(managerData)
 
 app.get('/manager', (req, res) => {
   res.render('managerGUI',  {managerData: managerData}); //renders data object to server
