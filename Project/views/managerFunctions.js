@@ -109,15 +109,60 @@ function addInventoryItems() {
  */
 function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
    const menuElement = document.getElementById('m' + itemid)
-   document.getElementById('menuID').value = itemid
-   document.getElementById('menuName').value = menuElement.innerText
-   document.getElementById('menuPrice').value = price
-   document.getElementById('menuIng1').value = ingredient1
-   document.getElementById('menuIng2').value = ingredient2
-   document.getElementById('menuIng3').value = ingredient3
-   document.getElementById('menuIng4').value = ingredient4
-   document.getElementById('menuIng5').value = ingredient5
-   document.getElementById('menuIng6').value = ingredient6
+
+   //displays loading until complete
+   document.getElementById('menuID').value = "Loading..."
+   document.getElementById('menuName').value  = "Loading..."
+   document.getElementById('menuPrice').value = "Loading..."
+   document.getElementById('menuIng1').value = "Loading..."
+   document.getElementById('menuIng2').value = "Loading..."
+   document.getElementById('menuIng3').value = "Loading..."
+   document.getElementById('menuIng4').value = "Loading..."
+   document.getElementById('menuIng5').value = "Loading..."
+   document.getElementById('menuIng6').value = "Loading..."
+   var subbuttons = document.getElementsByClassName('subbutton')
+   for(let i = 0; i < subbuttons.length; i++){
+      let button = subbuttons[i]
+      button.disabled = true
+      button.style.cursor = "not-allowed"
+
+   }
+
+   
+   var q = 'select * from menuitems where itemid =' + itemid + ";" ;
+   fetch('/getmenuinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.item)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         var item = data.item;
+         document.getElementById('menuID').value = item.id
+         document.getElementById('menuName').value  = item.name
+         document.getElementById('menuPrice').value = item.price
+         document.getElementById('menuIng1').value = item.i1
+         document.getElementById('menuIng2').value = item.i2
+         document.getElementById('menuIng3').value = item.i3
+         document.getElementById('menuIng4').value = item.i4
+         document.getElementById('menuIng5').value = item.i5
+         document.getElementById('menuIng6').value = item.i6
+         for(let i = 0; i < subbuttons.length; i++){
+            let button = subbuttons[i]
+            button.disabled = false
+            button.style.cursor = "auto"
+      
+         }
+      });
 }
 
 /**
@@ -168,10 +213,15 @@ function updateMenuItem(evt) {
    ing4 = document.getElementById('menuIng4').value
    ing5 = document.getElementById('menuIng5').value
    ing6 = document.getElementById('menuIng6').value
+ 
 
+
+   console.log()
    updateQ = 'UPDATE menuitems SET itemid=' + menuID + ', itemname=' + "'" + menuName +
    "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ' WHERE itemid=' + menuID + ';'
+   console.log(updateQ)
    runQuery(updateQ)
+
 }
 
 /**

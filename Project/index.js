@@ -281,3 +281,27 @@ app.post('/getSalesReport', jsonParser, function(req, res) {
     });
 })
 
+
+app.post('/getmenuinfo', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+    .then(query_res => {
+    var id = query_res.rows[0].itemid;
+    var name = query_res.rows[0].itemname;
+    var price = query_res.rows[0].price;
+    var i1 = query_res.rows[0].ingredient1;
+    var i2 = query_res.rows[0].ingredient2;
+    var i3 = query_res.rows[0].ingredient3;
+    var i4 = query_res.rows[0].ingredient4;
+    var i5 = query_res.rows[0].ingredient5;
+    var i6 = query_res.rows[0].ingredient6;
+    var category = query_res.rows[0].category;
+    var hastoppings = query_res.rows[0].hastoppings;
+    var active = query_res.rows[0].hastoppings;
+    var url = query_res.rows[0].url;
+    var item = {name: name, price: price, i1: i1, i2: i2, i3: i3, i4: i4, i5: i5, i6: i6, category: category, url: url, 
+    hastoppings: hastoppings, active: active, id:id}
+    res.send({item})
+    });
+})
