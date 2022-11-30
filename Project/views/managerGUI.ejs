@@ -24,7 +24,13 @@
    </div>
 
    <div id="Home" class="tabcontent">
-      <textarea readonly class="notifications"></textarea>
+      <div readonly class="notifications">
+         <% for (const value of managerData.notificationsMap.values()) {%>
+            <button class="itemButton" style="pointer-events: none;width:80%">
+               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date %>, Time: <%= value.time %>, Message: <%= value.message %>
+            </button>
+         <% } %>
+         </div>
    </div>
    
    <div id="Inventory" class="tabcontent">
