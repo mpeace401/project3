@@ -1,5 +1,4 @@
 
-
 //array to store item ids
 var orderArray = [];
 
@@ -294,7 +293,7 @@ let clearOrder = () => {
       costArea.innerText = "Total: $0"
    }
    nameArea = document.getElementById("custname")
-   nameArea.value = 'Insert Name';
+   nameArea.value =  "";
 }
 /**
  * Undoes previous action

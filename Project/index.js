@@ -28,6 +28,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.set("view engine", "ejs");
 
+/**
+ * Creates a map for the menu items currently displayed
+ * @param {*} data Member where completed map is to be added
+ */
 function createMenuMap(data){ //creates map between itemid and item objects and adds to data
   var menuMap = new Map();     
   pool
@@ -40,6 +44,10 @@ function createMenuMap(data){ //creates map between itemid and item objects and 
     });
 }
 
+/**
+ * Creates a map for the menu items that are not toppings
+ * @param {*} data Member where completed map is to be added
+ */
 function createInvMenuMap(data){ //creates map between itemid and item objects and adds to data
   var menuMap = new Map();     
   pool
@@ -52,6 +60,10 @@ function createInvMenuMap(data){ //creates map between itemid and item objects a
     });
 }
 
+/**
+ * Creates a map for inventory items
+ * @param {*} managerData Member where completed map is to be added
+ */
 function createInventoryMap(managerData){
   var inventoryMap = new Map();
   pool
@@ -64,6 +76,10 @@ function createInventoryMap(managerData){
     });
 }
 
+/**
+ * Creates a map with customer transaction information
+ * @param {*} managerData Member where completed map is to be added
+ */
 function createTransactionsMap(managerData){
   var transactionsMap = new Map();
   pool
@@ -76,6 +92,10 @@ function createTransactionsMap(managerData){
     });
 }
 
+/**
+ * Creates a map with inventory transaction information
+ * @param {*} managerData Member where completed map is to be added
+ */
 function createInventoryTransactionsMap(managerData){
   var inventoryTransactionsMap = new Map();
   pool
@@ -88,6 +108,10 @@ function createInventoryTransactionsMap(managerData){
     });    
 }
 
+/**
+ * Creates an array containing current menu
+ * @param {*} data Member where completed array is to be added
+ */
 function createMenuArray(data){ //creates 2d array of each itemid sorted by category and adds to data
   var menuArray = []
   var max = 0
