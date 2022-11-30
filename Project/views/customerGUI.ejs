@@ -79,7 +79,7 @@
                style="background-image: url(<%=data.menuMap.get(data.menuArray[i][j]).url %>)">
                
                <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-               <div class="textbox price" id = "price <%= i %> <%= j %>" style="left: 180px; top: 70px; width:100px; height: 20px; position:relative; border: solid maroon 2px;">$<%=price%></div>
+               <div class="textbox price" id = "price <%= i %> <%= j %>" style="left: 85px; top: 70px; width:200px; height: 20px; position:relative; border: solid maroon 2px;"><%= data.menuMap.get(data.menuArray[i][j]).itemname%>: $<%=price%></div>
             </button>
          <% } %>
       <% } %>
