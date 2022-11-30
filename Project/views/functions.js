@@ -115,7 +115,7 @@ let goToCart = () => {
       let element = enable[i]
       element.removeAttribute("hidden")
    }
-   console.log(enable.length)
+   
 }
 /**
  * Hides cart contents and displays menu contents
@@ -162,7 +162,7 @@ let Accessibility = () => {
       let element = enable[i]
       element.removeAttribute("hidden")
    }
-   console.log(enable.length)
+
 }
 
 //adds item ids to order
@@ -257,10 +257,13 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
       .then(function(data) {
          var inventoryIds = data.inventory.inventoryIds
          var itemAmounts = data.inventory.itemAmounts
+         var thresholds = data.inventory.thresholds
          for(let i = 0; i < ingredients.length; i++){
             let index = inventoryIds.indexOf(ingredients[i])
-            let threshold = 50
+            let threshold = thresholds[index]
+            
             if(index != 0){
+               
                var count = 0;
                for(let j = 0; j <  ingredientArray.length; j++){
                   if(ingredientArray[j].includes(ingredients[i])){
@@ -274,6 +277,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
                   zeroIngrs.push(ingredients[i])
                }
                if(itemAmounts[index] - count == threshold){
+
                   notiIngrs.push(ingredients[i])
                }
                
@@ -659,15 +663,16 @@ function createInventoryQuery(ingredientArray){
 function createNotificiationQuery(notiIngrs){
    let allQs = ''
    for(let i = 0; i < notiIngrs.length; i++){
-      let q = 'DO $$ DECLARE id bigint; DECLARE name text; BEGIN id := (SELECT max(notificationid)+1 from notifications);' 
-      q+= 'name := (SELECT stockname from inventory where inventoryid =' + notiIngrs[i] + ');'
+      let q = 'DO $$ DECLARE id bigint; DECLARE name text; DECLARE t bigint; BEGIN id := (SELECT max(notificationid)+1 from notifications);' 
+      q += 'name := (SELECT stockname from inventory where inventoryid =' + notiIngrs[i] + ');'
+      q += 't := (SELECT threshold from inventory where inventoryid =' + notiIngrs[i] + ');'
       q += 'insert into notifications (notificationid, inventoryid, date, time, message) VALUES' 
-      q += '(id,' + notiIngrs[i] +',DATE(CURRENT_TIMESTAMP), CURRENT_TIME,\'50 Units of \' || name || \' Remaining\''
+      q += '(id,' + notiIngrs[i] +',DATE(CURRENT_TIMESTAMP), CURRENT_TIME, t ||\' Units of \' || name || \' Remaining\''
       q += ');END $$;';
       allQs += q
 
    }
-   
+
    return allQs
 }
 

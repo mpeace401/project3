@@ -231,6 +231,7 @@ app.post('/getinventorystatus', jsonParser, function(req, res) {
     .then(query_res => {
     var inventoryIds = []
     var itemAmounts = []
+    var thresholds = []
     
     for(let i = 0; i < query_res.rowCount; i++){
       //inventory.set(query_res.rows[i].inventoryid, query_res.rows[i].itemamount) //stores amount with each id in a map
@@ -238,9 +239,10 @@ app.post('/getinventorystatus', jsonParser, function(req, res) {
       //var status = {inventoryid: query_res.rows[i].inventoryid, itemamount: query_res.rows[i].itemamount}
       inventoryIds.push(query_res.rows[i].inventoryid)
       itemAmounts.push(query_res.rows[i].itemamount)
+      thresholds.push(query_res.rows[i].threshold)
 
     }
-    inventory = {inventoryIds: inventoryIds, itemAmounts: itemAmounts}
+    inventory = {inventoryIds: inventoryIds, itemAmounts: itemAmounts, thresholds, thresholds}
     res.send({inventory})
     });
  
