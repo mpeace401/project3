@@ -320,3 +320,22 @@ app.post('/getinventoryinfo', jsonParser, function(req, res) {
     
     });
 })
+
+app.post('/getallinventoryinfo', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+    .then(query_res => {
+    var inventory = []  
+    for(let i = 0; i < query_res.rowCount; i++){
+      var id = query_res.rows[i].inventoryid;
+      var name = query_res.rows[i].stockname;
+      var amount = query_res.rows[i].itemamount;
+      var threshold = query_res.rows[i].threshold;
+      var item = {id: id, name: name, amount: amount, threshold:threshold}
+      inventory.push(item)
+    }
+    res.send({inventory})
+    
+    });
+})

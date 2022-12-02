@@ -60,8 +60,8 @@
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
 
-      <div class="scrollArea">         
-         <% for (const value of managerData.inventoryMap.values()) {%>
+      <div class="scrollArea" id = "inventoryArea">         
+         <!-- <% for (const value of managerData.inventoryMap.values()) {%>
             <% var itemID = value.inventoryid %>
             <% if(itemID == 0){ %>
                <% continue %>
@@ -69,7 +69,7 @@
             <button class="itemButton " id= "<%=value.inventoryid%>" onclick="displayinventoryItem(event, <%=value.inventoryid%>, <%=value.itemamount%>)">
                <%= value.stockname %>
             </button>
-         <% } %>
+         <% } %> -->
       </div>
 
    </div>

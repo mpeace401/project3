@@ -1,5 +1,9 @@
 document.getElementById("homePage").click();
 
+var inventoryButtons = []
+//array to store inventory buttons
+
+
 /**
  * Opens designated tab
  * @param {*} evt Event associated with opening a tab
@@ -110,7 +114,13 @@ function displayinventoryItem(evt, inventoryID, amount) {
          document.getElementById('invID').value = item.id
          document.getElementById('invName').value = item.name
          document.getElementById('invAmount').value = item.amount
-         document.getElementById('invThreshold').value = item.threshold
+         if(item.threshold == null){
+            document.getElementById('invThreshold').value = 0
+         }
+         else{
+            document.getElementById('invThreshold').value = item.threshold
+         }
+         
          for(let i = 0; i < subbuttons.length; i++){
             let button = subbuttons[i]
             button.disabled = false
@@ -126,8 +136,50 @@ function displayinventoryItem(evt, inventoryID, amount) {
 function addInventoryItems() {
    insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
    runQuery(insertQ)
+   createInventoryArea();
 
 }
+
+function createInventoryArea(){
+   var q = 'select * from inventory where inventoryid != 0 order by inventoryid;' ;
+   fetch('/getallinventoryinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.inventory)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         //disables previous area
+         for(let i = 0; i < inventoryButtons.length; i++){
+            let button = inventoryButtons[i];
+            button.remove()
+         }
+         inventoryButtons = []
+
+         var inventory = data.inventory;
+         var area = document.getElementById("inventoryArea")
+         for(let i = 0; i < inventory.length; i++){
+            var button = document.createElement("button")
+            button.className += "itemButton"
+            button.id = inventory[i].id
+            button.onclick = function(){displayinventoryItem(event,inventory[i].id,inventory[i].amount)}
+            button.innerText = inventory[i].name
+            area.appendChild(button)
+            inventoryButtons.push(button)
+         }
+      
+      });
+}
+createInventoryArea();
 
 /**
  * Displays menu items
@@ -196,6 +248,7 @@ function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredie
 function removeItem(evt) {
    removeQ = 'DELETE FROM inventory WHERE inventoryid =' + document.getElementById('invID').value + ';'
    runQuery(removeQ)
+   createInventoryArea();
 }
 
 /**
