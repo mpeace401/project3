@@ -110,6 +110,7 @@ function displayinventoryItem(evt, inventoryID, amount) {
          document.getElementById('invID').value = item.id
          document.getElementById('invName').value = item.name
          document.getElementById('invAmount').value = item.amount
+         document.getElementById('invThreshold').value = item.threshold
          for(let i = 0; i < subbuttons.length; i++){
             let button = subbuttons[i]
             button.disabled = false
