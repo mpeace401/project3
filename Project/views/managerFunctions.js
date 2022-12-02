@@ -110,16 +110,6 @@ function addInventoryItems() {
 function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
    const menuElement = document.getElementById('m' + itemid)
 
-   //displays loading until complete
-   document.getElementById('menuID').value = "Loading..."
-   document.getElementById('menuName').value  = "Loading..."
-   document.getElementById('menuPrice').value = "Loading..."
-   document.getElementById('menuIng1').value = "Loading..."
-   document.getElementById('menuIng2').value = "Loading..."
-   document.getElementById('menuIng3').value = "Loading..."
-   document.getElementById('menuIng4').value = "Loading..."
-   document.getElementById('menuIng5').value = "Loading..."
-   document.getElementById('menuIng6').value = "Loading..."
    var subbuttons = document.getElementsByClassName('subbutton')
    for(let i = 0; i < subbuttons.length; i++){
       let button = subbuttons[i]
