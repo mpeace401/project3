@@ -3,6 +3,9 @@ document.getElementById("homePage").click();
 var inventoryButtons = []
 //array to store inventory buttons
 
+var menuButtons = []
+//array to store menu buttons
+
 
 /**
  * Opens designated tab
@@ -179,21 +182,15 @@ function createInventoryArea(){
       
       });
 }
+//creates inventory area on load
 createInventoryArea();
 
 /**
  * Displays menu items
  * @param {*} evt Event associated with displaying menu items
  * @param {*} itemid Item in menu to display
- * @param {*} price Price of item to display
- * @param {*} ingredient1 Ingredient 1
- * @param {*} ingredient2 Ingredient 2
- * @param {*} ingredient3 Ingredient 3
- * @param {*} ingredient4 Ingredient 4
- * @param {*} ingredient5 Ingredient 5
- * @param {*} ingredient6 Ingredient 6
  */
-function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6) {
+function displayMenuItems(evt, itemid) {
    const menuElement = document.getElementById('m' + itemid)
 
    var subbuttons = document.getElementsByClassName('subbutton')
@@ -240,6 +237,48 @@ function displayMenuItems(evt, itemid, price, ingredient1, ingredient2, ingredie
          }
       });
 }
+
+function createMenuArea(){
+   var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
+   fetch('/getallmenuinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.inventory)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         //disables previous area
+         for(let i = 0; i < menuButtons.length; i++){
+            let button = menuButtons[i];
+            button.remove()
+         }
+         menuButtons = []
+
+         var menu = data.menu;
+         console.log(menu)
+         var area = document.getElementById("menuArea")
+         for(let i = 0; i < menu.length; i++){
+            var button = document.createElement("button")
+            button.className += "itemButton"
+            button.id = "m" +menu[i].id
+            button.onclick = function(){displayMenuItems(event,menu[i].id)}
+            button.innerText = menu[i].name
+            area.appendChild(button)
+            menuButtons.push(button)
+         }
+      
+      });
+}
+createMenuArea();
 
 /**
  * Removes an item from inventory

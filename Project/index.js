@@ -339,3 +339,31 @@ app.post('/getallinventoryinfo', jsonParser, function(req, res) {
     
     });
 })
+app.post('/getallmenuinfo', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+    .then(query_res => {
+    var menu = []  
+    for(let i = 0; i < query_res.rowCount; i++){
+      var id = query_res.rows[i].itemid;
+      var name = query_res.rows[i].itemname;
+      var price = query_res.rows[i].price;
+      var i1 = query_res.rows[i].ingredient1;
+      var i2 = query_res.rows[i].ingredient2;
+      var i3 = query_res.rows[i].ingredient3;
+      var i4 = query_res.rows[i].ingredient4;
+      var i5 = query_res.rows[i].ingredient5;
+      var i6 = query_res.rows[i].ingredient6;
+      var category = query_res.rows[i].category;
+      var hastoppings = query_res.rows[i].hastoppings;
+      var active = query_res.rows[i].hastoppings;
+      var url = query_res.rows[i].url;
+      var item = {name: name, price: price, i1: i1, i2: i2, i3: i3, i4: i4, i5: i5, i6: i6, category: category, url: url, 
+      hastoppings: hastoppings, active: active, id:id}
+      menu.push(item)
+    }
+    res.send({menu})
+    
+    });
+})
