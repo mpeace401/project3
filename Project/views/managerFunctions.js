@@ -298,10 +298,11 @@ function updateItem(evt) {
    invId = document.getElementById('invID').value
    stockName = document.getElementById('invName').value
    invAmount = document.getElementById('invAmount').value
+   threshold = document.getElementById('invThreshold').value
   
    
    updateQ = 'UPDATE inventory SET inventoryid=' + invId + ', stockname=' + "'" + stockName +
-   "'" + ', itemamount=' + invAmount + ' WHERE inventoryid=' + invId + ';'
+   "'" + ', itemamount=' + invAmount + ', threshold=' + threshold + ' WHERE inventoryid=' + invId + ';'
    runQuery(updateQ)
 }
 
