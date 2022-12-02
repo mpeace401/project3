@@ -305,3 +305,18 @@ app.post('/getmenuinfo', jsonParser, function(req, res) {
     res.send({item})
     });
 })
+
+app.post('/getinventoryinfo', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+    .then(query_res => {
+    var id = query_res.rows[0].inventoryid;
+    var name = query_res.rows[0].stockname;
+    var amount = query_res.rows[0].itemamount;
+    var threshold = query_res.rows[0].threshold;
+    var item = {id: id, name: name, amount: amount, threshold:threshold}
+    res.send({item})
+    
+    });
+})

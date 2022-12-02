@@ -81,9 +81,42 @@ function runQuery(q){
  */
 function displayinventoryItem(evt, inventoryID, amount) {
    const inventoryElement = document.getElementById(inventoryID);
-   document.getElementById('invID').value = inventoryID
-   document.getElementById('invName').value = inventoryElement.innerText
-   document.getElementById('invAmount').value = amount
+   var subbuttons = document.getElementsByClassName('subbutton')
+   for(let i = 0; i < subbuttons.length; i++){
+      let button = subbuttons[i]
+      button.disabled = true
+      button.style.cursor = "not-allowed"
+
+   }
+   
+   var q = 'select * from inventory where inventoryid =' + inventoryID + ";" ;
+   fetch('/getinventoryinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.item)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         var item = data.item;
+         document.getElementById('invID').value = item.id
+         document.getElementById('invName').value = item.name
+         document.getElementById('invAmount').value = item.amount
+         for(let i = 0; i < subbuttons.length; i++){
+            let button = subbuttons[i]
+            button.disabled = false
+            button.style.cursor = "auto"
+      
+         }
+      });
 }
 
 /**
