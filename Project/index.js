@@ -285,6 +285,44 @@ app.post('/getSalesReport', jsonParser, function(req, res) {
     });
 })
 
+app.post('/getItemIDs', jsonParser, function(req, res) {
+  const {q} = req.body;
+  console.log(q)
+  pool
+  .query(q) //queries each category
+    .then(query_res => {
+    var itemIds = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      let itemid = query_res.rows[i].itemid
+      let sales = {itemid: itemid} 
+      itemIds.push(sales)
+    }
+
+    res.send({itemIds})
+    });
+})
+
+app.post('/getRestockReport', jsonParser, function(req, res) {
+  const {q} = req.body;
+  console.log(q)
+  pool
+  .query(q) 
+    .then(query_res => {
+    var inventoryIds = []
+    
+    for(let i = 0; i < query_res.rowCount; i++){
+      let inventoryid = query_res.rows[i].inventoryid
+      let stockname = query_res.rows[i].stockname
+      let itemamount = query_res.rows[i].itemamount
+      let items = {inventoryid: inventoryid, stockname: stockname, itemamount: itemamount} 
+      inventoryIds.push(items)
+    }
+
+    res.send({inventoryIds})
+    });
+})
+
 
 app.post('/getmenuinfo', jsonParser, function(req, res) {
   const {q} = req.body;

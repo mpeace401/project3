@@ -366,12 +366,9 @@ function addMenuItems(evt) {
  */
 function getSalesReport(evt) { //TODO: get rid of start and end time bc sales only needs a date
    startDate = document.getElementById('salesStartDate').value
-   startTime = document.getElementById('salesStartTime').value
    endDate = document.getElementById('salesEndDate').value
-   endTime = document.getElementById('salesEndTime').value
 
-   q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + " " + startTime + "'" + ' AND DATE(time) <= ' +
-   "'" + endDate + " " + endTime + "'" + 'AND itemid < 90 GROUP by itemid;'
+   q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
 
    // q = "SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:01:08' AND DATE(time) <= '2022-09-09 10:09:34' AND itemid < 90 GROUP by itemid;"
 
@@ -395,10 +392,77 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
          for (let i = 0; i < data.itemIds.length; i++) {
             var x = document.createElement("button")
             x.innerHTML = data.itemIds[i].itemid + " " + data.itemIds[i].count + " " + data.itemIds[i].sum
-            document.getElementById("Sales").appendChild(x);
+            document.getElementById("salesReportBox").appendChild(x);
          }
 
       });
 }
 
+function getExcessReport(evt) {
+   startDate = document.getElementById('excessStartDate').value
+   startTime = document.getElementById('excessStartTime').value
+   // q = 'SELECT itemid FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' ORDER BY transactionid;'
+   itemIDS = [] // store itemids upon post request
+   q = "SELECT itemid FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:07:34' ORDER BY transactionid;"
+   console.log(q)
 
+   fetch('/getItemIDs', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.itemIds)
+         return res.json();
+      })
+      
+      .then(function(data) {
+
+         for (let i = 0; i < data.itemIds.length; i++) {
+            // var x = document.createElement("button")
+            // x.innerHTML = data.itemIds[i].itemid
+            // document.getElementById("Excess").appendChild(x);
+            itemIDS[i] = data.itemIds[i].itemid
+
+         }
+
+      });
+
+      console.log(itemIDS[0]) // testing if itemIDs array stored post request data
+      // want to use this in next post request to gather ingredient data.
+}
+
+
+function getRestockReport(evt) {
+   q = 'Select * from inventory where itemamount <= 100 order by inventoryid;'
+
+   fetch('/getRestockReport', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.inventoryIds)
+         return res.json();
+      })
+      
+      .then(function(data) {
+
+         for (let i = 0; i < data.inventoryIds.length; i++) {
+            var x = document.createElement("button")
+            x.innerHTML = data.inventoryIds[i].inventoryid + " " + data.inventoryIds[i].stockname + " " + data.inventoryIds[i].itemamount
+            document.getElementById("Restock").appendChild(x);
+         }
+
+      });
+}
