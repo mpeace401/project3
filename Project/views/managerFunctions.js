@@ -403,7 +403,9 @@ function getExcessReport(evt) {
    startTime = document.getElementById('excessStartTime').value
    // q = 'SELECT itemid FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' ORDER BY transactionid;'
    itemIDS = [] // store itemids upon post request
-   q = "SELECT itemid FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:07:34' ORDER BY transactionid;"
+
+   q = 'SELECT customertransactions.itemid,  COUNT(customertransactions.itemid) as total from customertransactions where date(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' GROUP BY customertransactions.itemid order by customertransactions.itemid;'
+   
    console.log(q)
 
    fetch('/getItemIDs', {
@@ -422,21 +424,18 @@ function getExcessReport(evt) {
       })
       
       .then(function(data) {
-
          for (let i = 0; i < data.itemIds.length; i++) {
-            // var x = document.createElement("button")
-            // x.innerHTML = data.itemIds[i].itemid
-            // document.getElementById("Excess").appendChild(x);
-            itemIDS[i] = data.itemIds[i].itemid
-
+            if (data.itemIds[i].total < 300) {
+               var x = document.createElement("button")
+               x.innerHTML = data.itemIds[i].itemid + " " + data.itemIds[i].total
+               document.getElementById("Excess").appendChild(x);
+            }
          }
+      console.log(data)
 
       });
 
-      console.log(itemIDS[0]) // testing if itemIDs array stored post request data
-      // want to use this in next post request to gather ingredient data.
 }
-
 
 function getRestockReport(evt) {
    q = 'Select * from inventory where itemamount <= 100 order by inventoryid;'

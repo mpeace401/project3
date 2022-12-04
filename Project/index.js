@@ -295,13 +295,17 @@ app.post('/getItemIDs', jsonParser, function(req, res) {
     
     for(let i = 0; i < query_res.rowCount; i++){
       let itemid = query_res.rows[i].itemid
-      let sales = {itemid: itemid} 
+      let total = query_res.rows[i].total
+      let sales = {itemid: itemid, total: total} 
       itemIds.push(sales)
     }
 
     res.send({itemIds})
     });
 })
+
+
+
 
 app.post('/getRestockReport', jsonParser, function(req, res) {
   const {q} = req.body;
