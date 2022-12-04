@@ -108,6 +108,10 @@ function createInventoryTransactionsMap(managerData){
     });    
 }
 
+/**
+ * Creates a map with notification information
+ * @param {*} managerData Member where completed map is to be added
+ */
 function createNotificationsMap(managerData){
   var notificationsMap = new Map();
   pool

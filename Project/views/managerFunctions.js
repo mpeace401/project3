@@ -143,6 +143,9 @@ function addInventoryItems() {
 
 }
 
+/**
+ * Creates area to populate with inventory information
+ */
 function createInventoryArea(){
    var q = 'select * from inventory where inventoryid != 0 order by inventoryid;' ;
    fetch('/getallinventoryinfo', {
@@ -238,6 +241,9 @@ function displayMenuItems(evt, itemid) {
       });
 }
 
+/**
+ * Creates area to populate with menu information
+ */
 function createMenuArea(){
    var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
    fetch('/getallmenuinfo', {

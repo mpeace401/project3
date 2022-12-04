@@ -389,6 +389,10 @@ let removeItem = (i) =>{
 }
 
 //disables menu buttons that have a specfic ingredient
+/**
+ * Disables menu buttons with specified ingredients
+ * @param {*} inventoryid Ingredient that determines which menu items to disable.
+ */
 let disableButtonsIngr = (inventoryid)=>{
    var buttons = document.getElementsByClassName("ingr" + inventoryid)
    for(let i = 0; i < buttons.length; i++){
@@ -399,6 +403,10 @@ let disableButtonsIngr = (inventoryid)=>{
 }
 
 //enables menu buttons that have a specfic ingredient
+/**
+ * Enables menu buttons with specified ingredients
+ * @param {*} inventoryid Ingredient that determines which menu items to enable.
+ */
 let enableButtonsIngr = (inventoryid)=>{
    var buttons = document.getElementsByClassName("ingr" + inventoryid)
    for(let i = 0; i < buttons.length; i++){
@@ -408,6 +416,10 @@ let enableButtonsIngr = (inventoryid)=>{
 }
 
 //disables menu button and changes formatting
+/**
+ * Disables specified menu button
+ * @param {*} button Button to disable
+ */
 let disableMenuButton = (button)=>{
    button.disabled = true
    button.style.backgroundColor = "lightgrey"
@@ -416,6 +428,10 @@ let disableMenuButton = (button)=>{
 
 }
 
+/**
+ * Enables specified menu button
+ * @param {*} button Button to enable
+ */
 //enables menu button and changes formatting
 let enableMenuButton = (button)=>{
    button.disabled = false
@@ -425,6 +441,9 @@ let enableMenuButton = (button)=>{
 
 }
 
+/**
+ * Checks current inventory items stock and disables menu items if needed
+ */
 //initally checks ingredients to see if any are out
 let checkAllIngredients = ()=> {
    //checks inventory status
@@ -461,6 +480,9 @@ let checkAllIngredients = ()=> {
 
 
 //checks ingredients that are out to see if they are available
+/**
+ * Checks if ingredients are out.
+ */
 let checkIngredients = ()=> {
    //checks inventory status
    var q = 'select * from inventory order by inventoryid;' ;
@@ -660,6 +682,11 @@ function createInventoryQuery(ingredientArray){
    return allqs
 }
 
+/**
+ * Creates a list of queries to update the notifications
+ * @param {*} notiIngrs List of inventory ingredients to create notifications for.
+ * @returns All queries needed to update notifications
+ */
 function createNotificiationQuery(notiIngrs){
    let allQs = ''
    for(let i = 0; i < notiIngrs.length; i++){
