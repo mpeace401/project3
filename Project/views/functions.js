@@ -21,6 +21,7 @@ var zeroIngrs = [];
 var notiIngrs = [];
 
 
+
 //used to display real time
 /**
  * Refreshes the time displayed.
@@ -733,6 +734,56 @@ function runQuery(q){
    .then((data) => console.log(data));
 }
 
+function magnifyText(){
+   if(document.getElementById("side").innerText == "Customer"){
+      var menu = document.getElementsByClassName("menubutton")
+      for(let i = 0; i < menu.length; i++){
+         menu[i].style.fontSize = "18px"
+      }
+      var names = document.getElementsByClassName("textbox price")
+      for(let i = 0; i < names.length; i++){
+         names[i].style.height = "40px"
+         names[i].style.top = "65px"
+      }
+      var categories = document.getElementsByClassName("categorybutton")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "32px"
+      }
+   }
+   var misc = document.getElementsByClassName("misc")
+   for(let i = 0; i < misc.length; i++){
+      misc[i].style.fontSize = "20px"
+   }
+   
+
+
+}
+function resetText(){
+   if(document.getElementById("side").innerText == "Customer"){
+      var menu = document.getElementsByClassName("menubutton")
+      for(let i = 0; i < menu.length; i++){
+         menu[i].style.fontSize = "12px"
+      }
+      var names = document.getElementsByClassName("textbox price")
+      for(let i = 0; i < names.length; i++){
+         names[i].style.height = "20px"
+         names[i].style.top = "75px"
+      }
+      var categories = document.getElementsByClassName("categorybutton")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "12px"
+      }
+   }
+   var misc = document.getElementsByClassName("misc")
+   for(let i = 0; i < misc.length; i++){
+      misc[i].style.fontSize = "12px"
+   }
+   
+
+
+}
+magnifyText()
+resetText()
 
 //syncs scrolling with orderbox and cancelbox
 

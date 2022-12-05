@@ -36,28 +36,28 @@
    <script src="https://maps.googleapis.com/maps/api/js?key=process.env&callback=myMap"></script>
 
    <!-- Go to Cart Button -->
-   <button class = "menu button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
-   <button class = 'cart button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 990px; top: 650px;" >Checkout</button>
-   <button class = "cart button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>
+   <button class = "menu misc button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
+   <button class = 'cart misc button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 990px; top: 650px;" >Checkout</button>
+   <button class = "cart misc button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>
 
    <!-- Name Input -->
    <input class="cart textbox" id="custname" hidden = "hidden" style = "position: absolute; left: 510px; top: 25px;" placeholder="Insert Name">
 
    <!-- Cancel Button -->
-   <button class = "menu button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
-   <button class = "cart button cancel" id = 'cancel' hidden = "hidden" style = "position: absolute; left: 1150px; top: 650px;"onclick = "clearOrder()">Cancel</button>
+   <button class = "menu misc button cancel" id = 'cancel' style = "position: absolute; left: 680px; top: 25px;"onclick = "clearOrder()">Cancel</button>
+   <button class = "cart misc button cancel" id = 'cancel' hidden = "hidden" style = "position: absolute; left: 1150px; top: 650px;"onclick = "clearOrder()">Cancel</button>
    
    <!-- Cancel Button -->
-   <button class = "menu button undo" id = 'undo' style = "position: absolute; left: 850px; top: 25px;"onclick = "undo()">Remove Last Item</button>
+   <button class = "menu misc button undo" id = 'undo' style = "position: absolute; left: 850px; top: 25px;"onclick = "undo()">Remove Last Item</button>
    
    <!-- Accessibility Button -->
-   <button class = "menu button accessibility" style = "position: absolute; left: 510px; top: 25px;" onclick = "Accessibility()">Accessibility</button>
-   <button class = "access button gotomenu" hidden = "hidden" style = "position: absolute; left: 510px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>   
+   <button class = "menu misc button accessibility" style = "position: absolute; left: 510px; top: 25px;" onclick = "Accessibility()">Accessibility</button>
+   <button class = "access misc button gotomenu" hidden = "hidden" style = "position: absolute; left: 510px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>   
    <!-- Total Box-->
-   <div class = "menu textbox costbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
-   <div class = "cart textbox costbox" hidden = "hidden" id = "costbox" style = "left:800px; top:650px; height:50px; position: absolute;">Total: $0</div>
+   <div class = "menu misc textbox costbox" id = "costbox" style="top: 25px; position: absolute;" >Total: $0</div>
+   <div class = "cart misc textbox costbox" hidden = "hidden" id = "costbox" style = "left:800px; top:650px; height:50px; position: absolute;">Total: $0</div>
    <!-- Order ID Box -->
-   <div class = "menu textbox" id = "orderId" style="left:170px; top: 25px; position: absolute;" >Loading...</div>
+   <div class = "menu misc textbox" id = "orderId" style="left:170px; top: 25px; position: absolute;" >Loading...</div>
    <!-- Displays order -->
    <div class = "scrollarea cart orderbox" id = "orderbox" hidden = "hidden" style="width:500px;height:525px;border:2px solid maroon;top: 100px; left: 800px;  background-color: white; position: absolute;" ></div>
    <div class = "scrollarea cart removebox" id = "removebox"  hidden = "hidden" style="width:100px;height:525px; border-top:2px solid maroon;top: 100px; left: 1200px; background-color:white;"></div>
