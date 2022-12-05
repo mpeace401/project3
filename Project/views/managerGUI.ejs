@@ -21,17 +21,18 @@
          <h4>TO-DO LIST</h4> 
          <textarea id="toDoList" class="toDoList"></textarea>
          <br><button style="margin-top:1vmin" onclick="saveList(event)">SAVE</button>
+         <button style="margin-top:1vmin" onclick="clearList(event)">CLEAR</button>
       </div>
    </div>
 
    <div id="Home" class="tabcontent">
       <div readonly class="notifications">
          <% for (const value of managerData.notificationsMap.values()) {%>
-            <button class="itemButton" style="pointer-events: none;width:80%">
-               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date %>, Time: <%= value.time %>, Message: <%= value.message %>
+            <button class="itemButton" style="pointer-events: none">
+               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date.toDateString() %>, Time: <%= value.time %>, Message: <%= value.message %>
             </button>
          <% } %>
-         </div>
+      </div>
    </div>
    
    <div id="Inventory" class="tabcontent">
@@ -77,54 +78,58 @@
 
       <div id="Sales" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="salesStartDate">
-            <button class="subbutton" style="height:15vmin;width: 48%;float:right;margin-right:9%;margin-top:1vmin" onclick="getSalesReport(event)">ENTER</button>
+            <button class="enterButton" onclick="getSalesReport(event)">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="salesEndDate">
          </div>
-         <div>
-            <textarea readonly class="reportBox" id="salesReportBox">BOX FOR REPORT</textarea>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">AMOUNT SOLD</button><button class="reportColumnNames">TOTAL SALES</button>
+            <div class="reportBox" id="salesReportBox"></div>
          </div>
       </div>
       <div id="Excess" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="excessStartDate">
-            <button class="subbutton" style="height:15vmin;width: 48%;float:right;margin-right:9%;margin-top:1vmin" onclick="getExcessReport(event)">ENTER</button>
+            <button class="enterButton" onclick="getExcessReport(event)">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="excessStartTime">
          </div>
-         <div>
-            <textarea readonly class="reportBox" id="excessReportBox">BOX FOR REPORT</textarea>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;width: 48.8%;">ID</button><button class="reportColumnNames" style="width:48.8%;">AMOUNT</button>
+            <div class="reportBox" id="excessReportBox"></div>
          </div>
       </div>
       <div id="Restock" class="reportContent">
-         <button class="subbutton" style="height:15vmin;margin-top:1vmin;width:78%;margin-bottom: 1vmin;" onclick="getRestockReport(event)">ENTER</button>
-         <div>
-            <textarea readonly class="reportBox" id="restockReportBox">BOX FOR REPORT</textarea>
+         <button class="enterButton" style="width:81.5%;margin-bottom: 1.3vmin;" onclick="getRestockReport(event)">ENTER</button>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">NAME</button><button class="reportColumnNames">AMOUNT</button>
+            <div class="reportBox" id="restockReportBox"></div>
          </div>
       </div>
       <div id="WST" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="WSTStartDate">
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="WSTStartTime">
-            <button class="subbutton" style="height:15vmin;width: 19%;float:right;margin-right:9%;margin-top:1vmin" >ENTER</button>
+            <button class="enterButton" style="width: 21%">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="WSTEndDate">
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">End Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">End Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="WSTEndTime">
          </div>
-         <div>
-            <textarea readonly class="reportBox" id="WSTReportBox">BOX FOR REPORT</textarea>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">FREQUENCY</button><button class="reportColumnNames">ITEM 1</button><button class="reportColumnNames">ITEM 2</button>
+            <div class="reportBox" id="WSTReportBox"></div>
          </div>
       </div>
    </div>
