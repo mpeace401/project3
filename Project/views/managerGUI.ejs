@@ -78,65 +78,57 @@
 
       <div id="Sales" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="salesStartDate">
-            <button class="subbutton" style="height:15vmin;width: 48%;float:right;margin-right:9%;margin-top:1vmin" onclick="getSalesReport(event)">ENTER</button>
+            <button class="enterButton" onclick="getSalesReport(event)">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="salesEndDate">
          </div>
-         <div>
-            <div style="width: 76.8%;display: inline-block;margin-left: 0.4%;">
-               <button class="reportColumnNames">ID</button><button class="reportColumnNames">AMOUNT SOLD</button><button class="reportColumnNames">TOTAL SALES</button>
-            </div>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">AMOUNT SOLD</button><button class="reportColumnNames">TOTAL SALES</button>
             <div class="reportBox" id="salesReportBox"></div>
          </div>
       </div>
       <div id="Excess" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="excessStartDate">
-            <button class="subbutton" style="height:15vmin;width: 48%;float:right;margin-right:9%;margin-top:1vmin" onclick="getExcessReport(event)">ENTER</button>
+            <button class="enterButton" onclick="getExcessReport(event)">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="excessStartTime">
          </div>
-         <div>
-            <div style="width: 76.8%;display: inline-block;margin-left: 0.4%;">
-               <button class="reportColumnNames" style="width:49.5%;">ID</button><button class="reportColumnNames" style="width:49.5%;">AMOUNT</button>
-            </div>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;width: 48.8%;">ID</button><button class="reportColumnNames" style="width:48.8%;">AMOUNT</button>
             <div class="reportBox" id="excessReportBox"></div>
          </div>
       </div>
       <div id="Restock" class="reportContent">
-         <button class="subbutton" style="height:15vmin;margin-top:1vmin;width:78%;margin-bottom: 1.5vmin;" onclick="getRestockReport(event)">ENTER</button>
-         <div>
-            <div style="width: 76.8%;display: inline-block;margin-left: 0.4%;">
-               <button class="reportColumnNames">ID</button><button class="reportColumnNames">NAME</button><button class="reportColumnNames">AMOUNT</button>
-            </div>
+         <button class="enterButton" style="width:81.5%;margin-bottom: 1.3vmin;" onclick="getRestockReport(event)">ENTER</button>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">NAME</button><button class="reportColumnNames">AMOUNT</button>
             <div class="reportBox" id="restockReportBox"></div>
          </div>
       </div>
       <div id="WST" class="reportContent">
          <div>
-            <textarea readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="WSTStartDate">
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">Start Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="WSTStartTime">
-            <button class="subbutton" style="height:15vmin;width: 19%;float:right;margin-right:9%;margin-top:1vmin" >ENTER</button>
+            <button class="enterButton" style="width: 21%">ENTER</button>
          </div>
          <div>
-            <textarea readonly class="dateTimeBox">End Date (YYYY-MM-DD)</textarea>
+            <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
             <input class="dateTimeEntryBox" id="WSTEndDate">
-            <textarea readonly class="dateTimeBox" style="height: 5vmin;padding-top: 1vmin;">End Time (HH:MM:SS) (OPTIONAL)</textarea>
+            <button readonly class="dateTimeBox">End Time (HH:MM:SS) (OPTIONAL)</button>
             <input class="dateTimeEntryBox" id="WSTEndTime">
          </div>
-         <div>
-            <div style="width: 76.8%;display: inline-block;margin-left: 0.4%;">
-               <button class="reportColumnNames">FREQUENCY</button><button class="reportColumnNames">ITEM 1</button><button class="reportColumnNames">ITEM 2</button>
-            </div>
+         <div class="reportColumnNamesDiv">
+            <button class="reportColumnNames" style="margin-left: 0.5%;">FREQUENCY</button><button class="reportColumnNames">ITEM 1</button><button class="reportColumnNames">ITEM 2</button>
             <div class="reportBox" id="WSTReportBox"></div>
          </div>
       </div>

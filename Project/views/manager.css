@@ -182,9 +182,9 @@ body {
 }
 
 .dateTimeBox {
-    font-size: 0.9vmax;
+    font-size: 1vmax;
     width: 14%;
-    height: 4vmin;
+    height: 6.7vmin;
     margin-top: 0.5vmin;
     margin-bottom: 1vmin;
     border-color: maroon;
@@ -193,7 +193,6 @@ body {
     resize: none;
     vertical-align: middle;
     display:inline-block;
-    padding-top: 2vmin;
 }
 
 .dateTimeEntryBox {
@@ -208,7 +207,6 @@ body {
 
 .reportBox {
     font-size: 2vmin;
-    width: 78%;
     height: 53vmin;
     border-width: 1px;
     border-color: maroon;
@@ -219,7 +217,7 @@ body {
 }
 
 .reportColumnNames {
-    width: 33%;
+    width: 32.53%;
     font-size: 2vmin;
     height: 4vmin;
     text-align: center;
@@ -227,4 +225,24 @@ body {
     border-color: maroon;
     pointer-events: none;
     background-color: darkgray;
+}
+
+.reportColumnNamesDiv {
+    width: 81.5%;
+    display: inline-block;
+}
+
+.enterButton {
+    color: white;
+    font-size: 2vmin;
+    background-color: maroon;
+    border-color: maroon;
+    cursor: pointer;
+    transition: 0.2s;
+
+    height:15vmin;
+    width: 50%;
+    float:right;
+    margin-right:5.5%;
+    margin-top:1vmin
 }
