@@ -16,6 +16,24 @@
          <%= data.categories[i] %>
       </button>
    <% } %>
+   <div class="cart delivery label">Delivery</div>
+   <div class = "cart googlemap" id="googleMap" style="width:700px;height:500px;left:10px;top:150px;" hidden="hidden"></div>
+
+   <script>
+   function myMap() {
+   var mapProp= {
+      center:new google.maps.LatLng(30.6125715,-96.3407987),
+      zoom:19.59,
+   };
+   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+   var marker = new google.maps.Marker({position: myCenter, map, title: "Rev's American Grill"});
+
+   marker.setMap(map);
+   }
+   </script>
+
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6HxCUEjr_ZLJtdR7EDyDaunOyQp304_0&callback=myMap"></script>
 
    <!-- Go to Cart Button -->
    <button class = "menu button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
@@ -93,6 +111,7 @@
          </script>
          
          <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+
+         </body>
 <script src="/views/functions.js"> </script>
 </html>
