@@ -204,9 +204,23 @@ body {
 .reportBox {
     font-size: 2vmin;
     width: 78%;
-    height: 56vmin;
+    height: 53vmin;
     border-width: 1px;
     border-color: maroon;
     text-align: center;
     resize: none;
+    overflow: scroll;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+.reportColumnNames {
+    width: 33%;
+    font-size: 2vmin;
+    height: 4vmin;
+    text-align: center;
+    border-width: 1px;
+    border-color: maroon;
+    pointer-events: none;
+    background-color: darkgray;
 }
