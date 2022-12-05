@@ -398,10 +398,17 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
    startDate = document.getElementById('salesStartDate').value
    endDate = document.getElementById('salesEndDate').value
 
-   q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
+   let element = document.getElementById('salesReportBox');
+   while (element.firstChild) {
+      element.removeChild(element.firstChild);
+   }
 
-   // q = "SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:01:08' AND DATE(time) <= '2022-09-09 10:09:34' AND itemid < 90 GROUP by itemid;"
+   //q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
 
+   q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname;'
+
+
+   
    fetch('/getSalesReport', {
       method: 'POST',
       headers: {
@@ -424,7 +431,7 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
             x.className += "itemButton"
             x.style.width = "33%"
             x.style.pointerEvents = "none"
-            x.innerHTML = data.itemIds[i].itemid
+            x.innerHTML = data.itemIds[i].itemname
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
@@ -451,8 +458,11 @@ function getExcessReport(evt) {
    startDate = document.getElementById('excessStartDate').value
    startTime = document.getElementById('excessStartTime').value
    // q = 'SELECT itemid FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' ORDER BY transactionid;'
-   itemIDS = [] // store itemids upon post request
-
+   
+   let element = document.getElementById('excessReportBox');
+   while (element.firstChild) {
+      element.removeChild(element.firstChild);
+   }
    q = 'SELECT customertransactions.itemid,  COUNT(customertransactions.itemid) as total from customertransactions where date(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' GROUP BY customertransactions.itemid order by customertransactions.itemid;'
    
    console.log(q)
@@ -501,6 +511,11 @@ function getExcessReport(evt) {
  */
 function getRestockReport(evt) {
    q = 'Select * from inventory where itemamount <= threshold order by inventoryid;'
+   
+   let element = document.getElementById('restockReportBox');
+   while (element.firstChild) {
+      element.removeChild(element.firstChild);
+   }
 
    fetch('/getRestockReport', {
       method: 'POST',
