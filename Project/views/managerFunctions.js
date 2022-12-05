@@ -1,3 +1,16 @@
+let toDoList = localStorage.getItem("toDoList")
+
+if (toDoList != "") {
+   document.getElementById("toDoList").value = toDoList
+   console.log(toDoList)
+}
+
+function saveList(evt) {
+   var list = document.getElementById("toDoList").value
+   localStorage.setItem("toDoList", list)
+   console.log("TO-DO List saved: " + list)
+}
+
 document.getElementById("homePage").click();
 
 var inventoryButtons = []
