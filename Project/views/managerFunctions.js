@@ -481,7 +481,7 @@ function getExcessReport(evt) {
  * @param {*} evt Event associated with getting the restock report.
  */
 function getRestockReport(evt) {
-   q = 'Select * from inventory where itemamount <= 100 order by inventoryid;'
+   q = 'Select * from inventory where itemamount <= threshold order by inventoryid;'
 
    fetch('/getRestockReport', {
       method: 'POST',
