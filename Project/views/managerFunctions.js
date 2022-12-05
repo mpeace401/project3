@@ -232,6 +232,8 @@ function displayMenuItems(evt, itemid) {
          document.getElementById('menuIng4').value = item.i4
          document.getElementById('menuIng5').value = item.i5
          document.getElementById('menuIng6').value = item.i6
+         document.getElementById('url').value = item.url
+         document.getElementById('category').value = item.category
          for(let i = 0; i < subbuttons.length; i++){
             let button = subbuttons[i]
             button.disabled = false
@@ -337,12 +339,13 @@ function updateMenuItem(evt) {
    ing4 = document.getElementById('menuIng4').value
    ing5 = document.getElementById('menuIng5').value
    ing6 = document.getElementById('menuIng6').value
- 
+   url = document.getElementById('url').value
+   category = document.getElementById('category').value
 
 
    console.log()
    updateQ = 'UPDATE menuitems SET itemid=' + menuID + ', itemname=' + "'" + menuName +
-   "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ' WHERE itemid=' + menuID + ';'
+   "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ', url=' + "'" + url + "'" + ', category=' + "'" + category + "'" + ' WHERE itemid=' + menuID + ';'
    console.log(updateQ)
    runQuery(updateQ)
 
