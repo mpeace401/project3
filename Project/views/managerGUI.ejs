@@ -26,11 +26,26 @@
    </div>
 
    <div id="Home" class="tabcontent">
-      <div readonly class="notifications">
+      <button class="notificationColumnNames" style="margin-left: 0.5%;">ID</button><button class="notificationColumnNames">NAME</button><button class="notificationColumnNames">DATE</button><button class="notificationColumnNames">TIME</button><button class="notificationColumnNames">MESSAGE</button>
+      <div readonly class="notifications" style="display:inline-block;font-size: 0;">
          <% for (const value of managerData.notificationsMap.values()) {%>
-            <button class="itemButton" style="pointer-events: none">
-               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date.toDateString() %>, Time: <%= value.time %>, Message: <%= value.message %>
-            </button>
+            <nobr>
+               <button class="notificationItem" style="pointer-events: none">
+                  <%= value.inventoryid %>
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
+                  <%= value.message.split(' ')[3] %>
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
+                  <%= value.date.toDateString() %>
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
+                  <%= value.time.split('.')[0] %>
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
+                  <%= value.message %>
+               </button>
+            </nobr>
          <% } %>
       </div>
    </div>
