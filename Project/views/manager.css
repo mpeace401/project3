@@ -263,3 +263,12 @@ body {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
+.enterButton:hover {
+    background-color: rgb(75, 0, 0);
+}
+
+.enterButton:active {
+    background-color: black;
+    transition: 0s;
+}
