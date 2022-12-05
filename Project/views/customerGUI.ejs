@@ -30,10 +30,11 @@
    var marker = new google.maps.Marker({position: myCenter, map, title: "Rev's American Grill"});
 
    marker.setMap(map);
+
    }
    </script>
 
-   <script src="https://maps.googleapis.com/maps/api/js?key=process.env.gmaps&callback=myMap"></script>
+   <script src=process.env.gmaps></script>
 
    <!-- Go to Cart Button -->
    <button class = "menu button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
