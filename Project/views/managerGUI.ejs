@@ -12,6 +12,7 @@
       <button class="tablinks" onclick="openTab(event, 'Finance')">Finance</button>
       <button class="tablinks" onclick="openTab(event, 'Transactions')">Transactions</button>
       <button class="tablinks" onclick="openTab(event, 'Menu Items')">Menu Items</button>
+      <button class="tablinks" onclick="openTab(event, 'Accessibility')">Accessibility</button>
    </div>
 
    <!-- Tab content -->
@@ -20,29 +21,25 @@
          <img src="https://www.washingtonpost.com/graphics/2018/sports/colleges/basketball/march-madness-dancing-mascots/img/small-texasAM.gif" style="width:78%;height:70%">
          <h4>TO-DO LIST</h4> 
          <textarea id="toDoList" class="toDoList"></textarea>
-         <br><button style="margin-top:1vmin" onclick="saveList(event)">SAVE</button>
-         <button style="margin-top:1vmin" onclick="clearList(event)">CLEAR</button>
+         <br><button style="margin-top:0.5em" onclick="saveList(event)">SAVE</button>
+         <button style="margin-top:0.5em" onclick="clearList(event)">CLEAR</button>
       </div>
    </div>
 
    <div id="Home" class="tabcontent">
       <button class="notificationColumnNames" style="margin-left: 0.5%;">ID</button><button class="notificationColumnNames">NAME</button><button class="notificationColumnNames">DATE</button><button class="notificationColumnNames">TIME</button><button class="notificationColumnNames">MESSAGE</button>
-      <div readonly class="notifications" style="display:inline-block;font-size: 0;">
+      <div readonly class="notifications">
          <% for (const value of managerData.notificationsMap.values()) {%>
             <nobr>
                <button class="notificationItem" style="pointer-events: none">
                   <%= value.inventoryid %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
+               </button><button class="notificationItem" style="pointer-events: none">
                   <%= value.message.split(' ')[3] %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
+               </button><button class="notificationItem" style="pointer-events: none">
                   <%= value.date.toDateString() %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
+               </button><button class="notificationItem" style="pointer-events: none">
                   <%= value.time.split('.')[0] %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
+               </button><button class="notificationItem" style="pointer-events: none">
                   <%= value.message %>
                </button>
             </nobr>
@@ -70,7 +67,7 @@
          </div>
 
          <div>
-            <input readonly value="Threshold" class="attributeName" style="margin-bottom: 1vmin;">
+            <input readonly value="Threshold" class="attributeName" style="margin-bottom: 0.5em;">
             <input class="invTextField" id="invThreshold">
          </div>
          <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
@@ -122,7 +119,7 @@
          </div>
       </div>
       <div id="Restock" class="reportContent">
-         <button class="enterButton" style="width:81.5%;margin-bottom: 1.3vmin;" onclick="getRestockReport(event)">ENTER</button>
+         <button class="enterButton" style="width:81.5%" onclick="getRestockReport(event)">ENTER</button>
          <div class="reportColumnNamesDiv">
             <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">NAME</button><button class="reportColumnNames">AMOUNT</button>
             <div class="reportBox" id="restockReportBox"></div>
@@ -156,7 +153,7 @@
             <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
                   #<%= value.orderid %>, ID: <%= value.stockid %>, Amount: <%= value.numitems %>, Total: $<%= value.pricetotal %>
-                  <br><div style="font-size: 1vmin;height:0;"><%= value.dateordered %></div>
+                  <br><div style="font-size: 0.5em;height:0;"><%= value.dateordered %></div>
                </button>
             <% } %>
          </div>
@@ -168,7 +165,7 @@
             <% for (const value of managerData.transactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
                   #<%= value.transactionid %>, Items: <%= value.itemnum %>, Name: <%= value.custname %>, Employee: <%= value.staffid %>, Total: $<%= value.price %>
-                  <br><div style="font-size: 1vmin;height:0;"><%= value.time %></div>
+                  <br><div style="font-size: 0.5em;height:0;"><%= value.time %></div>
                </button>
             <% } %>
          </div>
@@ -230,7 +227,7 @@
          </div>
 
          <div>
-            <input readonly value="Category" class="attributeName" style="margin-bottom: 1vmin;">
+            <input readonly value="Category" class="attributeName" style="margin-bottom: 0.5em;">
             <input class="menuTextField" id="category">
          </div>
 
@@ -242,6 +239,9 @@
 
       </div>
 
+   </div>
+   <div id="Accessibility" class="tabcontent">
+      <label><input id="font-size" type="range" min="10" max="2000" step="1" value="100"></label>
    </div>
 </body>
 <script src="/views/managerFunctions.js"> </script>

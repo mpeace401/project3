@@ -542,3 +542,7 @@ function getRestockReport(evt) {
 
       });
 }
+
+document.querySelector("#font-size").addEventListener("input", function() {
+   document.body.style.fontSize = this.value +"%";
+});
