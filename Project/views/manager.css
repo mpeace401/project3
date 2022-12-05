@@ -69,7 +69,7 @@ body {
     color: white;
     font-size: 2vmin;
     background-color: maroon;
-    width: 47%;
+    width: 47.5%;
     height: 8vmin;
     border-color: maroon;
     cursor: pointer;
@@ -95,9 +95,8 @@ body {
 .attributeName {
     font-size: 2vmin;
     width: 46%;
-    height: 6vmin;
+    height: 5vmin;
     margin-top: 1vmin;
-    margin-bottom: 1vmin;
     border-color: maroon;
     text-align: center;
     background-color: rgb(238, 238, 238);
@@ -106,9 +105,8 @@ body {
 .invTextField {
     font-size: 2vmin;
     width: 46%;
-    height: 6vmin;
+    height: 5vmin;
     margin-top: 1vmin;
-    margin-bottom: 1vmin;
     border-color: maroon;
     text-align: center;
 }
@@ -116,9 +114,8 @@ body {
 .menuTextField {
     font-size: 2vmin;
     width: 46%;
-    height: 6vmin;
+    height: 5vmin;
     margin-top: 1vmin;
-    margin-bottom: 1vmin;
     border-color: maroon;
     text-align: center;
 }
