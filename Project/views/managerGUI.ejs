@@ -21,17 +21,18 @@
          <h4>TO-DO LIST</h4> 
          <textarea id="toDoList" class="toDoList"></textarea>
          <br><button style="margin-top:1vmin" onclick="saveList(event)">SAVE</button>
+         <button style="margin-top:1vmin" onclick="clearList(event)">CLEAR</button>
       </div>
    </div>
 
    <div id="Home" class="tabcontent">
       <div readonly class="notifications">
          <% for (const value of managerData.notificationsMap.values()) {%>
-            <button class="itemButton" style="pointer-events: none;width:80%">
-               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date %>, Time: <%= value.time %>, Message: <%= value.message %>
+            <button class="itemButton" style="pointer-events: none">
+               <%= value.notificationid %>, ID: <%= value.inventoryid %>, Date: <%= value.date.toDateString() %>, Time: <%= value.time %>, Message: <%= value.message %>
             </button>
          <% } %>
-         </div>
+      </div>
    </div>
    
    <div id="Inventory" class="tabcontent">

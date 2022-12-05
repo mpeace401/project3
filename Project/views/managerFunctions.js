@@ -11,6 +11,12 @@ function saveList(evt) {
    console.log("TO-DO List saved: " + list)
 }
 
+function clearList(evt) {
+   document.getElementById("toDoList").value = ""
+   localStorage.setItem("toDoList", "")
+   console.log("TO-DO List cleared")
+}
+
 document.getElementById("homePage").click();
 
 var inventoryButtons = []
