@@ -88,7 +88,7 @@ body {
 .scrollArea {
     border: 1px solid maroon;
     width: 44%;
-    height: 74vh;
+    height: 75vmin;
     overflow-y: scroll;
 }
 
@@ -137,8 +137,8 @@ body {
 }
 
 .notifications {
-    width: 82%;
-    height: 82.5vmin;
+    width: 86%;
+    height: 79.5vmin;
     resize: none;
     text-align: center;
     font-size: 2vmin;
@@ -146,9 +146,26 @@ body {
     border-width: 2px;
     background-color: white;
     float: right;
-    margin-right: 4.5%;
+    margin-right: 0.5%;
     overflow-y: scroll;
+}
 
+.notificationColumnNames {
+    width: 16.81%;
+    font-size: 2vmin;
+    height: 4vmin;
+    text-align: center;
+    border-width: 1px;
+    border-color: maroon;
+    pointer-events: none;
+    background-color: darkgray;
+}
+
+.notificationItem {
+    font-size: 2vmin;
+    width: 19.8%;
+    height: 5vmin;
+    vertical-align: middle;
 }
 
 .invAndMenuFieldGroup {
@@ -165,7 +182,7 @@ body {
 .transactionsBox {
     border: 1px solid maroon;
     width: 100%;
-    height: 74vmin;
+    height: 75.5vmin;
     overflow-y: scroll;
 }
 
@@ -174,7 +191,6 @@ body {
     width: 97%;
     padding-left: 1vw;
     height: 6vmin;
-    margin-top: 1vmin;
     margin-bottom: 1vmin;
     border-color: maroon;
     text-align: center;

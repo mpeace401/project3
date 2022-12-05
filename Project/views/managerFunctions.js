@@ -5,12 +5,20 @@ if (toDoList != "") {
    console.log(toDoList)
 }
 
+/**
+ * Saves the current contents of the ToDo List
+ * @param {*} evt Event associated with saving the ToDo List
+ */
 function saveList(evt) {
    var list = document.getElementById("toDoList").value
    localStorage.setItem("toDoList", list)
    console.log("TO-DO List saved: " + list)
 }
 
+/**
+ * Clears the current contents of the ToDo List
+ * @param {*} evt Event associated with clearing the ToDo List
+ */
 function clearList(evt) {
    document.getElementById("toDoList").value = ""
    localStorage.setItem("toDoList", "")
@@ -420,16 +428,19 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.itemIds[i].itemid
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.itemIds[i].count
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = '$' + Math.round(data.itemIds[i].sum * 100.0) / 100.0
             document.getElementById("salesReportBox").appendChild(x);
          }
@@ -475,11 +486,13 @@ function getExcessReport(evt) {
                var x = document.createElement("button")
                x.className += "itemButton"
                x.style.width = "49.5%"
+               x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].itemid
                document.getElementById("excessReportBox").appendChild(x);
                var x = document.createElement("button")
                x.className += "itemButton"
                x.style.width = "49.5%"
+               x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].total
                document.getElementById("excessReportBox").appendChild(x);
             }
@@ -523,16 +536,19 @@ function getRestockReport(evt) {
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].inventoryid
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].stockname
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.width = "33%"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].itemamount
             document.getElementById("restockReportBox").appendChild(x);
          }
