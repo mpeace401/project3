@@ -5,12 +5,20 @@ if (toDoList != "") {
    console.log(toDoList)
 }
 
+/**
+ * Saves the current contents of the ToDo List
+ * @param {*} evt Event associated with saving the ToDo List
+ */
 function saveList(evt) {
    var list = document.getElementById("toDoList").value
    localStorage.setItem("toDoList", list)
    console.log("TO-DO List saved: " + list)
 }
 
+/**
+ * Clears the current contents of the ToDo List
+ * @param {*} evt Event associated with clearing the ToDo List
+ */
 function clearList(evt) {
    document.getElementById("toDoList").value = ""
    localStorage.setItem("toDoList", "")
