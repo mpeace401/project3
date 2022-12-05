@@ -184,15 +184,22 @@ let Accessibility = () => {
  */
 let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {  
    button = document.getElementById("menubutton " + id)
-   let txt = button.innerText.split('\n');
-   let name = '';
-   for(let i = 0; i < txt.length; i++){
-      
-      if(txt[i].charAt(0) != "$" ){
-         name += txt[i]
-         name += " "
+   var text = ""
+   if (document.getElementById("side").innerText == "Server"){
+      let txt = button.innerText.split('\n');
+      let name = '';
+      for(let i = 0; i < txt.length; i++){
+         
+         if(txt[i].charAt(0) != "$" ){
+            name += txt[i]
+            name += " "
+         }
+         
       }
-      
+      text = name + "$" + price
+   }
+   else if (document.getElementById("side").innerText == "Customer"){
+      text = document.getElementById("price " + id).innerText
    }
    orderArray.push(id);
    
@@ -202,7 +209,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
    ingredientArray.push(ingredients)
    
    //displays order and total
-   let text = name + "$" + price
+   
    orderText.push(text)
    costArray.push(price)
 
@@ -352,7 +359,7 @@ let resetLabels = () =>{
       var x = removeArray[i]
       x.onclick = function(){removeItem(i)}
    }
-   
+   console.log(totalText)
    orderArea.innerText = totalText;
 
 
