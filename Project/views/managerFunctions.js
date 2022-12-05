@@ -401,6 +401,10 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
       });
 }
 
+/**
+ * Gets the excess report
+ * @param {*} evt Event associated with getting the excess report.
+ */
 function getExcessReport(evt) {
    startDate = document.getElementById('excessStartDate').value
    startTime = document.getElementById('excessStartTime').value
@@ -440,6 +444,10 @@ function getExcessReport(evt) {
 
 }
 
+/**
+ * Gets the restock report
+ * @param {*} evt Event associated with getting the restock report.
+ */
 function getRestockReport(evt) {
    q = 'Select * from inventory where itemamount <= 100 order by inventoryid;'
 
