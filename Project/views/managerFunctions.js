@@ -403,10 +403,12 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
       element.removeChild(element.firstChild);
    }
 
-   q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
+   //q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
 
-   // q = "SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= '2022-09-09 10:01:08' AND DATE(time) <= '2022-09-09 10:09:34' AND itemid < 90 GROUP by itemid;"
+   q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname;'
 
+
+   
    fetch('/getSalesReport', {
       method: 'POST',
       headers: {
@@ -429,7 +431,7 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
             x.className += "itemButton"
             x.style.width = "33%"
             x.style.pointerEvents = "none"
-            x.innerHTML = data.itemIds[i].itemid
+            x.innerHTML = data.itemIds[i].itemname
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"

@@ -274,10 +274,10 @@ app.post('/getSalesReport', jsonParser, function(req, res) {
     var itemIds = []
     
     for(let i = 0; i < query_res.rowCount; i++){
-      let itemid = query_res.rows[i].itemid
+      let itemname = query_res.rows[i].itemname
       let sum = query_res.rows[i].sum
       let count = query_res.rows[i].count
-      let sales = {itemid: itemid, count: count, sum: sum} 
+      let sales = {itemname: itemname, count: count, sum: sum} 
       itemIds.push(sales)
     }
 
