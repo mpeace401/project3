@@ -113,3 +113,18 @@
    position: absolute;
    overflow: scroll;
  }
+ .translate{
+   position: relative;
+   top: 100px;
+   height: 200px;
+ }
+
+ .magnify{
+   position: relative;
+   width: 150px;
+   height: 50px;
+   border-color: maroon ;
+    outline-color: maroon;
+    background-color: white;
+    color: maroon;
+ }

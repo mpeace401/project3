@@ -22,7 +22,8 @@ var zeroIngrs = [];
 //array to store ingredients go create a notifcation for
 var notiIngrs = [];
 
-
+//used to store status of font size
+var fontStatus = 0;
 
 //used to display real time
 /**
@@ -748,7 +749,6 @@ function magnifyText(){
       }
       var names = document.getElementsByClassName("textbox price")
       for(let i = 0; i < names.length; i++){
-         console.log(i)
          names[i].style.height = "40px"
          names[i].style.top = "65px"
       }
@@ -756,13 +756,16 @@ function magnifyText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "32px"
       }
+      document.getElementById("toggletext").innerText = "Reset Font Size"
+      
    }
    var misc = document.getElementsByClassName("misc")
    for(let i = 0; i < misc.length; i++){
       misc[i].style.fontSize = "20px"
    }
    
-
+   
+   fontStatus = 1;
 
 }
 function resetText(){
@@ -782,14 +785,24 @@ function resetText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "12px"
       }
+      document.getElementById("toggletext").innerText = "Increase Text Size"
    }
    var misc = document.getElementsByClassName("misc")
    for(let i = 0; i < misc.length; i++){
       misc[i].style.fontSize = "12px"
    }
    
+   fontStatus = 0;
+}
 
 
+function toggleFontSize(){
+   if(fontStatus == 0){
+      magnifyText();
+   }
+   else{
+      resetText();
+   }
 }
 
 function createMenuButtons(){
