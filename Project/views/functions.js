@@ -26,7 +26,7 @@ var notiIngrs = [];
 var fontStatus = 0;
 
 //used to store narrator status
-var narratorStatus = 0;
+var narratorStatus = 1;
 
 //useed to store and update size of remove buttons
 var removeSize = 0;
@@ -943,14 +943,7 @@ if (!isSyncingRightScroll) {
 isSyncingRightScroll = false;
 }
 
-
-//function calls on start
-createMenuButtons();
-getEmployeeIds();
-getOrderId();
-checkAllIngredients();
-
-let speech = new SpeechSynthesisUtterance();
+var speech = new SpeechSynthesisUtterance();
 speech.lang = "en";
 speech.volume = 1;
 speech.pitch = 1;
@@ -959,12 +952,37 @@ speech.rate = 1;
 
 
 /**
+ * Adds narrator to run on hover of certain elements
+ */
+function setNarrator(){
+   var elements = document.querySelectorAll('[class]')
+   for(let i = 0; i < elements.length; i++){
+      let element = elements[i]
+      element.addEventListener("mouseover", narrator)
+
+   }
+   //removes redundant narration
+   document.getElementById("menubox").removeEventListener("mouseover",narrator)
+   document.getElementById("google_translate_element").removeEventListener("mouseover",narrator)
+}
+
+/**
  * Implements text-to-speech.
  * @param {*} event Event responsible for text to speech
  */
 function narrator(event){
    if(narratorStatus){
+      window.speechSynthesis.cancel()
       speech.text = event.target.innerText
       window.speechSynthesis.speak(speech);
+      
    }
  }
+
+
+//function calls on start
+createMenuButtons();
+getEmployeeIds();
+getOrderId();
+checkAllIngredients();
+setNarrator();
