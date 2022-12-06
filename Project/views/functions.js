@@ -1067,7 +1067,8 @@ function narrator(event){
       
       .then(function(data) {
          if(data.assist.length > 0){
-            console.log(data.assist )
+            
+            alert("Customer Needs Assistance at Kiosk");
             runQuery("delete from assist;")
          }
          
