@@ -39,7 +39,7 @@ function refreshTime() {
 refreshTime()
 setInterval(refreshTime, 1000);
 
-createMenuButtons();
+
 
 // Function to enable a certain category of buttons on click
 /**
@@ -792,12 +792,14 @@ function resetText(){
 }
 
 function createMenuButtons(){
-   if(document.getElementById("Side") == "Customer"){
+   
+   if(document.getElementById("side").innerText == "Customer"){
    var menu = document.getElementsByClassName("menubutton")
    while(menu.length > 0 ){
       //resets previous menu
       menu[0].remove()
    }
+   
 
 var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
    fetch('/getallmenuinfo', {
@@ -817,7 +819,7 @@ var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
       
       .then(function(data) {
          //disables previous area
-
+        
          var menu = data.menu;
          var menuBox = document.getElementById("menubox");
          for(let i = 0; i < menu.length; i++){
@@ -876,6 +878,7 @@ isSyncingRightScroll = false;
 
 
 //function calls on start
+createMenuButtons();
 getEmployeeIds();
 getOrderId();
 checkAllIngredients();

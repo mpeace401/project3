@@ -4,7 +4,7 @@
    <link rel="stylesheet" type="text/css" href="/views/customer.css" id="customer_style"></link>
    <title>Customer Home Page</title>
 </head>
-<body onload="javascript:getOrderId()">
+<body>
 
    <!-- Indicates Customer Side -->
    <div id = "side" hidden = "hidden">Customer</div>
@@ -26,7 +26,6 @@
       zoom:19.59,
    };
    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
    }
    </script>
 
@@ -61,43 +60,7 @@
    <!-- <div class = "cart currentorder" hidden="hidden" style="width:500px; height:50px; left: 800px; position: absolute; border:2px solid maroon;top: 20px; background-color: white; text-align: center;">Current Order</div> -->
    <!--  Creates menu buttons  -->
    <div class="flex-container1" id = "menubox">
-      <% for (var i = 0; i < data.menuArray.length; i++) {%>  
-         <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
-            <!-- Assingns buttons into class depending on category -->
-            <!-- Gets ingredients -->
-            
-            <% var i1 = data.menuMap.get(data.menuArray[i][j]).ingredient1 %>
-            <% if(i1 == null){ %>
-               <%i1 = 0 }%>
-            <% var i2 = data.menuMap.get(data.menuArray[i][j]).ingredient2 %>
-            <% if(i2 == null){ %>
-               <%i2 = 0 }%>
-            <% var i3 = data.menuMap.get(data.menuArray[i][j]).ingredient3 %>
-            <% if(i3 == null){ %>
-               <%i3 = 0 }%>
-            <% var i4 = data.menuMap.get(data.menuArray[i][j]).ingredient4 %>
-            <% if(i4 == null){ %>
-               <%i4 = 0 }%>
-            <% var i5 = data.menuMap.get(data.menuArray[i][j]).ingredient5 %>
-            <% if(i5 == null){ %>
-               <%i5 = 0 }%>
-            <% var i6 = data.menuMap.get(data.menuArray[i][j]).ingredient6 %>
-            <% if(i6 == null){ %>
-               <%i6 = 0 }%>
-            <% var toppings = data.menuMap.get(data.menuArray[i][j]).hastoppings %>      
-            <!-- gets price -->
-            
-            <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
-            <button class = "button menubutton <%= i %> ingr<%= i1 %> ingr<%= i2 %> ingr<%= i3 %> ingr<%= i4 %> ingr<%= i5 %> ingr<%= i6 %>"  
-               id = "menubutton <%=data.menuMap.get(data.menuArray[i][j]).itemid%>" hidden = "hidden" onclick = 
-               "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>, <%=toppings %>)"
-               style="background-image: url(<%=data.menuMap.get(data.menuArray[i][j]).url %>)">
-               
-               <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-               <div class="textbox price" id = "price <%=data.menuMap.get(data.menuArray[i][j]).itemid %>" style="left: 85px; top: 70px; width:200px; height: 20px; position:relative; border: solid maroon 2px;"><%= data.menuMap.get(data.menuArray[i][j]).itemname%>: $<%=price%></div>
-            </button>
-         <% } %>
-      <% } %>
+     
          </div>   
          <div class= "access translate" id="google_translate_element" hidden = "hidden" style = "position: absolute; left: 200px; top: 200px;"></div>
 

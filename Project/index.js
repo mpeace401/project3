@@ -140,7 +140,7 @@ function createMenuArray(data){ //creates 2d array of each itemid sorted by cate
     for (let i = 1; i <= 6; i++){            
       menuArray.push([]); 
       pool   
-        .query('SELECT itemid FROM menuitems where category = '+ i +  'order by itemid;') //queries each category
+        .query('SELECT itemid FROM menuitems where category = '+ i +  ' and active = true order by itemid;') //queries each category
         .then(query_res => {           
           for (let j = 0; j < query_res.rowCount; j++){ 
             menuArray[i-1].push(query_res.rows[j].itemid) //adds each item to its category subarray 
