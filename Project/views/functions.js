@@ -749,6 +749,9 @@ function runQuery(q){
    .then((data) => console.log(data));
 }
 
+/**
+ * Magnifies the current text on screen.
+ */
 function magnifyText(){
    if(document.getElementById("side").innerText == "Customer"){
       var menu = document.getElementsByClassName("menubutton")
@@ -792,6 +795,9 @@ function magnifyText(){
 
 
 }
+/**
+ * Resets the text displayed to its original size.
+ */
 function resetText(){
    if(document.getElementById("side").innerText == "Customer"){
       var menu = document.getElementsByClassName("menubutton")
@@ -832,7 +838,9 @@ function resetText(){
 
 }
 
-
+/**
+ * Toggles the size of the font between original and magnified.
+ */
 function toggleFontSize(){
    if(fontStatus == 0){
       magnifyText();
@@ -842,6 +850,9 @@ function toggleFontSize(){
    }
 }
 
+/**
+ * Creates the menu item buttons.
+ */
 function createMenuButtons(){
    
    
@@ -947,7 +958,10 @@ speech.rate = 1;
 
 
 
-
+/**
+ * Implements text-to-speech.
+ * @param {*} event Event responsible for text to speech
+ */
 function narrator(event){
    if(narratorStatus){
       speech.text = event.target.innerText
