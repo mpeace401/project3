@@ -1046,6 +1046,40 @@ function narrator(event){
  }
 
 
+ function checkAssist(){
+   var q = 'select * from assist;' ;
+   fetch('/getassist', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         return res.json();
+      })
+      
+      .then(function(data) {
+         if(data.assist.length > 0){
+            console.log(data.assist )
+            runQuery("delete from assist;")
+         }
+         
+         
+      });
+
+ }
+
+
+if(document.getElementById("side").innerText == "Server"){
+   //checkAssist()
+   setInterval(checkAssist, 1000);
+}
+
+
 //function calls on start
 createMenuButtons();
 getEmployeeIds();
