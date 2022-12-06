@@ -26,6 +26,20 @@
     
     position: absolute;  
  }
+ .home{
+  width: 200px;
+  height: 100px;
+  margin: 10px 10px;
+  left: 20px;
+
+  border-color:maroon ;
+  outline-color: maroon;
+  background-color: white;
+  color: maroon;
+  font-size: 16px;
+  
+  position: absolute;  
+}
  .flex-container1{
    display:flex;
    flex-wrap: wrap;
