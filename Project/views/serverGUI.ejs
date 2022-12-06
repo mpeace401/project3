@@ -20,7 +20,7 @@
       </button>
    <% } %>
 
-   <button class = "menu accessibility" onclick = "Accessibility()"> Accessibility</button>
+   <button class = "menu misc accessibility" onclick = "Accessibility()"> Accessibility</button>
    <button class = "button access home" onclick = "goToMenu()" hidden = "hidden">Back to Home</button>
    <button class = "button access toggletext" id = "toggletext" hidden = "hidden" onclick ="toggleFontSize()">Magnify Text</button>
    <button class = "button access togglenarrator" id = "togglenarrator" hidden = "hidden" onclick ="toggleNarrator()">Enable Narrator</button>
@@ -31,10 +31,10 @@
    
    
    <!-- Tender Button -->
-   <button class = 'button menu tender' id = 'tender' style = "position: absolute; left: 1180px; top: 650px;" >Tender</button>
+   <button class = 'button menu misc tender' id = 'tender' style = "position: absolute; left: 1180px; top: 650px;" >Tender</button>
 
    <!-- Cancel Button -->
-   <button class = "button menu cancel" id = 'cancel' style = "position: absolute; left: 850px; top: 575px;" onclick = "clearOrder()"> Cancel</button>
+   <button class = "button menu misc cancel" id = 'cancel' style = "position: absolute; left: 850px; top: 575px;" onclick = "clearOrder()"> Cancel</button>
 
    <!--  Creates menu buttons  -->
    <div class = "flex-container1" id = "menubox">
@@ -42,15 +42,15 @@
    </div>   
 
    <div>
-      <div class = "textbox menu time" style = "left: 1000px; top: 10px; position: absolute;">Loading...</div>
+      <div class = "textbox menu misc time" style = "left: 1000px; top: 10px; position: absolute;">Loading...</div>
       <!-- <div class = "textbox" style = "left: 1180px; top: 10px;position: absolute;">Employee</div> -->
-      <select class = "textbox menu staffselect" id="staffselect" style = "left: 1180px; top: 10px;position: absolute;">
+      <select class = "textbox menu misc staffselect" id="staffselect" style = "left: 1180px; top: 10px;position: absolute;">
          <option selected="">Loading...</option>
        </select>
-      <div class = "textbox menu" id="orderId" style = "left: 1000px;top: 60px;">Order ID</div>
-      <input class="textbox menu" id="custname"style = "left: 1180px;top: 60px;" placeholder="Insert Name">
+      <div class = "textbox misc menu" id="orderId" style = "left: 1000px;top: 60px;">Order ID</div>
+      <input class="textbox misc menu" id="custname"style = "left: 1180px;top: 60px;" placeholder="Insert Name">
       
-      <div class = "textbox menu costbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
+      <div class = "textbox menu misc costbox" id = "costbox" style = "left:1000px; top:650px; height:50px; position: absolute;">Total: $0</div>
    </div>
 
 </body>

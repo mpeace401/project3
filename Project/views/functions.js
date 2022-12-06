@@ -793,6 +793,10 @@ function magnifyText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "32px"
       }
+      var misc = document.getElementsByClassName("misc")
+      for(let i = 0; i < misc.length; i++){
+         misc[i].style.fontSize = "16px"
+      }
    }
 
    
@@ -850,6 +854,10 @@ function resetText(){
       var categories = document.getElementsByClassName("access")
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "16px"
+      }
+      var misc = document.getElementsByClassName("misc")
+      for(let i = 0; i < misc.length; i++){
+         misc[i].style.fontSize = "12px"
       }
    }
    
@@ -1013,7 +1021,10 @@ function setNarrator(){
    }
    //removes redundant narration
    document.getElementById("menubox").removeEventListener("mouseover",narrator)
-   document.getElementById("google_translate_element").removeEventListener("mouseover",narrator)
+   if(document.getElementById("side").innerText == "Customer"){
+      document.getElementById("google_translate_element").removeEventListener("mouseover",narrator)
+   }
+   
 }
 
 /**
