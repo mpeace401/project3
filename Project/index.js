@@ -336,7 +336,8 @@ app.post('/getRestockReport', jsonParser, function(req, res) {
       let inventoryid = query_res.rows[i].inventoryid
       let stockname = query_res.rows[i].stockname
       let itemamount = query_res.rows[i].itemamount
-      let items = {inventoryid: inventoryid, stockname: stockname, itemamount: itemamount} 
+      let threshold = query_res.rows[i].threshold
+      let items = {inventoryid: inventoryid, stockname: stockname, itemamount: itemamount, threshold: threshold} 
       inventoryIds.push(items)
     }
 
