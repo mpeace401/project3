@@ -25,6 +25,11 @@ var notiIngrs = [];
 //used to store status of font size
 var fontStatus = 0;
 
+//useed to store and update size of remove buttons
+var removeSize = 0;
+removeHeight = 0;
+removeFont = 0;
+
 //used to display real time
 /**
  * Refreshes the time displayed.
@@ -223,7 +228,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
    
 
    if(document.getElementById("side").innerText == "Server"){
-      var intTop = 0 + 18.2 * removeArray.length
+      var intTop = 0 + removeSize * removeArray.length
       var top = intTop.toString()
       x.style.top = top+ "px"
       
@@ -231,7 +236,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
    }
    else if(document.getElementById("side").innerText == "Customer"){
 
-      var intTop = 0 + 18.2 * removeArray.length
+      var intTop = 0 + removeSize * removeArray.length
       var top = intTop.toString()
       x.style.top = top + "px"
       x.className += "cart ";
@@ -240,6 +245,8 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
    }
    x.className += "remove";
    x.innerHTML = "Remove";
+   x.style.height = removeHeight + "px"
+   x.style.fontSize = removeFont + "px"
    document.getElementById("removebox").appendChild(x);
 
   
@@ -756,7 +763,9 @@ function magnifyText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "32px"
       }
-      document.getElementById("toggletext").innerText = "Reset Font Size"
+      document.getElementById("toggletext").innerText = "Reset Text Size"
+
+      document.getElementById("orderbox").style.fontSize = "25px"
       
    }
    var misc = document.getElementsByClassName("misc")
@@ -764,8 +773,20 @@ function magnifyText(){
       misc[i].style.fontSize = "20px"
    }
    
-   
+   removeSize = 28
+   removeHeight = 34
+   removeFont = 22
    fontStatus = 1;
+   console.log(removeArray.length)
+   for(let i = 0; i < removeArray.length; i++){
+      var removeB = removeArray[i];
+
+      removeB.style.top =  removeSize * i + "px";
+      removeB.style.height = removeHeight + "px"
+      removeB.style.fontSize = removeFont + "px"
+
+   }
+
 
 }
 function resetText(){
@@ -775,7 +796,6 @@ function resetText(){
          menu[i].style.fontSize = "12px"
       }
       var names = document.getElementsByClassName("textbox price")
-      console.log(names.length)
       for(let i = 0; i < names.length; i++){
          
          names[i].style.height = "20px"
@@ -786,13 +806,27 @@ function resetText(){
          categories[i].style.fontSize = "12px"
       }
       document.getElementById("toggletext").innerText = "Increase Text Size"
+
+      document.getElementById("orderbox").style.fontSize = "16px"
    }
    var misc = document.getElementsByClassName("misc")
    for(let i = 0; i < misc.length; i++){
       misc[i].style.fontSize = "12px"
    }
-   
+   removeSize = 18.2
+   removeHeight = 16
+   removeFont = 12
    fontStatus = 0;
+   console.log(removeArray.length)
+   for(let i = 0; i < removeArray.length; i++){
+      var removeB = removeArray[i];
+      removeB.style.top = removeSize * i + "px";
+      removeB.style.height = removeHeight + "px"
+      removeB.style.fontSize = removeFont + "px"
+      
+   }
+
+
 }
 
 

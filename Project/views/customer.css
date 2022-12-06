@@ -103,7 +103,7 @@
  .remove{
    height: 15px;
    position: absolute;
-   left: 30px;
+   right: 20px;
    font-size: 10px;
  }
 
