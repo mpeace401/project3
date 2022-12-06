@@ -30,29 +30,35 @@
    </div>
 
    <div id="Home" class="tabcontent">
-      <button class="notificationColumnNames" style="margin-left: 0.5%;">ID</button><button class="notificationColumnNames">NAME</button><button class="notificationColumnNames">DATE</button><button class="notificationColumnNames">TIME</button><button class="notificationColumnNames">MESSAGE</button>
+      <div readonly class="notifColBox">
+         <button class="notifColNames">ID</button>
+         <button class="notifColNames">NAME</button>
+         <button class="notifColNames">DATE</button>
+         <button class="notifColNames">TIME</button>
+         <button class="notifColNames">MESSAGE</button>
+      </div>
       <div readonly class="notifications">
          <% for (const value of managerData.notificationsMap.values()) {%>
-            <nobr>
                <button class="notificationItem" style="pointer-events: none">
                   <%= value.inventoryid %>
-               </button><button class="notificationItem" style="pointer-events: none">
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
                   <%= value.message.split(' ')[3] %>
-               </button><button class="notificationItem" style="pointer-events: none">
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
                   <%= value.date.toDateString() %>
-               </button><button class="notificationItem" style="pointer-events: none">
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
                   <%= value.time.split('.')[0] %>
-               </button><button class="notificationItem" style="pointer-events: none">
+               </button>
+               <button class="notificationItem" style="pointer-events: none">
                   <%= value.message %>
                </button>
-            </nobr>
          <% } %>
       </div>
    </div>
    
    <div id="Inventory" class="tabcontent">
-      <button class="subbutton" onclick="addInventoryItems(event)" style="width: 44%;">ADD NEW ITEM</button>
-
       <div class="invAndMenuFieldGroup">
          <div>
             <input readonly value="ID" class="attributeName">
@@ -76,14 +82,13 @@
          <button class="subbutton" onclick="removeItem(event)">REMOVE ITEM</button>
          <button class="subbutton" onclick="updateItem(event)">UPDATE ITEM</button>
       </div>
-
-      <div class="scrollArea" id = "inventoryArea">         
-
+      <div style="display:flex;align-items:flex-start;width:44%;">
+         <button class="subbutton" onclick="addInventoryItems(event)" style="width: 100%;">ADD NEW ITEM</button>
       </div>
-
+      <div class="scrollArea" id = "inventoryArea"></div>
    </div>
    
-   <div id="Finance" class="tabcontent">
+   <div id="Finance" class="tabcontent" style="text-align:left">
       <div class="reports">
          <button class="reportTab" onclick="openReport(event, 'Sales')">Sales Report</button>
          <button class="reportTab" onclick="openReport(event, 'Excess')">Excess Report</button>
@@ -102,9 +107,11 @@
             <input class="dateTimeEntryBox" id="salesEndDate">
          </div>
          <div class="reportColumnNamesDiv">
-            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">AMOUNT SOLD</button><button class="reportColumnNames">TOTAL SALES</button>
-            <div class="reportBox" id="salesReportBox"></div>
+            <button class="reportColumnNames">ID</button>
+            <button class="reportColumnNames">AMOUNT SOLD</button>
+            <button class="reportColumnNames">TOTAL SALES</button>
          </div>
+         <div class="reportBox" id="salesReportBox"></div>
       </div>
       <div id="Excess" class="reportContent">
          <div>
@@ -117,35 +124,42 @@
             <input class="dateTimeEntryBox" id="excessStartTime">
          </div>
          <div class="reportColumnNamesDiv">
-            <button class="reportColumnNames" style="margin-left: 0.5%;width: 48.8%;">ID</button><button class="reportColumnNames" style="width:48.8%;">AMOUNT</button>
-            <div class="reportBox" id="excessReportBox"></div>
+            <button class="reportColumnNames" style="flex-basis: 50%;">ID</button>
+            <button class="reportColumnNames" style="flex-basis: 50%;">AMOUNT</button>
          </div>
+         <div class="reportBox" id="excessReportBox"></div>
       </div>
       <div id="Restock" class="reportContent">
-         <button class="enterButton" style="width:81.5%" onclick="getRestockReport(event)">ENTER</button>
+         <button class="enterButton" style="width:81.15%;float:none;margin-right: 0%;" onclick="getRestockReport(event)">ENTER</button>
          <div class="reportColumnNamesDiv">
-            <button class="reportColumnNames" style="margin-left: 0.5%;">ID</button><button class="reportColumnNames">NAME</button><button class="reportColumnNames">AMOUNT</button>
-            <div class="reportBox" id="restockReportBox"></div>
+            <button class="reportColumnNames">ID</button>
+            <button class="reportColumnNames">NAME</button>
+            <button class="reportColumnNames">AMOUNT</button>
          </div>
+         <div class="reportBox" id="restockReportBox"></div>
       </div>
       <div id="WST" class="reportContent">
          <div>
-            <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
-            <input class="dateTimeEntryBox" id="WSTStartDate">
-            <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
-            <input class="dateTimeEntryBox" id="WSTStartTime">
             <button class="enterButton" style="width: 21%">ENTER</button>
-         </div>
-         <div>
-            <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
-            <input class="dateTimeEntryBox" id="WSTEndDate">
-            <button readonly class="dateTimeBox">End Time (HH:MM:SS) (OPTIONAL)</button>
-            <input class="dateTimeEntryBox" id="WSTEndTime">
+            <div>
+               <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
+               <input class="dateTimeEntryBox" id="WSTStartDate">
+               <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
+               <input class="dateTimeEntryBox" id="WSTStartTime">
+            </div>
+            <div>
+               <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
+               <input class="dateTimeEntryBox" id="WSTEndDate">
+               <button readonly class="dateTimeBox">End Time (HH:MM:SS) (OPTIONAL)</button>
+               <input class="dateTimeEntryBox" id="WSTEndTime">
+            </div>
          </div>
          <div class="reportColumnNamesDiv">
-            <button class="reportColumnNames" style="margin-left: 0.5%;">FREQUENCY</button><button class="reportColumnNames">ITEM 1</button><button class="reportColumnNames">ITEM 2</button>
-            <div class="reportBox" id="WSTReportBox"></div>
+            <button class="reportColumnNames">FREQUENCY</button>
+            <button class="reportColumnNames">ITEM 1</button>
+            <button class="reportColumnNames">ITEM 2</button>
          </div>
+         <div class="reportBox" id="WSTReportBox"></div>
       </div>
    </div>
    
@@ -156,7 +170,7 @@
             <% for (const value of managerData.inventoryTransactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
                   #<%= value.orderid %>, ID: <%= value.stockid %>, Amount: <%= value.numitems %>, Total: $<%= value.pricetotal %>
-                  <br><div style="font-size: 0.5em;height:0;"><%= value.dateordered %></div>
+                  <br><div style="font-size: 0.75em;"><%= value.dateordered %></div>
                </button>
             <% } %>
          </div>
@@ -168,7 +182,7 @@
             <% for (const value of managerData.transactionsMap.values()) {%>
                <button class="itemButton" style="pointer-events: none;">
                   #<%= value.transactionid %>, Items: <%= value.itemnum %>, Name: <%= value.custname %>, Employee: <%= value.staffid %>, Total: $<%= value.price %>
-                  <br><div style="font-size: 0.5em;height:0;"><%= value.time %></div>
+                  <br><div style="font-size: 0.75em;"><%= value.time %></div>
                </button>
             <% } %>
          </div>
@@ -176,8 +190,6 @@
    </div>
    
    <div id="Menu Items" class="tabcontent">
-      <button class="subbutton" onclick="addMenuItems(event)" style="width: 44%;">ADD NEW ITEM</button>
-
       <div class="invAndMenuFieldGroup">
          <div>
             <input readonly value="ID" class="attributeName">
@@ -238,13 +250,14 @@
          <button class="subbutton" onclick="updateMenuItem(event)">UPDATE ITEM</button>
       </div>
 
-      <div class="scrollArea" id = "menuArea">         
-
+      <div style="display:flex;align-items:flex-start;width:44%;">
+         <button class="subbutton" onclick="addInventoryItems(event)" style="width: 100%;">ADD NEW ITEM</button>
       </div>
-
+      <div class="scrollArea" id = "menuArea"></div>
    </div>
    <div id="Accessibility" class="tabcontent">
-      <label><input id="font-size" type="range" min="10" max="2000" step="1" value="100"></label>
+      Font-Size Adjustor<br>
+      <label><input id="font-size" type="range" min="10" max="250" step="1" value="100"></label>
    </div>
 </body>
 <script src="/views/managerFunctions.js"> </script>
