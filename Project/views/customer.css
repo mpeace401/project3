@@ -118,9 +118,11 @@ p {
    overflow: scroll;
  }
  .translate{
-   position: relative;
-   top: 100px;
-   height: 200px;
+   position: absolute;
+   top: 25px;
+   left: 680px; 
+
+
  }
 
  .magnify{
@@ -157,3 +159,4 @@ p {
     background-color: white;
     color: maroon;
 }
+

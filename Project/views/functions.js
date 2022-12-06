@@ -1049,6 +1049,9 @@ function narrator(event){
  }
 
 
+ /**
+ * Checks database for assist notifications
+ */
  function checkAssist(){
    var q = 'select * from assist;' ;
    fetch('/getassist', {
