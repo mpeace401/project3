@@ -9,6 +9,10 @@ body {
 .tab {
     overflow: hidden;
     text-align: center;
+    word-break: break-word;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 .tab button {
@@ -33,40 +37,71 @@ body {
 
 .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 1%;
     border: 1px solid #ccc;
     border-top: none;
+    text-align: center;
 }
 
-.reports {
-    overflow: hidden;
-}
-
-.reports button {
-    color: maroon;
+.toDoList {
+    width: 100%;
+    height: 36.3em;
+    resize: none;
+    float: left;
     font-size: 1em;
+    border: 1px solid maroon;
+}
+.toDoListDiv {
+    text-align: center;
+    float: left;
+    padding: 2vh 2vw;
+    width:10%;
+}
+
+.notifications {
+    width: 85%;
+    height: 42.8em;
+    resize: none;
+    text-align: center;
+    border: 1px solid maroon;
     background-color: white;
-    width: 23%;
-    height: 4em;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    overflow-y: scroll;
+}
+
+.notificationItem {
+    font-size: 1em;
+    flex-basis: 20%;
+    vertical-align: middle;
+    padding: 0.5%;
+    word-break: break-word;
+}
+
+.notifColBox {
+    width: 85%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    overflow-x: none;
+    overflow-y: scroll;
+    word-break: break-word;
+}
+
+.notifColBox::-webkit-scrollbar { 
+    background: transparent;
+}
+
+.notifColNames {
+    flex-basis: 20%;
+    font-size: 1em;
+    text-align: center;
+    border-width: 1px;
     border-color: maroon;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.reports button:hover {
-    background-color: lightgray;
-}
-
-.reports button.active {
-    color: white;
-    background-color: maroon;
-}
-
-.reportContent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+    background-color: darkgray;
+    word-wrap: break-word;
+    padding: 0.5%;
 }
 
 .subbutton {
@@ -124,54 +159,6 @@ body {
     text-align: center;
 }
 
-.toDoList {
-    width: 100%;
-    height: 36.3em;
-    resize: none;
-    float: left;
-    font-size: 1em;
-    border-color: maroon;
-    border-width: 2px;
-}
-.toDoListDiv {
-    text-align: center;
-    float: left;
-    padding: 2vh 2vw;
-    width:10%;
-}
-
-.notifications {
-    width: 86%;
-    height: 42.8em;
-    resize: none;
-    text-align: center;
-    /* font-size: inherit; */
-    border-color: maroon;
-    border-width: 2px;
-    background-color: white;
-    float: right;
-    margin-right: 0.5%;
-    overflow-y: scroll;
-}
-
-.notificationColumnNames {
-    width: 16.81%;
-    font-size: 1em;
-    height: 2em;
-    text-align: center;
-    border-width: 1px;
-    border-color: maroon;
-    pointer-events: none;
-    background-color: darkgray;
-}
-
-.notificationItem {
-    font-size: 1em;
-    width: 19.8%;
-    height: 2em;
-    vertical-align: middle;
-}
-
 .invAndMenuFieldGroup {
     float: right;
     width: 40%;
@@ -180,24 +167,82 @@ body {
 .itemButton {
     font-size: 1em;
     width: 100%;
-    height: 2em;
+    height: fit-content;
+    padding: 1%;
 }
 
-.transactionsBox {
-    border: 1px solid maroon;
-    width: 100%;
-    height: 41em;
+.reports {
+    overflow: hidden;
+    text-align: center;
+    word-break: break-word;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.reports button {
+    color: maroon;
+    font-size: 1em;
+    background-color: white;
+    width: 23%;
+    height: 4em;
+    border-color: maroon;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reports button:hover {
+    background-color: lightgray;
+}
+
+.reports button.active {
+    color: white;
+    background-color: maroon;
+}
+
+.reportContent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.reportBox {
+    font-size: 1em;
+    height: 30em;
+    width: 81.5%;
+    border-width: 1px;
+    border-color: maroon;
+    resize: none;
+    background-color: white;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
     overflow-y: scroll;
 }
 
-.transactionsName {
+.reportColumnNamesDiv {
+    width: 81.5%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    overflow-x: none;
+    overflow-y: scroll;
+    word-break: break-word;
+}
+
+.reportColumnNamesDiv::-webkit-scrollbar { 
+    background: transparent;
+}
+
+.reportColumnNames {
+    flex-basis: 33.33%;
     font-size: 1em;
-    width: 99%;
-    height: 3em;
-    margin-bottom: 0.5em;
-    border-color: maroon;
     text-align: center;
-    background-color: rgb(238, 238, 238);
+    border-width: 1px;
+    border-color: maroon;
+    background-color: darkgray;
+    word-wrap: break-word;
+    padding: 0.5%;
 }
 
 .dateTimeBox {
@@ -225,33 +270,6 @@ body {
     vertical-align: middle;
 }
 
-.reportBox {
-    font-size: 1em;
-    height: 30em;
-    border-width: 1px;
-    border-color: maroon;
-    text-align: center;
-    resize: none;
-    overflow-y: scroll;
-    background-color: white;
-}
-
-.reportColumnNames {
-    width: 32.53%;
-    font-size: 1em;
-    height: 2em;
-    text-align: center;
-    border-width: 1px;
-    border-color: maroon;
-    pointer-events: none;
-    background-color: darkgray;
-}
-
-.reportColumnNamesDiv {
-    width: 81.5%;
-    display: inline-block;
-}
-
 .enterButton {
     color: white;
     font-size: 1em;
@@ -259,11 +277,10 @@ body {
     border-color: maroon;
     cursor: pointer;
     transition: 0.2s;
-
+    float: right;
     height: 7.4em;
     width: 50%;
-    float:right;
-    margin-right:5.5%;
+    margin-right: 6%;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
@@ -275,4 +292,20 @@ body {
 .enterButton:active {
     background-color: black;
     transition: 0s;
+}
+
+.transactionsBox {
+    border: 1px solid maroon;
+    width: 100%;
+    height: 41em;
+    overflow-y: scroll;
+}
+
+.transactionsName {
+    font-size: 1em;
+    width: 100%;
+    height: 3em;
+    border-color: maroon;
+    text-align: center;
+    background-color: darkgray;
 }

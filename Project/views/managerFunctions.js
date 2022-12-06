@@ -537,19 +537,19 @@ function getRestockReport(evt) {
          for (let i = 0; i < data.inventoryIds.length; i++) {
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].inventoryid
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].stockname
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].itemamount
             document.getElementById("restockReportBox").appendChild(x);
