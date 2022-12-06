@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-   <!-- <link rel="stylesheet" type="text/css" href="/views/manager.css" id="manager_style"></link> -->
-   <title>Login</title>
+   <link rel="stylesheet" type="text/css" href="/views/index.css" id="index_style"></link>
+   <title><%= title %></title>
 </head>
 <body>
-   <nav>
-      <ul>
-         <% if(isAuthenticated) { %>
-            <li><a href="/login/">Login</a></li>
+   <h1><%= title %></h1>
+   <% if(!isAuthenticated) { %>
+      <a href="/login/"><img src="https://api.dineoncampus.com/files/images/50e9b78d-707c-4cda-9cde-366d35401581.png"></a>
+      <p>
+         Press the Image to Login
+      </p>
          <% } else { %>
-         <li><a href="/logout/">Login</a></li>
+         <a class="logout" href="/logout/">Logout</a>
+      <ul>
+         <% if(user.nickname == "blakelunnn") { %>
+            <li><a href="/manager/">Manager</a></li>
+            <% } %>
+         <li><a href="/server/">Server</a></li>
+         <li><a href="/customer/">Customer</a></li>
          <% } %>
       </ul>
-   </nav>
-   <h1><%= title %></h1>
-   <p>Welcome to <%= title %></p>
 </body>
-<!-- <script src="/views/managerFunctions.js"> </script> -->
+<script src="/views/indexFunctions.js"> </script>
 </html>
