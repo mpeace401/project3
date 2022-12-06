@@ -1,6 +1,5 @@
 
 
-
 //array to store item ids
 var orderArray = [];
 
@@ -26,7 +25,7 @@ var notiIngrs = [];
 var fontStatus = 0;
 
 //used to store narrator status
-var narratorStatus = 1;
+var narratorStatus = 0;
 
 //useed to store and update size of remove buttons
 var removeSize = 0;
@@ -847,6 +846,24 @@ function toggleFontSize(){
    }
    else{
       resetText();
+   }
+}
+
+function toggleNarrator(){
+   window.speechSynthesis.cancel()
+   var button = document.getElementById("togglenarrator")
+   if(narratorStatus == 0){
+      speech.text = "Narrator enabled"
+      window.speechSynthesis.speak(speech);
+      narratorStatus = 1
+      button.innerText = "Disable Narrator"
+
+   }
+   else{
+      speech.text = "Disabling narrator"
+      window.speechSynthesis.speak(speech);
+      narratorStatus = 0
+      button.innerText = "Enable Narrator"
    }
 }
 

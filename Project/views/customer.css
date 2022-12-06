@@ -124,11 +124,25 @@ p {
  }
 
  .magnify{
-   position: relative;
+   
+   width: 150px;
+   height: 50px;
+   position: absolute; 
+   left: 340px; 
+   top: 25px;
+   border-color: maroon ;
+    outline-color: maroon;
+    background-color: white;
+    color: maroon;
+ }
+.narrator{
+   position: absolute; 
+   left: 170px; 
+   top: 25px;
    width: 150px;
    height: 50px;
    border-color: maroon ;
     outline-color: maroon;
     background-color: white;
     color: maroon;
- }
+}
