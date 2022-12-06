@@ -1,4 +1,5 @@
 
+
 //array to store item ids
 var orderArray = [];
 
@@ -37,6 +38,8 @@ function refreshTime() {
  }
 refreshTime()
 setInterval(refreshTime, 1000);
+
+createMenuButtons();
 
 // Function to enable a certain category of buttons on click
 /**
@@ -197,7 +200,7 @@ let addToOrder = (orderArray, id, price, i1, i2, i3, i4, i5, i6, toppings) => {
          }
          
       }
-      text = name + "$" + price
+      text = name + "$" + parseFloat(price).toFixed(2);
    }
    else if (document.getElementById("side").innerText == "Customer"){
       text = document.getElementById("price " + id).innerText
@@ -739,9 +742,12 @@ function magnifyText(){
       var menu = document.getElementsByClassName("menubutton")
       for(let i = 0; i < menu.length; i++){
          menu[i].style.fontSize = "18px"
+        
+
       }
       var names = document.getElementsByClassName("textbox price")
       for(let i = 0; i < names.length; i++){
+         console.log(i)
          names[i].style.height = "40px"
          names[i].style.top = "65px"
       }
@@ -765,7 +771,9 @@ function resetText(){
          menu[i].style.fontSize = "12px"
       }
       var names = document.getElementsByClassName("textbox price")
+      console.log(names.length)
       for(let i = 0; i < names.length; i++){
+         
          names[i].style.height = "20px"
          names[i].style.top = "75px"
       }
@@ -782,8 +790,65 @@ function resetText(){
 
 
 }
-magnifyText()
-resetText()
+
+function createMenuButtons(){
+   if(document.getElementById("Side") == "Customer"){
+   var menu = document.getElementsByClassName("menubutton")
+   while(menu.length > 0 ){
+      //resets previous menu
+      menu[0].remove()
+   }
+
+var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
+   fetch('/getallmenuinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.inventory)
+         return res.json();
+      })
+      
+      .then(function(data) {
+         //disables previous area
+
+         var menu = data.menu;
+         var menuBox = document.getElementById("menubox");
+         for(let i = 0; i < menu.length; i++){
+            let button = document.createElement("button")
+            
+            button.className += "button menubutton " + (menu[i].category - 1).toString() + " igr" + menu[i].i1 + " igr" + menu[i].i2
+            button.className +=" igr" + menu[i].i3 + " igr" + menu[i].i4 + " igr" + menu[i].i5 + " igr" + menu[i].i6
+            button.id = "menubutton " + menu[i].id
+            let textArea = document.createElement("div")
+            textArea.className += "textbox price"
+            textArea.id = "price " + + menu[i].id
+            textArea.innerText= "$" + parseFloat(menu[i].price).toFixed(2) + " " + menu[i].name
+            textArea.style = "left: 85px; top: 70px; width:200px; height: 20px; position:relative; border: solid maroon 2px;"
+            button.style= "background-image: url(" + menu[i].url + ");"
+            button.setAttribute("hidden", "hidden")
+            
+
+            button.onclick = function() {addToOrder(orderArray, menu[i].id, menu[i].price, menu[i].i1, menu[i].i2, menu[i].i3, menu[i].i4, menu[i].i5, menu[i].i6, menu[i].hastoppings)}
+            button.appendChild(textArea)
+            menuBox.appendChild(button)
+         }
+         resetText()
+         
+      });
+   }
+      
+}
+
+
+
+
 
 //syncs scrolling with orderbox and cancelbox
 
