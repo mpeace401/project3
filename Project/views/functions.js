@@ -768,19 +768,35 @@ function magnifyText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "32px"
       }
-      document.getElementById("toggletext").innerText = "Reset Text Size"
+      var misc = document.getElementsByClassName("misc")
+      for(let i = 0; i < misc.length; i++){
+         misc[i].style.fontSize = "20px"
+      }
+      removeSize = 28
+      removeHeight = 34
+      removeFont = 22
+      
 
       document.getElementById("orderbox").style.fontSize = "25px"
-      
    }
-   var misc = document.getElementsByClassName("misc")
-   for(let i = 0; i < misc.length; i++){
-      misc[i].style.fontSize = "20px"
+   else if(document.getElementById("side").innerText == "Server"){
+      var menu = document.getElementsByClassName("menubutton")
+      for(let i = 0; i < menu.length; i++){
+         menu[i].style.fontSize = "24px"
+        
+      }
+      var categories = document.getElementsByClassName("categorybutton")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "32px"
+      }
+      var categories = document.getElementsByClassName("access")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "32px"
+      }
    }
+
    
-   removeSize = 28
-   removeHeight = 34
-   removeFont = 22
+   document.getElementById("toggletext").innerText = "Reset Text Size"
    fontStatus = 1;
    console.log(removeArray.length)
    for(let i = 0; i < removeArray.length; i++){
@@ -813,17 +829,34 @@ function resetText(){
       for(let i = 0; i < categories.length; i++){
          categories[i].style.fontSize = "12px"
       }
-      document.getElementById("toggletext").innerText = "Increase Text Size"
-
+      
+      var misc = document.getElementsByClassName("misc")
+      for(let i = 0; i < misc.length; i++){
+         misc[i].style.fontSize = "12px"
+      }
+      
       document.getElementById("orderbox").style.fontSize = "16px"
    }
-   var misc = document.getElementsByClassName("misc")
-   for(let i = 0; i < misc.length; i++){
-      misc[i].style.fontSize = "12px"
+   else if(document.getElementById("side").innerText == "Server"){
+      var menu = document.getElementsByClassName("menubutton")
+      for(let i = 0; i < menu.length; i++){
+         menu[i].style.fontSize = "16px"
+      
+      }
+      var categories = document.getElementsByClassName("categorybutton")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "16px"
+      }
+      var categories = document.getElementsByClassName("access")
+      for(let i = 0; i < categories.length; i++){
+         categories[i].style.fontSize = "16px"
+      }
    }
+   
    removeSize = 18.2
    removeHeight = 16
    removeFont = 12
+   document.getElementById("toggletext").innerText = "Increase Text Size"
    fontStatus = 0;
    console.log(removeArray.length)
    for(let i = 0; i < removeArray.length; i++){
