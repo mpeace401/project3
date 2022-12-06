@@ -25,6 +25,9 @@ var notiIngrs = [];
 //used to store status of font size
 var fontStatus = 0;
 
+//used to store narrator status
+var narratorStatus = 0;
+
 //useed to store and update size of remove buttons
 var removeSize = 0;
 removeHeight = 0;
@@ -878,6 +881,7 @@ var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
             button.id = "menubutton " + menu[i].id
             button.setAttribute("hidden", "hidden")
             button.onclick = function() {addToOrder(orderArray, menu[i].id, menu[i].price, menu[i].i1, menu[i].i2, menu[i].i3, menu[i].i4, menu[i].i5, menu[i].i6, menu[i].hastoppings)}
+            button.addEventListener("mouseover", narrator)
             if(document.getElementById("side").innerText == "Customer"){
                
                let textArea = document.createElement("div")
@@ -934,3 +938,19 @@ createMenuButtons();
 getEmployeeIds();
 getOrderId();
 checkAllIngredients();
+
+let speech = new SpeechSynthesisUtterance();
+speech.lang = "en";
+speech.volume = 1;
+speech.pitch = 1;
+speech.rate = 1;
+
+
+
+
+function narrator(event){
+   if(narratorStatus){
+      speech.text = event.target.innerText
+      window.speechSynthesis.speak(speech);
+   }
+ }
