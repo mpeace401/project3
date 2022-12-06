@@ -895,6 +895,9 @@ function toggleFontSize(){
    }
 }
 
+/**
+ * Toggles whether of not the narrator is enabled.
+ */
 function toggleNarrator(){
    window.speechSynthesis.cancel()
    var button = document.getElementById("togglenarrator")
