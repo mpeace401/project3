@@ -90,3 +90,14 @@
   position: absolute;
   overflow: scroll;
 }
+.accessibility{
+  top: 750px;
+  left: 25px;
+  width: 150px;
+  height: 50px;
+  border-color: maroon ;
+  outline-color: maroon;
+  background-color: white;
+  color: maroon;
+  position: relative;
+}
