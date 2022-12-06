@@ -1,5 +1,16 @@
 const express = require('express');
 var bodyParser = require('body-parser')
+var indexRouter = require("./routes/index.js");
+const { auth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUER,
+}
 
 var jsonParser = bodyParser.json();
 const { Pool } = require('pg');
@@ -7,6 +18,11 @@ const dotenv = require('dotenv').config();
 
 const app = express();
 const port = 3001;
+app.set("views", "views");
+app.use(express.json());
+app.use
+app.use(auth(config));
+app.use("/", indexRouter)
 
 const pool = new Pool({ 
   user: 'csce315_907_garza',
