@@ -795,6 +795,12 @@ function magnifyText(){
       for(let i = 0; i < misc.length; i++){
          misc[i].style.fontSize = "16px"
       }
+
+      removeSize = 22.8
+      removeHeight = 25
+      removeFont = 12
+
+      document.getElementById("orderbox").style.fontSize = "20px"
    }
 
    
@@ -857,9 +863,10 @@ function resetText(){
       for(let i = 0; i < misc.length; i++){
          misc[i].style.fontSize = "12px"
       }
+
+      document.getElementById("orderbox").style.fontSize = "16px"
    }
-   
-   removeSize = 18.2
+   removeSize = 18
    removeHeight = 16
    removeFont = 12
    document.getElementById("toggletext").innerText = "Increase Text Size"
