@@ -167,3 +167,10 @@ p {
     color: maroon;
 }
 
+.logo{
+   position: absolute;
+   width: 250px;
+   height: auto;
+   left: 1200px;
+   top: -70px;
+}
