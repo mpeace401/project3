@@ -756,7 +756,6 @@ function magnifyText(){
       var menu = document.getElementsByClassName("menubutton")
       for(let i = 0; i < menu.length; i++){
          menu[i].style.fontSize = "18px"
-        
 
       }
       var names = document.getElementsByClassName("textbox price")
@@ -775,7 +774,6 @@ function magnifyText(){
       removeSize = 28
       removeHeight = 34
       removeFont = 22
-      
 
       document.getElementById("orderbox").style.fontSize = "25px"
    }
@@ -797,6 +795,12 @@ function magnifyText(){
       for(let i = 0; i < misc.length; i++){
          misc[i].style.fontSize = "16px"
       }
+
+      removeSize = 22.8
+      removeHeight = 25
+      removeFont = 12
+
+      document.getElementById("orderbox").style.fontSize = "20px"
    }
 
    
@@ -859,9 +863,10 @@ function resetText(){
       for(let i = 0; i < misc.length; i++){
          misc[i].style.fontSize = "12px"
       }
+
+      document.getElementById("orderbox").style.fontSize = "16px"
    }
-   
-   removeSize = 18.2
+   removeSize = 18
    removeHeight = 16
    removeFont = 12
    document.getElementById("toggletext").innerText = "Increase Text Size"
@@ -890,6 +895,9 @@ function toggleFontSize(){
    }
 }
 
+/**
+ * Toggles whether of not the narrator is enabled.
+ */
 function toggleNarrator(){
    window.speechSynthesis.cancel()
    var button = document.getElementById("togglenarrator")
@@ -1039,6 +1047,55 @@ function narrator(event){
       
    }
  }
+
+
+ /**
+ * Checks database for assist notifications
+ */
+ function checkAssist(){
+   var q = 'select * from assist;' ;
+   fetch('/getassist', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         return res.json();
+      })
+      
+      .then(function(data) {
+         if(data.assist.length > 0){
+            
+            alert("Customer Needs Assistance at Kiosk");
+            runQuery("delete from assist;")
+         }
+         
+         
+      });
+
+ }
+
+/**
+ * Used to alert server GUIs that help is needed at kiosk
+ */
+function callForHelp(){
+   var q = "insert  into  assist (instance) values (true);"
+   runQuery(q)
+   alert("Employee has been notified.");
+
+}
+
+
+//checks periodically for help alerts
+if(document.getElementById("side").innerText == "Server"){
+
+   setInterval(checkAssist, 1000);
+}
 
 
 //function calls on start

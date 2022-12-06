@@ -430,3 +430,18 @@ app.post('/getallmenuinfo', jsonParser, function(req, res) {
     
     });
 })
+
+app.post('/getassist', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+  .then(query_res => {
+    var assist = []  
+    for(let i = 0; i < query_res.rowCount; i++){
+      assist.push( query_res.rows[i].instance)
+    }
+    res.send({assist})
+    
+    });
+
+})
