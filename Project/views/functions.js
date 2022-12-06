@@ -1077,6 +1077,12 @@ function narrator(event){
 
  }
 
+function callForHelp(){
+   var q = "insert  into  assist (instance) values (true);"
+   runQuery(q)
+   alert("Employee has been notified.");
+
+}
 
 if(document.getElementById("side").innerText == "Server"){
    //checkAssist()
