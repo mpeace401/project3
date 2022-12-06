@@ -119,10 +119,17 @@ p {
  }
  .translate{
    position: absolute;
-   top: 25px;
-   left: 680px; 
+   top: 140px;
+   left: 160px; 
 
 
+ }
+ .translateimg{
+   position: absolute;
+   top: 70px;
+   left: -20px; 
+   height: 170px;
+   width: 170px;
  }
 
  .magnify{

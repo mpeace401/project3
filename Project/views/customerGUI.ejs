@@ -36,7 +36,7 @@
 
    <!-- Go to Cart Button -->
    <button class = "menu misc button gotocart" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToCart()">Go to Cart</button>
-   <button class = 'cart misc button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 990px; top: 650px;" onmouseover = "narrator(event)">Checkout</button>
+   <button class = 'cart misc button tender' hidden = "hidden" id = 'tender' style = "position: absolute; left: 990px; top: 650px;" onmouseover = "narrator(event)" onclick = "goToMenu()">Checkout </button>
    <button class = "cart misc button gotomenu" hidden = "hidden" style = "position: absolute; left: 340px; top: 25px;" onclick ="goToMenu()">Back to Menu</button>
    
 
@@ -69,11 +69,11 @@
          <div class= "access misc translate" id="google_translate_element" hidden = "hidden" ></div>
          <button class = "access misc button magnify" id = "toggletext" hidden = "hidden" onclick = "toggleFontSize()">Increase Text Size</div>
          <button class = "access misc button narrator" id = "togglenarrator" hidden = "hidden" onclick = "toggleNarrator()">Enable Narrator</div>
-         <button class = "access misc button help" id = "hel" hidden = "hidden" onclick = "callForHelp()">Click for Help</div>
-
+         <button class = "access misc button help" id = "help" hidden = "hidden" onclick = "callForHelp()">Click for Assistance</button>
+         <img src="views/translate.png" class = "access misc translateimg" id="translateimg" hidden = "hidden">
          <script type="text/javascript">
          function googleTranslateElementInit() {
-           new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+           new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
          }
          </script>
          
