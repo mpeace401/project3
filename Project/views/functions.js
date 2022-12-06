@@ -1077,6 +1077,9 @@ function narrator(event){
 
  }
 
+/**
+ * Used to alert server GUIs that help is needed at kiosk
+ */
 function callForHelp(){
    var q = "insert  into  assist (instance) values (true);"
    runQuery(q)
@@ -1084,8 +1087,10 @@ function callForHelp(){
 
 }
 
+
+//checks periodically for help alerts
 if(document.getElementById("side").innerText == "Server"){
-   //checkAssist()
+
    setInterval(checkAssist, 1000);
 }
 
