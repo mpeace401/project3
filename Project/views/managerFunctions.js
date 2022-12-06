@@ -429,19 +429,19 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
          for (let i = 0; i < data.itemIds.length; i++) {
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.itemIds[i].itemname
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.itemIds[i].count
             document.getElementById("salesReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
-            x.style.width = "33%"
+            x.style.flexBasis = "33.33%"
             x.style.pointerEvents = "none"
             x.innerHTML = '$' + Math.round(data.itemIds[i].sum * 100.0) / 100.0
             document.getElementById("salesReportBox").appendChild(x);
@@ -487,13 +487,13 @@ function getExcessReport(evt) {
             if (data.itemIds[i].total < 300) {
                var x = document.createElement("button")
                x.className += "itemButton"
-               x.style.width = "49.5%"
+               x.style.flexBasis = "50%"
                x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].itemid
                document.getElementById("excessReportBox").appendChild(x);
                var x = document.createElement("button")
                x.className += "itemButton"
-               x.style.width = "49.5%"
+               x.style.flexBasis = "50%"
                x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].total
                document.getElementById("excessReportBox").appendChild(x);
