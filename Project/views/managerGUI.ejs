@@ -43,7 +43,11 @@
                   <%= value.inventoryid %>
                </button>
                <button class="notificationItem" style="pointer-events: none">
-                  <%= value.message.split(' ')[3] %>
+                  <% let i = 3; %> 
+                  <% while (value.message.split(' ')[i] != "Remaining") {%> 
+                     <%= value.message.split(' ')[i] %>
+                     <% i++; %> 
+                  <% } %> 
                </button>
                <button class="notificationItem" style="pointer-events: none">
                   <%= value.date.toDateString() %>
