@@ -20,7 +20,6 @@ const app = express();
 const port = 3001;
 app.set("views", "views");
 app.use(express.json());
-app.use
 app.use(auth(config));
 app.use("/", indexRouter)
 
