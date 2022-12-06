@@ -1,0 +1,38 @@
+* {
+    text-decoration: none;
+}
+
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5cm;
+    color: maroon;
+    margin-bottom: 0cm;
+}
+
+p{
+    text-align: center;
+    color: maroon;
+    font-size: 1cm;
+    font-family: "Papyrus", fantasy, times;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0cm;
+    width: 400px;
+    height: 350px;
+}
+
+.logout {
+    color: white;
+    font-size: 1em;
+    background-color: maroon;
+    width: 47.5%;
+    height: 4em;
+    border-color: maroon;
+}
