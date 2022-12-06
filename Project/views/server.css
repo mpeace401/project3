@@ -109,8 +109,8 @@ p {
   overflow: scroll;
 }
 .accessibility{
-  top: 750px;
-  left: 25px;
+  top: 710px;
+  left: 35px;
   width: 150px;
   height: 50px;
   border-color: maroon ;
@@ -150,3 +150,17 @@ p {
   position: absolute;  
 }
 
+.translate{
+  position: absolute;
+  top: 250px;
+  left: 280px; 
+
+
+}
+.translateimg{
+  position: absolute;
+  top: 170px;
+  left: 30px; 
+  height: 220px;
+  width: 220px;
+}
