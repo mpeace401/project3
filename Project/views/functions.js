@@ -756,7 +756,6 @@ function magnifyText(){
       var menu = document.getElementsByClassName("menubutton")
       for(let i = 0; i < menu.length; i++){
          menu[i].style.fontSize = "18px"
-        
 
       }
       var names = document.getElementsByClassName("textbox price")
@@ -775,7 +774,6 @@ function magnifyText(){
       removeSize = 28
       removeHeight = 34
       removeFont = 22
-      
 
       document.getElementById("orderbox").style.fontSize = "25px"
    }
