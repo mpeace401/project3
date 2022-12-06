@@ -1,5 +1,6 @@
 
 
+
 //array to store item ids
 var orderArray = [];
 
@@ -793,7 +794,7 @@ function resetText(){
 
 function createMenuButtons(){
    
-   if(document.getElementById("side").innerText == "Customer"){
+   
    var menu = document.getElementsByClassName("menubutton")
    while(menu.length > 0 ){
       //resets previous menu
@@ -823,28 +824,32 @@ var q = 'select * from menuitems where active = \'t\' order by itemid;' ;
          var menu = data.menu;
          var menuBox = document.getElementById("menubox");
          for(let i = 0; i < menu.length; i++){
-            let button = document.createElement("button")
+            var button = document.createElement("button")
             
             button.className += "button menubutton " + (menu[i].category - 1).toString() + " igr" + menu[i].i1 + " igr" + menu[i].i2
             button.className +=" igr" + menu[i].i3 + " igr" + menu[i].i4 + " igr" + menu[i].i5 + " igr" + menu[i].i6
             button.id = "menubutton " + menu[i].id
-            let textArea = document.createElement("div")
-            textArea.className += "textbox price"
-            textArea.id = "price " + + menu[i].id
-            textArea.innerText= "$" + parseFloat(menu[i].price).toFixed(2) + " " + menu[i].name
-            textArea.style = "left: 85px; top: 70px; width:200px; height: 20px; position:relative; border: solid maroon 2px;"
-            button.style= "background-image: url(" + menu[i].url + ");"
             button.setAttribute("hidden", "hidden")
-            
-
             button.onclick = function() {addToOrder(orderArray, menu[i].id, menu[i].price, menu[i].i1, menu[i].i2, menu[i].i3, menu[i].i4, menu[i].i5, menu[i].i6, menu[i].hastoppings)}
-            button.appendChild(textArea)
+            if(document.getElementById("side").innerText == "Customer"){
+               
+               let textArea = document.createElement("div")
+               textArea.className += "textbox price"
+               textArea.id = "price " + menu[i].id
+               textArea.innerText= "$" + parseFloat(menu[i].price).toFixed(2) + " " + menu[i].name
+               textArea.style = "left: 85px; top: 70px; width:200px; height: 20px; position:relative; border: solid maroon 2px;"
+               button.appendChild(textArea)
+               button.style= "background-image: url(" + menu[i].url + ");"
+               
+            }
+            else{
+               button.innerText = menu[i].name
+            }
             menuBox.appendChild(button)
          }
          resetText()
          
       });
-   }
       
 }
 

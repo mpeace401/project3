@@ -29,44 +29,8 @@
    <button class = "button cancel" id = 'cancel' style = "position: absolute; left: 850px; top: 575px;" onclick = "clearOrder()"> Cancel</button>
 
    <!--  Creates menu buttons  -->
-   <div class = "flex-container1">
-   <% for (var i = 0; i < data.menuArray.length; i++) {%>  
-      <% for (var j = 0; j < data.menuArray[i].length; j++) {%>
-         <!-- Assigns buttons into class depending on category -->
+   <div class = "flex-container1" id = "menubox">
 
-         <!-- Gets ingredients -->
-         
-         <% var i1 = data.menuMap.get(data.menuArray[i][j]).ingredient1 %>
-         <% if(i1 == null){ %>
-            <%i1 = 0 }%>
-         <% var i2 = data.menuMap.get(data.menuArray[i][j]).ingredient2 %>
-         <% if(i2 == null){ %>
-            <%i2 = 0 }%>
-         <% var i3 = data.menuMap.get(data.menuArray[i][j]).ingredient3 %>
-         <% if(i3 == null){ %>
-            <%i3 = 0 }%>
-         <% var i4 = data.menuMap.get(data.menuArray[i][j]).ingredient4 %>
-         <% if(i4 == null){ %>
-            <%i4 = 0 }%>
-         <% var i5 = data.menuMap.get(data.menuArray[i][j]).ingredient5 %>
-         <% if(i5 == null){ %>
-            <%i5 = 0 }%>
-         <% var i6 = data.menuMap.get(data.menuArray[i][j]).ingredient6 %>
-         <% if(i6 == null){ %>
-            <%i6 = 0 }%>
-         <% var toppings = data.menuMap.get(data.menuArray[i][j]).hastoppings %>   
-         <!-- gets price -->
-
-         <% var price = data.menuMap.get(data.menuArray[i][j]).price %>
-         <button class = "button menubutton <%= i %> ingr<%= i1 %> ingr<%= i2 %> ingr<%= i3 %> ingr<%= i4 %> ingr<%= i5 %> ingr<%= i6 %>"  
-            id = "menubutton <%=data.menuMap.get(data.menuArray[i][j]).itemid%>" hidden = "hidden" 
-            onclick = "addToOrder(orderArray, <%= data.menuMap.get(data.menuArray[i][j]).itemid %>,  <%=price %>, <%=i1 %>, <%=i2 %>, <%=i3 %>, <%=i4 %>, <%=i5 %>, <%=i6 %>,  <%=toppings %>)"
-            >
-            <%= data.menuMap.get(data.menuArray[i][j]).itemname %>
-            <div class="textbox price" id = "price <%= i %> <%= j %>"hidden = "hidden">$<%=price%></div>
-         </button>
-      <% } %>
-   <% } %>
    </div>   
 
    <div>
