@@ -405,7 +405,7 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
 
    //q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
 
-   q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname;'
+   q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname ORDER BY sum(customertransactions.price) desc;'
 
 
    
