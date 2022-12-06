@@ -5,7 +5,17 @@
    <title>Login</title>
 </head>
 <body>
-   <p>test</p>
+   <nav>
+      <ul>
+         <% if(isAuthenticated) { %>
+            <li><a href="/login/">Login</a></li>
+         <% } else { %>
+         <li><a href="/logout/">Login</a></li>
+         <% } %>
+      </ul>
+   </nav>
+   <h1><%= title %></h1>
+   <p>Welcome to <%= title %></p>
 </body>
 <!-- <script src="/views/managerFunctions.js"> </script> -->
 </html>
