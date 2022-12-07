@@ -586,6 +586,10 @@ function getRestockReport(evt) {
       });
 }
 
+/**
+ * Gets notifications from database
+ * @param {*} evt Event responsible for getting notifications
+ */
 function getNotifications(evt) {
    q = 'SELECT * FROM notifications order by notificationid desc;'
 
