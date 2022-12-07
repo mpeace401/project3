@@ -1,9 +1,14 @@
+.logout {
+    float: right;
+    text-decoration: underline;
+}
+
 * {
     text-decoration: none;
 }
 
 body {
-    background-color: lightgray;
+    background-color: #ffdab8;
 }
 
 h1 {
@@ -26,15 +31,4 @@ img {
     margin-bottom: 0cm;
     width: 400px;
     height: 350px;
-}
-
-.logout {
-    float: right;
-    color: white;
-    font-size: 1em;
-    background-color: maroon;
-    width: 60px;
-    height: 30px;
-    border-color: maroon;
-    
 }
