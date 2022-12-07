@@ -334,7 +334,7 @@ function removeItem(evt) {
    stockName = document.getElementById('invName').value
    invAmount = document.getElementById('invAmount').value
    threshold = document.getElementById('invThreshold').value
-   if(isNaN(invID) || isNaN(invAmount) || isNaN(threshold)){
+   if(isNaN(invAmount) || isNaN(threshold)){
       alert("Invalid input")
    }
    else{
@@ -372,13 +372,16 @@ function updateMenuItem(evt) {
    url = document.getElementById('url').value
    category = document.getElementById('category').value
 
-
-   console.log()
-   updateQ = 'UPDATE menuitems SET itemid=' + menuID + ', itemname=' + "'" + menuName +
-   "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ', url=' + "'" + url + "'" + ', category=' + "'" + category + "'" + ' WHERE itemid=' + menuID + ';'
-   console.log(updateQ)
-   runQuery(updateQ)
-
+   if (isNaN(price) || isNaN(ing1) || isNaN(ing2) || isNaN(ing3) || isNaN(ing4) || isNaN(ing5) || isNaN(ing6)) {
+      alert("invalid input")
+   }
+   else {
+      //console.log()
+      updateQ = 'UPDATE menuitems SET itemid=' + menuID + ', itemname=' + "'" + menuName +
+      "'" + ', price=' + price + ', ingredient1=' + ing1 + ', ingredient2=' + ing2 + ', ingredient3=' + ing3 + ', ingredient4=' + ing4 + ', ingredient5=' + ing5 + ', ingredient6=' + ing6 + ', url=' + "'" + url + "'" + ', category=' + "'" + category + "'" + ' WHERE itemid=' + menuID + ';'
+      console.log(updateQ)
+      runQuery(updateQ)
+   }
 }
 
 /**
@@ -401,56 +404,60 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
    startDate = document.getElementById('salesStartDate').value
    endDate = document.getElementById('salesEndDate').value
 
+  
+
    let element = document.getElementById('salesReportBox');
    while (element.firstChild) {
       element.removeChild(element.firstChild);
    }
 
    //q = 'SELECT itemid, COUNT(itemid), SUM(price) FROM customertransactions WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' AND itemid < 90 GROUP by itemid;'
+   if (isNaN(Date.parse(startDate)) || isNaN(Date.parse(endDate))) {
+      alert("Invalid input")
+   }
+   else {
+      q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname ORDER BY sum(customertransactions.price) desc;'
 
-   q = 'select menuitems.itemname, count(menuitems.itemname), sum(customertransactions.price) from customertransactions join menuitems on customertransactions.itemid = menuitems.itemid WHERE DATE(time) >= ' + "'" + startDate + "'" + ' AND DATE(time) <= ' + "'" + endDate + "'" + ' group by menuitems.itemname ORDER BY sum(customertransactions.price) desc;'
-
-
-   
-   fetch('/getSalesReport', {
-      method: 'POST',
-      headers: {
-         Authorization: '',
-         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-         q,
-      }),
-   })
-      .then((res) => {
-         console.log(res.itemIds)
-         return res.json();
+      fetch('/getSalesReport', {
+         method: 'POST',
+         headers: {
+            Authorization: '',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            q,
+         }),
       })
-      
-      .then(function(data) {
+         .then((res) => {
+            console.log(res.itemIds)
+            return res.json();
+         })
+         
+         .then(function(data) {
 
-         for (let i = 0; i < data.itemIds.length; i++) {
-            var x = document.createElement("button")
-            x.className += "itemButton"
-            x.style.flexBasis = "33.33%"
-            x.style.pointerEvents = "none"
-            x.innerHTML = data.itemIds[i].itemname
-            document.getElementById("salesReportBox").appendChild(x);
-            var x = document.createElement("button")
-            x.className += "itemButton"
-            x.style.flexBasis = "33.33%"
-            x.style.pointerEvents = "none"
-            x.innerHTML = data.itemIds[i].count
-            document.getElementById("salesReportBox").appendChild(x);
-            var x = document.createElement("button")
-            x.className += "itemButton"
-            x.style.flexBasis = "33.33%"
-            x.style.pointerEvents = "none"
-            x.innerHTML = '$' + Math.round(data.itemIds[i].sum * 100.0) / 100.0
-            document.getElementById("salesReportBox").appendChild(x);
-         }
+            for (let i = 0; i < data.itemIds.length; i++) {
+               var x = document.createElement("button")
+               x.className += "itemButton"
+               x.style.flexBasis = "33.33%"
+               x.style.pointerEvents = "none"
+               x.innerHTML = data.itemIds[i].itemname
+               document.getElementById("salesReportBox").appendChild(x);
+               var x = document.createElement("button")
+               x.className += "itemButton"
+               x.style.flexBasis = "33.33%"
+               x.style.pointerEvents = "none"
+               x.innerHTML = data.itemIds[i].count
+               document.getElementById("salesReportBox").appendChild(x);
+               var x = document.createElement("button")
+               x.className += "itemButton"
+               x.style.flexBasis = "33.33%"
+               x.style.pointerEvents = "none"
+               x.innerHTML = '$' + Math.round(data.itemIds[i].sum * 100.0) / 100.0
+               document.getElementById("salesReportBox").appendChild(x);
+            }
 
-      });
+         });
+   }
 }
 
 /**
@@ -466,46 +473,51 @@ function getExcessReport(evt) {
    while (element.firstChild) {
       element.removeChild(element.firstChild);
    }
-   q = 'SELECT customertransactions.itemid,  COUNT(customertransactions.itemid) as total from customertransactions where date(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' GROUP BY customertransactions.itemid order by customertransactions.itemid;'
-   
-   console.log(q)
 
-   fetch('/getItemIDs', {
-      method: 'POST',
-      headers: {
-         Authorization: '',
-         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-         q,
-      }),
-   })
-      .then((res) => {
-         console.log(res.itemIds)
-         return res.json();
-      })
+   if (isNaN(Date.parse(startDate)) || isNaN(Date.parse(startTime))) {
+      alert("Invalid input")
+   }
+   else {
+      q = 'SELECT customertransactions.itemid,  COUNT(customertransactions.itemid) as total from customertransactions where date(time) >= ' + "'" + startDate + ' ' + startTime + "'" + ' GROUP BY customertransactions.itemid order by customertransactions.itemid;'
       
-      .then(function(data) {
-         for (let i = 0; i < data.itemIds.length; i++) {
-            if (data.itemIds[i].total < 300) {
-               var x = document.createElement("button")
-               x.className += "itemButton"
-               x.style.flexBasis = "50%"
-               x.style.pointerEvents = "none"
-               x.innerHTML = data.itemIds[i].itemid
-               document.getElementById("excessReportBox").appendChild(x);
-               var x = document.createElement("button")
-               x.className += "itemButton"
-               x.style.flexBasis = "50%"
-               x.style.pointerEvents = "none"
-               x.innerHTML = data.itemIds[i].total
-               document.getElementById("excessReportBox").appendChild(x);
+      console.log(q)
+
+      fetch('/getItemIDs', {
+         method: 'POST',
+         headers: {
+            Authorization: '',
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            q,
+         }),
+      })
+         .then((res) => {
+            console.log(res.itemIds)
+            return res.json();
+         })
+         
+         .then(function(data) {
+            for (let i = 0; i < data.itemIds.length; i++) {
+               if (data.itemIds[i].total < 300) {
+                  var x = document.createElement("button")
+                  x.className += "itemButton"
+                  x.style.flexBasis = "50%"
+                  x.style.pointerEvents = "none"
+                  x.innerHTML = data.itemIds[i].itemid
+                  document.getElementById("excessReportBox").appendChild(x);
+                  var x = document.createElement("button")
+                  x.className += "itemButton"
+                  x.style.flexBasis = "50%"
+                  x.style.pointerEvents = "none"
+                  x.innerHTML = data.itemIds[i].total
+                  document.getElementById("excessReportBox").appendChild(x);
+               }
             }
-         }
-      console.log(data)
+         console.log(data)
 
-      });
-
+         });
+   }
 }
 
 /**
@@ -519,6 +531,7 @@ function getRestockReport(evt) {
    while (element.firstChild) {
       element.removeChild(element.firstChild);
    }
+
 
    fetch('/getRestockReport', {
       method: 'POST',
