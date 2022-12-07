@@ -5,6 +5,8 @@
    <title>Manager GUI</title>
    <p>
       <a href="/logout/">Logout</a>
+      <br>
+      <a href="/login/">Home Page</a>
    </p>
 </head>
 <body>
@@ -237,8 +239,18 @@
       <div class="scrollArea" id = "menuArea"></div>
    </div>
    <div id="Accessibility" class="tabcontent">
-      Font-Size Adjustor<br>
-      <label><input id="font-size" type="range" min="10" max="250" step="1" value="100"></label>
+      <div class="accessDiv">
+         <button readonly class="fontButton">
+            Font-Size Adjustor<br>
+            <label style="align-self:flex-start;width:20%;padding-top: 1%;"><input id="font-size" type="range" min="50" max="300" step="1" value="100"></label>
+         </button>
+         <button class="accessButton" onclick="toggleNarrator()" id ="togglenarrator">Enable Narrator</button>
+      </div>
+      <div style="display:flex">
+         
+      </div>
+      
+      
    </div>
 </body>
 <script src="/views/managerFunctions.js"> </script>

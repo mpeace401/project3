@@ -1016,8 +1016,6 @@ speech.pitch = 1;
 speech.rate = 1;
 
 
-
-
 /**
  * Adds narrator to run on hover of certain elements
  */
@@ -1033,6 +1031,7 @@ function setNarrator(){
    if(document.getElementById("side").innerText == "Customer"){
       document.getElementById("google_translate_element").removeEventListener("mouseover",narrator)
    }
+   document.getElementById("google_translate_element").removeEventListener("mouseover",narrator)
    
 }
 
@@ -1045,8 +1044,6 @@ function narrator(event){
       window.speechSynthesis.cancel()
       speech.text = event.target.innerText
       window.speechSynthesis.speak(speech);
-      
-      
    }
  }
 

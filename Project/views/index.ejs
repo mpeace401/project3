@@ -11,16 +11,22 @@
       <p>
          Press the Image to Login
       </p>
-         <% } else { %>
-         <a class="logout" href="/logout/">Logout</a>
-      <ul>
-         <% if(user.nickname == "blakelunnn" || user.nickname == "s2081459"|| user.nickname == "alexjamesgarza") { %>
-            <li><a href="/manager/">Manager</a></li>
-            <% } %>
-         <li><a href="/server/">Server</a></li>
-         <li><a href="/customer/">Customer</a></li>
+   <% } else { %>
+   <a class="logout" href="/logout/">Logout</a>
+   <p>
+      <% if(user.nickname == "blakelunnn" || user.nickname == "s2081459"|| user.nickname == "alexjamesgarza") { %>
+         <a href="/manager/">Manager</a>
+         <br>
+         <br>
+         <br>
          <% } %>
-      </ul>
+      <a href="/server/">Server</a>
+      <br>
+      <br>
+      <br>
+      <a href="/customer/">Customer</a>
+   </p>
+   <% } %>
 </body>
 <script src="/views/indexFunctions.js"> </script>
 </html>
