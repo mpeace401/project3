@@ -416,7 +416,7 @@ let removeItem = (i) =>{
  * @param {*} inventoryid Ingredient that determines which menu items to disable.
  */
 let disableButtonsIngr = (inventoryid)=>{
-   var buttons = document.getElementsByClassName("ingr" + inventoryid)
+   var buttons = document.getElementsByClassName("igr" + inventoryid)
    for(let i = 0; i < buttons.length; i++){
       disableMenuButton(buttons[i])
    }
