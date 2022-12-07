@@ -204,6 +204,7 @@ function createInventoryArea(){
             var button = document.createElement("button")
             button.className += "itemButton"
             button.id = inventory[i].id
+            button.addEventListener("mouseover", narrator)
             button.onclick = function(){displayinventoryItem(event,inventory[i].id,inventory[i].amount)}
             button.innerText = inventory[i].name
             area.appendChild(button)
@@ -305,6 +306,7 @@ function createMenuArea(){
             var button = document.createElement("button")
             button.className += "itemButton"
             button.id = "m" +menu[i].id
+            button.addEventListener("mouseover", narrator)
             button.onclick = function(){displayMenuItems(event,menu[i].id)}
             button.innerText = menu[i].name
             area.appendChild(button)
@@ -439,19 +441,16 @@ function getSalesReport(evt) { //TODO: get rid of start and end time bc sales on
                var x = document.createElement("button")
                x.className += "itemButton"
                x.style.flexBasis = "33.33%"
-               x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].itemname
                document.getElementById("salesReportBox").appendChild(x);
                var x = document.createElement("button")
                x.className += "itemButton"
                x.style.flexBasis = "33.33%"
-               x.style.pointerEvents = "none"
                x.innerHTML = data.itemIds[i].count
                document.getElementById("salesReportBox").appendChild(x);
                var x = document.createElement("button")
                x.className += "itemButton"
                x.style.flexBasis = "33.33%"
-               x.style.pointerEvents = "none"
                x.innerHTML = '$' + Math.round(data.itemIds[i].sum * 100.0) / 100.0
                document.getElementById("salesReportBox").appendChild(x);
             }
@@ -503,14 +502,12 @@ function getExcessReport(evt) {
                   var x = document.createElement("button")
                   x.className += "itemButton"
                   x.style.flexBasis = "50%"
-                  x.style.pointerEvents = "none"
                   x.innerHTML = data.itemIds[i].itemid
                   x.addEventListener("mouseover", narrator)
                document.getElementById("excessReportBox").appendChild(x);
                   var x = document.createElement("button")
                   x.className += "itemButton"
                   x.style.flexBasis = "50%"
-                  x.style.pointerEvents = "none"
                   x.innerHTML = data.itemIds[i].total
                   x.addEventListener("mouseover", narrator)
                document.getElementById("excessReportBox").appendChild(x);
@@ -556,28 +553,24 @@ function getRestockReport(evt) {
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
-            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].inventoryid
             x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
-            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].stockname
             x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
-            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].itemamount
             x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
-            x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].threshold
             x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
@@ -666,7 +659,21 @@ function narrator(event){
       window.speechSynthesis.cancel()
       speech.text = event.target.innerText
       window.speechSynthesis.speak(speech);
-      console.log(event.target.id)
+      console.log(event.target.value)
+   }
+}
+
+/**
+ * Implements text-to-speech narrator in input fields.
+ * @param {*} event Event responsible for text to speech
+ */
+ function narratorInput(event){
+   if(narratorStatus){
+      window.speechSynthesis.cancel()
+      console.log(event.target.value)
+      speech.text = (event.target.value)
+      window.speechSynthesis.speak(speech);
+      
    }
 }
 
@@ -675,12 +682,33 @@ function narrator(event){
  */
 function setNarrator(){
    var elements = document.querySelectorAll('[class]')
+   elements = document.getElementsByTagName('button');
    for(let i = 0; i < elements.length; i++){
       let element = elements[i]
       element.addEventListener("mouseover", narrator)
+      // else{
+         
+      //    element.addEventListener("mouseover",narratorInput)
+      // }
+      
+      
    }
    document.getElementById("restockReportBox").removeEventListener("mouseover",narrator)
    document.getElementById("Restock").removeEventListener("mouseover",narrator)
+   document.getElementById("Inventory").removeEventListener("mouseover",narrator)
+   document.getElementById("Sales").removeEventListener("mouseover",narrator)
+   document.getElementById("salesReportBox").removeEventListener("mouseover",narrator)
+   document.getElementById("Finance").removeEventListener("mouseover",narrator)
+   document.getElementById("Menu Items").removeEventListener("mouseover",narrator)
+   document.getElementById("invColumnNamesDiv").removeEventListener("mouseover",narrator)
+   
+   inputs = document.getElementsByTagName('input');
+   console.log(inputs.length)
+   for (let i  = 0; i < inputs.length; i++) {
+      let obj = inputs[i]
+      obj.addEventListener("mouseover", narratorInput)
+      obj.removeEventListener("mouseover",narrator)
+   }
 }
 
 /**

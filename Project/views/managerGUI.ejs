@@ -45,7 +45,7 @@
    <div id="Inventory" class="tabcontent">
       <div class="invAndMenuFieldGroup">
          <div>
-            <input readonly value="ID" class="attributeName">
+            <input readonly value="ID" class="attributeName" onmouseover="narratorInput(event)">
             <input class="invTextField" id="invID">
          </div>
          
@@ -114,7 +114,7 @@
       </div>
       <div id="Restock" class="reportContent">
          <button class="enterButton" style="width:81.15%;float:none;margin-right: 0%;" onclick="getRestockReport(event)">ENTER</button>
-         <div class="reportColumnNamesDiv">
+         <div class="reportColumnNamesDiv" id = "invColumnNamesDiv">
             <button class="reportColumnNames" style="flex-basis: 25%;">ID</button>
             <button class="reportColumnNames" style="flex-basis: 25%;">NAME</button>
             <button class="reportColumnNames" style="flex-basis: 25%;">AMOUNT</button>
