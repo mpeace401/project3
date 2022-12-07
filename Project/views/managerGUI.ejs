@@ -97,7 +97,6 @@
          <button class="reportTab" onclick="openReport(event, 'Sales')">Sales Report</button>
          <button class="reportTab" onclick="openReport(event, 'Excess')">Excess Report</button>
          <button class="reportTab" onclick="openReport(event, 'Restock')">Restock Report</button>
-         <button class="reportTab" onclick="openReport(event, 'WST')">What Sells Together Report</button>
       </div>
 
       <div id="Sales" class="reportContent">
@@ -142,29 +141,6 @@
             <button class="reportColumnNames" style="flex-basis: 25%;">THRESHOLD</button>
          </div>
          <div class="reportBox" id="restockReportBox"></div>
-      </div>
-      <div id="WST" class="reportContent">
-         <div>
-            <button class="enterButton" style="width: 21%">ENTER</button>
-            <div>
-               <button readonly class="dateTimeBox">Start Date (YYYY-MM-DD)</button>
-               <input class="dateTimeEntryBox" id="WSTStartDate">
-               <button readonly class="dateTimeBox">Start Time (HH:MM:SS) (OPTIONAL)</button>
-               <input class="dateTimeEntryBox" id="WSTStartTime">
-            </div>
-            <div>
-               <button readonly class="dateTimeBox">End Date (YYYY-MM-DD)</button>
-               <input class="dateTimeEntryBox" id="WSTEndDate">
-               <button readonly class="dateTimeBox">End Time (HH:MM:SS) (OPTIONAL)</button>
-               <input class="dateTimeEntryBox" id="WSTEndTime">
-            </div>
-         </div>
-         <div class="reportColumnNamesDiv">
-            <button class="reportColumnNames">FREQUENCY</button>
-            <button class="reportColumnNames">ITEM 1</button>
-            <button class="reportColumnNames">ITEM 2</button>
-         </div>
-         <div class="reportBox" id="WSTReportBox"></div>
       </div>
    </div>
    
