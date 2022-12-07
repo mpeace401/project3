@@ -618,28 +618,33 @@ function getNotifications(evt) {
          for (let i = 0; i < data.notifIDs.length; i++) {
             var x = document.createElement("button")
             x.className += "notificationItem"
+            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].id
             x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.addEventListener("mouseover", narrator)
+            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].name
+            x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.addEventListener("mouseover", narrator)
+            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].date
+            x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.addEventListener("mouseover", narrator)
+            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].time
+            x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.addEventListener("mouseover", narrator)
+            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].message
+            x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
          }
 
