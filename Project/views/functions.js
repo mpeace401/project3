@@ -1036,7 +1036,7 @@ function setNarrator(){
 }
 
 /**
- * Implements text-to-speech.
+ * Implements text-to-speech narrator.
  * @param {*} event Event responsible for text to speech
  */
 function narrator(event){

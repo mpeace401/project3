@@ -505,13 +505,15 @@ function getExcessReport(evt) {
                   x.style.flexBasis = "50%"
                   x.style.pointerEvents = "none"
                   x.innerHTML = data.itemIds[i].itemid
-                  document.getElementById("excessReportBox").appendChild(x);
+                  x.addEventListener("mouseover", narrator)
+               document.getElementById("excessReportBox").appendChild(x);
                   var x = document.createElement("button")
                   x.className += "itemButton"
                   x.style.flexBasis = "50%"
                   x.style.pointerEvents = "none"
                   x.innerHTML = data.itemIds[i].total
-                  document.getElementById("excessReportBox").appendChild(x);
+                  x.addEventListener("mouseover", narrator)
+               document.getElementById("excessReportBox").appendChild(x);
                }
             }
          console.log(data)
@@ -556,24 +558,28 @@ function getRestockReport(evt) {
             x.style.flexBasis = "25%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].inventoryid
+            x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].stockname
+            x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].itemamount
+            x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
             var x = document.createElement("button")
             x.className += "itemButton"
             x.style.flexBasis = "25%"
             x.style.pointerEvents = "none"
             x.innerHTML = data.inventoryIds[i].threshold
+            x.addEventListener("mouseover", narrator)
             document.getElementById("restockReportBox").appendChild(x);
          }
 
@@ -583,3 +589,59 @@ function getRestockReport(evt) {
 document.querySelector("#font-size").addEventListener("input", function() {
    document.body.style.fontSize = this.value +"%";
 });
+
+var narratorStatus = 0;
+var speech = new SpeechSynthesisUtterance();
+speech.lang = "en";
+speech.volume = 1;
+speech.pitch = 1;
+speech.rate = 1;
+
+/**
+ * Implements text-to-speech narrator.
+ * @param {*} event Event responsible for text to speech
+ */
+function narrator(event){
+   if(narratorStatus){
+      window.speechSynthesis.cancel()
+      speech.text = event.target.innerText
+      window.speechSynthesis.speak(speech);
+      console.log(event.target.id)
+   }
+}
+
+/**
+ * Adds narrator to run on hover of certain elements
+ */
+function setNarrator(){
+   var elements = document.querySelectorAll('[class]')
+   for(let i = 0; i < elements.length; i++){
+      let element = elements[i]
+      element.addEventListener("mouseover", narrator)
+   }
+   document.getElementById("restockReportBox").removeEventListener("mouseover",narrator)
+   document.getElementById("Restock").removeEventListener("mouseover",narrator)
+}
+
+/**
+ * Toggles whether of not the narrator is enabled.
+ */
+function toggleNarrator(){
+   window.speechSynthesis.cancel()
+   var button = document.getElementById("togglenarrator")
+   if(narratorStatus == 0){
+      speech.text = "Narrator enabled"
+      window.speechSynthesis.speak(speech);
+      narratorStatus = 1
+      button.innerText = "Disable Narrator"
+
+   }
+   else{
+      speech.text = "Disabling narrator"
+      window.speechSynthesis.speak(speech);
+      narratorStatus = 0
+      button.innerText = "Enable Narrator"
+   }
+}
+
+setNarrator();

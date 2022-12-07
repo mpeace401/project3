@@ -1,7 +1,9 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 var indexRouter = require("./routes/index.js");
+
 const { auth } = require('express-openid-connect');
-const dotenv = require('dotenv').config();
+
 
 const config = {
   authRequired: false,
