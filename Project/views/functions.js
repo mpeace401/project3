@@ -1017,6 +1017,7 @@ speech.rate = 1;
 
 
 
+
 /**
  * Adds narrator to run on hover of certain elements
  */
@@ -1044,6 +1045,7 @@ function narrator(event){
       window.speechSynthesis.cancel()
       speech.text = event.target.innerText
       window.speechSynthesis.speak(speech);
+      
       
    }
  }
