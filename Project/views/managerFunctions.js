@@ -584,6 +584,10 @@ speech.volume = 1;
 speech.pitch = 1;
 speech.rate = 1;
 
+/**
+ * Implements text-to-speech narrator.
+ * @param {*} event Event responsible for text to speech
+ */
 function narrator(event){
    if(narratorStatus){
       window.speechSynthesis.cancel()
@@ -593,6 +597,9 @@ function narrator(event){
    }
 }
 
+/**
+ * Adds narrator to run on hover of certain elements
+ */
 function setNarrator(){
    var elements = document.querySelectorAll('[class]')
    for(let i = 0; i < elements.length; i++){
@@ -603,6 +610,9 @@ function setNarrator(){
    document.getElementById("Restock").removeEventListener("mouseover",narrator)
 }
 
+/**
+ * Toggles whether of not the narrator is enabled.
+ */
 function toggleNarrator(){
    window.speechSynthesis.cancel()
    var button = document.getElementById("togglenarrator")
