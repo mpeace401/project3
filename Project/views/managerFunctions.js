@@ -164,7 +164,7 @@ function displayinventoryItem(evt, inventoryID, amount) {
  * Adds new item to inventory
  */
 function addInventoryItems() {
-   insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount, active) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
+   insertQ = 'INSERT INTO inventory(inventoryid, stockname, itemamount) SELECT MAX(inventoryid) + 1' + ", 'new item', 0 FROM inventory;"
    runQuery(insertQ)
    createInventoryArea();
 
