@@ -474,7 +474,7 @@ function getExcessReport(evt) {
       element.removeChild(element.firstChild);
    }
 
-   if (isNaN(Date.parse(startDate)) || isNaN(Date.parse(startTime))) {
+   if (isNaN(Date.parse(startDate))) {
       alert("Invalid input")
    }
    else {
