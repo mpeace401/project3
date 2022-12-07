@@ -329,16 +329,19 @@ function removeItem(evt) {
  * Updates item in inventory with given values
  * @param {*} evt Event associated with updating an item
  */
-function updateItem(evt) {
+ function updateItem(evt) {
    invId = document.getElementById('invID').value
    stockName = document.getElementById('invName').value
    invAmount = document.getElementById('invAmount').value
    threshold = document.getElementById('invThreshold').value
-  
-   
+   if(isNaN(invID) || isNaN(invAmount) || isNaN(threshold)){
+      alert("Invalid input")
+   }
+   else{
    updateQ = 'UPDATE inventory SET inventoryid=' + invId + ', stockname=' + "'" + stockName +
    "'" + ', itemamount=' + invAmount + ', threshold=' + threshold + ' WHERE inventoryid=' + invId + ';'
    runQuery(updateQ)
+   }
 }
 
 /**
