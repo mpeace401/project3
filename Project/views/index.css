@@ -29,10 +29,12 @@ img {
 }
 
 .logout {
+    float: right;
     color: white;
     font-size: 1em;
     background-color: maroon;
-    width: 47.5%;
-    height: 4em;
+    width: 60px;
+    height: 30px;
     border-color: maroon;
+    
 }
