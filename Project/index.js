@@ -134,7 +134,7 @@ function createInventoryTransactionsMap(managerData){
 function createNotificationsMap(managerData){
   var notificationsMap = new Map();
   pool
-      .query('SELECT * FROM notifications;')
+      .query('SELECT * FROM notifications order by notificationid desc;')
       .then(query_res => {
       for (let i = 0; i < query_res.rowCount; i++){            
         notificationsMap.set(query_res.rows[i].notificationid, query_res.rows[i]);                
@@ -447,4 +447,29 @@ app.post('/getassist', jsonParser, function(req, res) {
     
     });
 
+})
+
+app.post('/getnotifinfo', jsonParser, function(req, res) {
+  const {q} = req.body;
+  pool
+  .query(q) 
+    .then(query_res => {
+      var notifIDs = []
+      for(let i = 0; i < query_res.rowCount; i++){
+        var id = query_res.rows[i].inventoryid;
+        let j = 3;
+        var name = ""
+        while (query_res.rows[i].message.split(' ')[j] != "Remaining") {
+          name += query_res.rows[i].message.split(' ')[j]
+          j++;
+        }
+        var date = query_res.rows[i].date.toDateString();
+        var time = query_res.rows[i].time.split('.')[0];
+        var message = query_res.rows[i].message;
+        var item = {id: id, name: name, date: date, time:time, message: message}
+        notifIDs.push(item)
+      }
+      res.send({notifIDs})
+    
+    });
 })

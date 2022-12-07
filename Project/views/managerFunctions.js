@@ -586,6 +586,62 @@ function getRestockReport(evt) {
       });
 }
 
+function getNotifications(evt) {
+   q = 'SELECT * FROM notifications order by notificationid desc;'
+
+   let element = document.getElementById('notifications');
+   while (element.firstChild) {
+      element.removeChild(element.firstChild);
+   }
+
+   fetch('/getnotifinfo', {
+      method: 'POST',
+      headers: {
+         Authorization: '',
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+         q,
+      }),
+   })
+      .then((res) => {
+         console.log(res.notifIDs)
+         return res.json();
+      })
+      
+      .then(function(data) {
+
+         for (let i = 0; i < data.notifIDs.length; i++) {
+            var x = document.createElement("button")
+            x.className += "notificationItem"
+            x.style.pointerEvents = "none"
+            x.innerHTML = data.notifIDs[i].id
+            document.getElementById("notifications").appendChild(x);
+            var x = document.createElement("button")
+            x.className += "notificationItem"
+            x.style.pointerEvents = "none"
+            x.innerHTML = data.notifIDs[i].name
+            document.getElementById("notifications").appendChild(x);
+            var x = document.createElement("button")
+            x.className += "notificationItem"
+            x.style.pointerEvents = "none"
+            x.innerHTML = data.notifIDs[i].date
+            document.getElementById("notifications").appendChild(x);
+            var x = document.createElement("button")
+            x.className += "notificationItem"
+            x.style.pointerEvents = "none"
+            x.innerHTML = data.notifIDs[i].time
+            document.getElementById("notifications").appendChild(x);
+            var x = document.createElement("button")
+            x.className += "notificationItem"
+            x.style.pointerEvents = "none"
+            x.innerHTML = data.notifIDs[i].message
+            document.getElementById("notifications").appendChild(x);
+         }
+
+      });
+}
+
 document.querySelector("#font-size").addEventListener("input", function() {
    document.body.style.fontSize = this.value +"%";
 });

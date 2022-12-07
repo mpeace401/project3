@@ -12,7 +12,7 @@
 <body>
    <!-- Tab links -->
    <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Home')", id="homePage">Home</button>
+      <button class="tablinks" onclick="openTab(event, 'Home'); getNotifications(event)", id="homePage">Home</button>
       <button class="tablinks" onclick="openTab(event, 'Inventory')">Inventory</button>
       <button class="tablinks" onclick="openTab(event, 'Finance')">Finance</button>
       <button class="tablinks" onclick="openTab(event, 'Transactions')">Transactions</button>
@@ -39,29 +39,7 @@
          <button class="notifColNames">TIME</button>
          <button class="notifColNames">MESSAGE</button>
       </div>
-      <div readonly class="notifications">
-         <% for (const value of managerData.notificationsMap.values()) {%>
-               <button class="notificationItem" style="pointer-events: none">
-                  <%= value.inventoryid %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
-                  <% let i = 3; %> 
-                  <% while (value.message.split(' ')[i] != "Remaining") {%> 
-                     <%= value.message.split(' ')[i] %>
-                     <% i++; %> 
-                  <% } %> 
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
-                  <%= value.date.toDateString() %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
-                  <%= value.time.split('.')[0] %>
-               </button>
-               <button class="notificationItem" style="pointer-events: none">
-                  <%= value.message %>
-               </button>
-         <% } %>
-      </div>
+      <div readonly class="notifications" id="notifications"></div>
    </div>
    
    <div id="Inventory" class="tabcontent">
