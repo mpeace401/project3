@@ -618,27 +618,27 @@ function getNotifications(evt) {
          for (let i = 0; i < data.notifIDs.length; i++) {
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.style.pointerEvents = "none"
             x.innerHTML = data.notifIDs[i].id
+            x.addEventListener("mouseover", narrator)
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.style.pointerEvents = "none"
+            x.addEventListener("mouseover", narrator)
             x.innerHTML = data.notifIDs[i].name
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.style.pointerEvents = "none"
+            x.addEventListener("mouseover", narrator)
             x.innerHTML = data.notifIDs[i].date
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.style.pointerEvents = "none"
+            x.addEventListener("mouseover", narrator)
             x.innerHTML = data.notifIDs[i].time
             document.getElementById("notifications").appendChild(x);
             var x = document.createElement("button")
             x.className += "notificationItem"
-            x.style.pointerEvents = "none"
+            x.addEventListener("mouseover", narrator)
             x.innerHTML = data.notifIDs[i].message
             document.getElementById("notifications").appendChild(x);
          }
